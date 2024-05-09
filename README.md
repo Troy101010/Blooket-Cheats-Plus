@@ -65,8 +65,8 @@ The mobile GUI is the first GUI Minesraft2 ever made. Some people said it worked
 
 <details><summary><h2>List of Cheats</h2></summary>
 
-* [GUI](GUI/gui.js)
-* [Mobile GUI](Mobile GUI/mobileGui.js)
+* [GUI](GUI/Gui.js)
+* [Mobile GUI](MobileGUI/mobileGui.js)
 ### Monster Brawl Fixed by <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 * Double Enemy XP
 * Half Enemy Speed
