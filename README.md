@@ -1,5 +1,6 @@
 <p align="center">Cheats made by someone who knows how to improve something.</p>
-<h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">Support Server</a></h2>
+<h3 align="center"><a href="https://discord.gg/SAHpM8hd">Support Server</a></h2>
+<h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">Original Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 
 ## Information
@@ -146,7 +147,7 @@ The mobile GUI is the first GUI Minesraft2 ever made. Some people said it worked
 * Use Any Blook Fixed by <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 * Use Any Banner By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 * Crash Game By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
-* Chat
+* Chat By <a href="https://github.com/yeahbread/Ego-Menu-Bookmarklets">Ego Menu</a>
 * Lobbychat By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 * Freeze Leaderboard By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 * Pin Guesser By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
