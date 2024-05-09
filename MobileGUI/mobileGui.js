@@ -1,6 +1,6 @@
 (async () => {
 if(String(window.fetch.call).includes("native")){var rf = window.fetch.call;window.fetch.call = function(){if(arguments[1].includes("s.blooket.com/rc")){console.log("You tried to get caught cheating!");return;}else{return rf.apply(this,arguments);}}}else{console.log("already run");}
-      if (console.log("%c Blooket Cheats %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\tMobilegui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
+      if (console.log("%c Blooket Cheats %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\tMobilegui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
         e.remove()
     } {
@@ -77,7 +77,7 @@ if(String(window.fetch.call).includes("native")){var rf = window.fetch.call;wind
                     name: "Auto Answer (Toggle)",
                     description: "Toggles auto answer on",
                     type: "toggle",
-                    enabled: (t.innerHTML = '<span><a target="blank" href="https://discord.gg/jHjGrrdXP6">Discord</a><br/><a target="blank" href="https://github.com/DannyDan0167/Blooket-Cheats/">GitHub - DannyDan0167</a></span>', !1),
+                    enabled: (t.innerHTML = '<span><a target="blank" href="https://discord.gg/jHjGrrdXP6">Discord</a><br/><a target="blank" href="https://github.com/DannyDan0167/Blooket-Cheats-Plus/">GitHub - DannyDan0167</a></span>', !1),
                     data: null,
                     run: function() {
                         this.enabled ? (this.enabled = !1, clearInterval(this.data), this.data = null) : (this.enabled = !0, this.data = setInterval(() => {
