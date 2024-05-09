@@ -1,4 +1,4 @@
-<p align="center">Cheats made by someone who knows more about what they're doing</p>
+<p align="center">Cheats made by someone who knows how to improve something.</p>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 
