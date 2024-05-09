@@ -1,5 +1,5 @@
 (async () => {
-      if (console.log("%c Blooket Cheats %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\tgui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
+      if (console.log("%c Blooket Cheats %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\tgui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
         e.remove()
     }
@@ -173,7 +173,7 @@
             userSelect: "text"
         },
         innerHTML: "GitHub - DannyDan0167",
-        onclick: () => window.open("https://github.com/DannyDan0167/Blooket-Cheats", "_blank").focus()
+        onclick: () => window.open("https://github.com/DannyDan0167/Blooket-Cheats-Plus", "_blank").focus()
     }), h = l("div", {
         id: "controlButtons",
         style: {
@@ -3058,7 +3058,7 @@ hack();
                     val: !1
                 })
             }
-        }], // THIS IS AN ANTI-SKID MEASURE! THIS IS MADE BY DannyDan0167 https://github.com/DannyDan0167/Blooket-Cheats DO NOT TOUCH/MODIFY
+        }], // THIS IS AN ANTI-SKID MEASURE! THIS IS MADE BY DannyDan0167 https://github.com/DannyDan0167/Blooket-Cheats-Plus DO NOT TOUCH/MODIFY
         doom: [{
                     name: "Fill Deck",
                     description: "Fills your deck with every maxed out card and artifact (Only works on towers page)",
