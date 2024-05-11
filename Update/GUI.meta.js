@@ -3,6 +3,7 @@
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
 // @version      13.0
 // @description  Blooket Cheats Plus
+// @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/GUI.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/GUI/Gui.user.js
 // @author       DannyDan0167
 // @match        https://dashboard.blooket.com/*
