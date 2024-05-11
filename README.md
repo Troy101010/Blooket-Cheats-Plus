@@ -1,6 +1,6 @@
 <p align="center">Cheats made by someone who knows how to improve something.</p>
 <h3 align="center"><a href="https://discord.gg/SAHpM8hd">Support Server</a></h2>
-<h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">Original Support Server</a></h2>
+<h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 
 ## Information
