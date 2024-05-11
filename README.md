@@ -4,6 +4,16 @@
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 
+## Todo
+
+- [ ] Auto Play
+- [ ] GUI Chat for other cheaters (Crossover with BlooketBot)
+- [x] Anti-Ban
+- [ ] Change name during game
+- [ ] Set players gold/crypto
+- [x] Use any Banner
+
+
 ## Information
 
 <details><summary><h3>How to use</h3></summary>
@@ -12,6 +22,11 @@ There are 3 good methods to using these scripts:
 1. Importing one of the Bookmarklets.html files using [these instructions](https://gitlab.com/blooket/blooket-cheats/-/tree/main/tutorial?ref_type=heads)
 2. Going to the [GitHub pages site](https://githubman6996.github.io/05konz-blooket-site/), choosing a gamemode, then dragging a cheat to your bookmarks bar or clicking one to copy the script
 3. Copying a script and running it in the inspect element console
+</details>
+
+<details><summary><h3>What's the difference between BCP and the original cheats?</h3></summary>
+
+New and fixed features are in BCP to give you a better experience and an advantage to people who have the orignal gui. Making this better.
 </details>
 
 <details><summary><h3>What can I do if JavaScript is blocked?</h3></summary>
@@ -33,6 +48,7 @@ You should use the scripts ending in ".min.js", as using the others will have er
 
 No, these are things we would've already done if they were possible, they're managed on the backend of Blooket so we can't modify them
 </details>
+
 
 <details><summary><h3>Can you make hacks for (game)</h3></summary>
 
