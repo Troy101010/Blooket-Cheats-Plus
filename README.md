@@ -10,7 +10,6 @@
 - [ ] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
 - [ ] Change name during game
-- [ ] Set players gold/crypto
 - [x] Use any Banner
 
 
