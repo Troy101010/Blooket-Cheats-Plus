@@ -1032,13 +1032,14 @@
             name: "Lobbychat",
             description: "A 'chat' with commands to execute",
             run: function() {
+                if(window.run){return;}else{window.run=true;}
                 function e() {
                     return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
                 }
                 var t = 0,
                     a = !1;
                 document.addEventListener("keydown", function(e) {
-                    "`" === e.key && (a = !a, o.style.display = a ? "block" : "none")
+                    "`" === e.key && (a = !a, o.style.display = a ? "none" : "block")
                 });
                 let o = document.createElement("div");
                 o.className = "chat-box", document.body.appendChild(o);
