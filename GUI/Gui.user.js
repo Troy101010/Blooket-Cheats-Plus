@@ -6,24 +6,7 @@
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/Gui.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/GUI/Gui.user.js
 // @author       DannyDan0167
-// @match        https://dashboard.blooket.com/*
-// @match        https://play.blooket.com/*
-// @match        https://towerdefense2.blooket.com/*
-// @match        https://monsterbrawl.blooket.com/*
-// @match        https://towerdefense.blooket.com/*
-// @match        https://cafe.blooket.com/*
-// @match        https://factory.blooket.com/*
-// @match        https://crazykingdom.blooket.com/*
-// @match        https://towerofdoom.blooket.com/*
-// @match        https://goldquest.blooket.com/*
-// @match        https://cryptohack.blooket.com/*
-// @match        https://fishingfrenzy.blooket.com/*
-// @match        https://deceptivedinos.blooket.com/*
-// @match        https://battleroyale.blooket.com/*
-// @match        https://racing.blooket.com/*
-// @match        https://blookrush.blooket.com/*
-// @match        https://classic.blooket.com/*
-// @match        https://pirate.blooket.com/*
+// @match        https://*.blooket.com/*
 // @icon         https://i.ibb.co/sWqBm0K/1024.png
 // @grant        none
 // @require     https://unpkg.com/idb-keyval@6.0.3/dist/umd.js
@@ -1063,13 +1046,14 @@
             name: "Lobbychat",
             description: "A 'chat' with commands to execute",
             run: function() {
+                if(window.run){return;}else{window.run=true;}
                 function e() {
                     return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
                 }
                 var t = 0,
                     a = !1;
                 document.addEventListener("keydown", function(e) {
-                    "`" === e.key && (a = !a, o.style.display = a ? "block" : "none")
+                    "`" === e.key && (a = !a, o.style.display = a ? "none" : "block")
                 });
                 let o = document.createElement("div");
                 o.className = "chat-box", document.body.appendChild(o);
