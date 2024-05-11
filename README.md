@@ -50,7 +50,7 @@ No, these are things we would've already done if they were possible, they're man
 
 <details><summary><h3>Can you make hacks for (game)</h3></summary>
 
-No
+I already have gimkit and kahoot hacks listed on my profile.
 </details>
 
 <details><summary><h3>Can you make more Battle Royale cheats</h3></summary>
