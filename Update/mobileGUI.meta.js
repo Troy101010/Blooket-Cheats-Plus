@@ -4,7 +4,7 @@
 // @version      13.0
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/mobileGUI.meta.js
-// @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/mobileGUI/mobileGui.user.js
+// @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/MobileGUI/mobileGui.user.js
 // @author       DannyDan0167
 // @match        https://dashboard.blooket.com/*
 // @match        https://play.blooket.com/*
