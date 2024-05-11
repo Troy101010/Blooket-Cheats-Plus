@@ -9,7 +9,6 @@
 - [ ] Auto Play
 - [ ] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
-- [ ] Change name during game
 - [x] Use any Banner
 
 
