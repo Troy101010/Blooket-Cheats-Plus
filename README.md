@@ -60,7 +60,7 @@ Battle Royale is a gamemode that works almost entirely on the host's end. The on
 
 <details><summary><h3>What happend to 05konz?</h3></summary>
 
-05konz's github was suspended but the original cheat still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
+05konz's github was suspended but the original cheats still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
 </details>
 
 <details><summary><h3>What happend to Minesraft2?</h3></summary>
