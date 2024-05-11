@@ -1,5 +1,5 @@
 <p align="center">Cheats made by someone who knows how to improve something.</p>
-<p align="center">⚠️Keep in mind that these cheats do not contain an update reason being to prevent the GUIs from breaking. Occasionally check this repo for any updates that you might miss⚠️</p>
+<p align="center">⚠️Keep in mind that these cheats do not contain an update checker, reason being to prevent the GUIs from breaking. Occasionally check this repo for any updates that you might miss⚠️</p>
 <h3 align="center"><a href="https://discord.gg/SAHpM8hd">Support Server</a></h2>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
