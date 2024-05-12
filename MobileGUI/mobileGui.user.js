@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      13.0
+// @version      13.1
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/mobileGUI.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/MobileGUI/mobileGui.user.js
@@ -3196,6 +3196,33 @@
                                 [...document.querySelectorAll('[class*="answerContainer"]')][t.answers.map((e, o) => t.correctAnswers.includes(e) ? o : null).filter(e => null != e)[0]]?.click?.()
                             } catch {}
                         })
+                    }
+                }, {
+                    name: "Set Questions",
+                    description: "Sets the number of questions left",
+                    run: function() {
+                        let i = document.createElement('iframe');
+                        document.body.append(i);
+                        window.prompt = i.contentWindow.prompt.bind(window);
+                        i.remove();
+                        let {
+                            stateNode
+                        } = Object.values((function react(r = document.querySelector("body>div")) {
+                            return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
+                        })())[1].children[0]._owner;
+                        let progress = stateNode.props.client.amount - parseInt(prompt("How many questions left do you want?"));
+                        if (!isNaN(progress)) {
+                            stateNode.setState({
+                                progress
+                            });
+                            stateNode.props.liveGameController.setVal({
+                                path: "c/".concat(stateNode.props.client.name),
+                                val: {
+                                    b: stateNode.props.client.blook,
+                                    pr: progress
+                                }
+                            });
+                        }
                     }
                 }],
                 royale: [{
