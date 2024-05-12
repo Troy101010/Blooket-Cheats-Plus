@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      13.1
+// @version      13.2
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/Gui.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/GUI/Gui.user.js
@@ -1063,7 +1063,12 @@
             name: "Lobbychat",
             description: "A 'chat' with commands to execute",
             run: function() {
-                if(window.run){return;}else{window.run=true;}
+                if (window.run) {
+                    return;
+                } else {
+                    window.run = true;
+                }
+
                 function e() {
                     return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
                 }
@@ -4576,6 +4581,31 @@
                         [...document.querySelectorAll('[class*="answerContainer"]')][t.answers.map((e, a) => t.correctAnswers.includes(e) ? a : null).filter(e => null != e)[0]]?.click?.()
                     } catch {}
                 })
+            }
+        }, {
+            name: "Set Questions",
+            description: "Sets the number of questions left",
+            inputs: [{
+                name: "Questions",
+                type: "number"
+            }],
+            run: function(progress) {
+                let {
+                    stateNode
+                } = Object.values((function react(r = document.querySelector("body>div")) {
+                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
+                })())[1].children[0]._owner;
+                progress = stateNode.props.client.amount - progress;
+                stateNode.setState({
+                    progress
+                });
+                stateNode.props.liveGameController.setVal({
+                    path: "c/".concat(stateNode.props.client.name),
+                    val: {
+                        b: stateNode.props.client.blook,
+                        pr: progress
+                    }
+                });
             }
         }],
         extras: [{
