@@ -1073,7 +1073,7 @@
             }
         }, {
             name: "Lobbychat",
-            description: "A 'chat' with commands to execute",
+            description: "Chat with other people and execute commands",
             run: function() {
                 if (window.run) {
                     return;
