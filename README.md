@@ -61,7 +61,22 @@ Battle Royale is a gamemode that works almost entirely on the host's end. The on
 
 <details><summary><h3>What's the difference between Chat and Lobbychat?</h3></summary>
 
-Chat is an online chat that you can talk to anyone, even if they're not on the same game. Lobbychat can with anyone if they're in the same game as you. You can talk to BlooketBot users with Lobbychat as well.
+Chat is an online chat that you can talk and send images to anyone, even if they're not on the same game. Lobbychat can chat with anyone if they're in the same game as you. You can talk to BlooketBot users with Lobbychat as well. Aside from chatting Lobbychat can also execute commands. Here is a list:
+
+set gold: /setstate gold:val
+set crypto /setstate crypto:val
+list all values to set: /dumpstate
+freeze frenzy scoreboard: /setval f/t t
+crash gold: /setval g/t t
+crash crypto: /setval cr/t t
+crash dino: /setval f/t t
+crash pirate: /setval d/t t
+freeze gold scoreboard: /setval tat/t t
+crash defense2(may take a few tries): /setval d/t t
+crash monster brawl: /setval xp/t t
+set gold to inf: /setval g Infinity
+just do /help for the rest
+Run while in lobby or in game, not before, not on nickname screen, INGAME!
 </details>
 
 <details><summary><h3>What happend to 05konz?</h3></summary>
