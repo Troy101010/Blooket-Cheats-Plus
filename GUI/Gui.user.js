@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      13.2
+// @version      13.3
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/Gui.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/GUI/Gui.user.js
@@ -682,7 +682,7 @@
                     Sandwich: "sandwich",
                     Ruler: "ruler",
                     "Ball Pit": "ballPit",
-                    Xylophone: "xylophone",
+                    "Xylophone": "xylophone",
                     "Holiday Lights": "holidayLights",
                     "Ice Cream Truck": "iceCreamTruck",
                     "Holiday Gift Wrap": "holidayGiftWrap",
@@ -693,7 +693,13 @@
                     Rollerblades: "rollerblades",
                     Surfboard: "surfboard",
                     Cookout: "cookout",
-                    Comic: "comic"
+                    Comic: "comic",
+                    Crayon: "crayon",
+                    Lightning: "lightning",
+                    BaseBall: "baseball",
+                    "Shamrock Coins": "shamrockCoins",
+                    "End Of The Rainbow": "endRainbow",
+                    "Easter Field": "easterField"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
@@ -852,7 +858,13 @@
                     Rollerblades: "rollerblades",
                     Surfboard: "surfboard",
                     Cookout: "cookout",
-                    Comic: "comic"
+                    Comic: "comic",
+                    Crayon: "crayon",
+                    Lightning: "lightning",
+                    BaseBall: "baseball",
+                    "Shamrock Coins": "shamrockCoins",
+                    "End Of The Rainbow": "endRainbow",
+                    "Easter Field": "easterField"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
