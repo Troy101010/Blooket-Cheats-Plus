@@ -7,7 +7,7 @@
 ## Todo
 
 - [ ] Auto Play
-- [ ] GUI Chat for other cheaters (Crossover with BlooketBot)
+- [x] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
 - [x] Use any Banner
 - [ ] Bypass CSP
