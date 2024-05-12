@@ -59,6 +59,11 @@ I already have gimkit and kahoot hacks listed on my profile.
 Battle Royale is a gamemode that works almost entirely on the host's end. The only thing we have control over is answering questions.
 </details>
 
+<details><summary><h3>What's the difference between Chat and Lobbychat?</h3></summary>
+
+Chat is an online chat that you can talk to anyone, even if they're not on the same game. Lobbychat can with anyone if they're in the same game as you. You can talk to BlooketBot users with Lobbychat as well.
+</details>
+
 <details><summary><h3>What happend to 05konz?</h3></summary>
 
 05konz's github was suspended but the original cheats still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
