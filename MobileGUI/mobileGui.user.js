@@ -367,146 +367,152 @@
                         } else alert("This can only be ran in the Blooks page.")
                     }
                 }, {
-                    name: "Lobbychat",
-                    description: "A 'chat' with commands to execute",
-                    run: function() {
-                        function e() {
-                            return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
-                        }
-                        var t = 0,
-                            o = !1;
-                        document.addEventListener("keydown", function(e) {
-                            "`" === e.key && (o = !o, a.style.display = o ? "block" : "none")
-                        });
-                        let a = document.createElement("div");
-                        a.className = "chat-box", document.body.appendChild(a);
-                        let r = document.createElement("div");
-                        r.className = "chat-header", r.textContent = "Chat", a.appendChild(r);
-                        let n = document.createElement("div");
-                        n.className = "chat-body", a.appendChild(n);
-                        let i = document.createElement("input");
+            name: "Lobbychat",
+            description: "Chat with other people and execute commands",
+            run: function() {
+                if (window.run) {
+                    return;
+                } else {
+                    window.run = true;
+                }
 
-                        function s(e) {
-                            let t = document.createElement("div");
-                            t.textContent = e, n.appendChild(t)
-                        }
-                        i.type = "text", i.className = "chat-input", i.placeholder = "Type a message...", a.appendChild(i), a.style.position = "fixed", a.style.bottom = "20px", a.style.right = "20px", a.style.width = "300px", a.style.backgroundColor = "#fff", a.style.border = "1px solid #ccc", a.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)", r.addEventListener("click", () => {
-                            n.classList.toggle("open")
-                        }), i.addEventListener("keydown", function(o) {
-                            13 === o.keyCode && (function o(a) {
-                                var r, i, l, c, d, u, p, m = function e(t) {
-                                    if ("/" !== t.charAt(0)) return !1;
-                                    var o = t.split(" "),
-                                        a = o[0].replace("/", "");
-                                    return o.splice(0, 1), {
-                                        cmd: a,
-                                        args: o
-                                    }
-                                }(a);
-                                if (m) switch (m.cmd) {
-                                    case "cb":
-                                        r = m.args.join(" "), (i = webpackJsonp.push([
-                                            [], {
-                                                1234(e, t, o) {
-                                                    t.webpack = o
-                                                }
-                                            },
-                                            [
-                                                ["1234"]
-                                            ]
-                                        ]).webpack("MDrD").a)[r = Object.keys(i).find(e => r.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (s("Setting blook to " + r + "!"), e().stateNode.props.liveGameController.setVal({
-                                            id: e().stateNode.props.client.hostId,
-                                            path: "c/" + e().stateNode.props.client.name,
-                                            val: {
-                                                b: r
-                                            }
-                                        }), e().stateNode.props.client.blook = r) : s("No blook with that name was found!");
-                                        break;
-                                    case "clear":
-                                        n.innerHTML = "";
-                                        break;
-                                    case "dumpstate":
-                                        Object.keys(e().stateNode.state).map(t => {
-                                            var o = e().stateNode.state[t];
-                                            if (null == o) return "N/A";
-                                            Array.from(o) && "object" == typeof o && (o = "[Array]"), s(t + ":" + o)
-                                        }).join(";");
-                                        break;
-                                    case "list":
-                                        e().stateNode.props.liveGameController.getDatabaseVal("c").then(e => {
-                                            s("Current Players(" + Object.keys(e).length + "): " + Object.keys(e).join(","))
-                                        });
-                                        break;
-                                    case "tlog":
-                                        window.logsv = !window.logsv, s("SetVal log set to " + (window.logsv ? "Enabled" : "Disabled"));
-                                        break;
-                                    case "setval":
-                                        l = m.args, e().stateNode.props.liveGameController.setVal({
-                                            path: "c/" + e().stateNode.props.client.name + "/" + l[0],
-                                            val: l.slice(1, l.length).join(" ")
-                                        });
-                                        break;
-                                    case "setstate":
-                                        c = m.args, d = {}, c.forEach(e => {
-                                            var t = e.split(":");
-                                            Number.isNaN(parseInt(t[1])) || parseInt(t[1]).toString() !== t[1] || (t[1] = parseInt(t[1])), d[t[0]] = t[1]
-                                        }), e().stateNode.setState(d), s("Set Successful!");
-                                        break;
-                                    case "ahelp":
-                                        s("Advanced Commands: setval(sets val logged by tlog ex /setval b Chicken), tlog(toggles setval log), dumpstate(dumps react state),setstate(sets react state /setstate crypto:5 crypto2:5 etc)");
-                                        break;
-                                    case "help":
-                                        s("Available Commands: help(gives help),ahelp(advanced commands help), cb(changes blook /cb cow), list(lists players connected), dump(dumps all available info about a player, passwords, etc(/dump player)), clear(clears chat), code(gives game code), unlock(unlocks blook on lobby screen)");
-                                        break;
-                                    case "dump":
-                                        (function t(o) {
-                                            e().stateNode.props.liveGameController.getDatabaseVal("c/" + o).then(e => {
-                                                null != e ? s("Dump: " + JSON.stringify(e)) : s("Player not found!")
-                                            })
-                                        })(m.args.join(" "));
-                                        break;
-                                    case "unlock":
-                                        u = m.args.join(" "), (p = webpackJsonp.push([
-                                            [], {
-                                                1234(e, t, o) {
-                                                    t.webpack = o
-                                                }
-                                            },
-                                            [
-                                                ["1234"]
-                                            ]
-                                        ]).webpack("MDrD").a)[u = Object.keys(p).find(e => u.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (e().stateNode.state.unlocks.push(u), e().stateNode.forceUpdate()) : s("No blook with that name was found!");
-                                        break;
-                                    case "code":
-                                        s("Game Code: " + e().stateNode.props.client.hostId);
-                                        break;
-                                    default:
-                                        s("Unrecognized chat command!")
-                                } else e().stateNode.props.liveGameController.setVal({
+                function e() {
+                    return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
+                }
+                var t = 0,
+                    a = !1;
+                document.addEventListener("keydown", function(e) {
+                    "`" === e.key && (a = !a, o.style.display = a ? "none" : "block")
+                });
+                let o = document.createElement("div");
+                o.className = "chat-box", document.body.appendChild(o);
+                let r = document.createElement("div");
+                r.className = "chat-header", r.textContent = "Chat", o.appendChild(r);
+                let i = document.createElement("div");
+                i.className = "chat-body", o.appendChild(i);
+                let n = document.createElement("input");
+
+                function s(e) {
+                    let t = document.createElement("div");
+                    t.textContent = e, i.appendChild(t)
+                }
+                n.type = "text", n.className = "chat-input", n.placeholder = "Type a message...", o.appendChild(n), o.style.position = "fixed", o.style.bottom = "20px", o.style.right = "20px", o.style.width = "300px", o.style.backgroundColor = "#fff", o.style.border = "1px solid #ccc", o.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)", r.addEventListener("click", () => {
+                    i.classList.toggle("open")
+                }), n.addEventListener("keydown", function(a) {
+                    13 === a.keyCode && (function a(o) {
+                        var r, n, l, c, d, p, u, h = function e(t) {
+                            if ("/" !== t.charAt(0)) return !1;
+                            var a = t.split(" "),
+                                o = a[0].replace("/", "");
+                            return a.splice(0, 1), {
+                                cmd: o,
+                                args: a
+                            }
+                        }(o);
+                        if (h) switch (h.cmd) {
+                            case "cb":
+                                r = h.args.join(" "), (n = webpackJsonp.push([
+                                    [], {
+                                        1234(e, t, a) {
+                                            t.webpack = a
+                                        }
+                                    },
+                                    [
+                                        ["1234"]
+                                    ]
+                                ]).webpack("MDrD").a)[r = Object.keys(n).find(e => r.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (s("Setting blook to " + r + "!"), e().stateNode.props.liveGameController.setVal({
                                     id: e().stateNode.props.client.hostId,
-                                    path: "c/" + e().stateNode.props.client.name + "/msg",
+                                    path: "c/" + e().stateNode.props.client.name,
                                     val: {
-                                        i: t,
-                                        msg: a
+                                        b: r
                                     }
-                                }), t++
-                            }(o.srcElement.value), o.srcElement.value = "")
-                        });
-                        var l = e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_;
+                                }), e().stateNode.props.client.blook = r) : s("No blook with that name was found!");
+                                break;
+                            case "clear":
+                                i.innerHTML = "";
+                                break;
+                            case "dumpstate":
+                                Object.keys(e().stateNode.state).map(t => {
+                                    var a = e().stateNode.state[t];
+                                    if (null == a) return "N/A";
+                                    Array.from(a) && "object" == typeof a && (a = "[Array]"), s(t + ":" + a)
+                                }).join(";");
+                                break;
+                            case "list":
+                                e().stateNode.props.liveGameController.getDatabaseVal("c").then(e => {
+                                    s("Current Players(" + Object.keys(e).length + "): " + Object.keys(e).join(","))
+                                });
+                                break;
+                            case "tlog":
+                                window.logsv = !window.logsv, s("SetVal log set to " + (window.logsv ? "Enabled" : "Disabled"));
+                                break;
+                            case "setval":
+                                l = h.args, e().stateNode.props.liveGameController.setVal({
+                                    path: "c/" + e().stateNode.props.client.name + "/" + l[0],
+                                    val: l.slice(1, l.length).join(" ")
+                                });
+                                break;
+                            case "setstate":
+                                c = h.args, d = {}, c.forEach(e => {
+                                    var t = e.split(":");
+                                    Number.isNaN(parseInt(t[1])) || parseInt(t[1]).toString() !== t[1] || (t[1] = parseInt(t[1])), d[t[0]] = t[1]
+                                }), e().stateNode.setState(d), s("Set Successful!");
+                                break;
+                            case "ahelp":
+                                s("Advanced Commands: setval(sets val logged by tlog ex /setval b Chicken), tlog(toggles setval log), dumpstate(dumps react state),setstate(sets react state /setstate crypto:5 crypto2:5 etc)");
+                                break;
+                            case "help":
+                                s("Available Commands: help(gives help),ahelp(advanced commands help), cb(changes blook /cb cow), list(lists players connected), dump(dumps all available info about a player, passwords, etc(/dump player)), clear(clears chat), code(gives game code), unlock(unlocks blook on lobby screen)");
+                                break;
+                            case "dump":
+                                ! function t(a) {
+                                    e().stateNode.props.liveGameController.getDatabaseVal("c/" + a).then(e => {
+                                        null != e ? s("Dump: " + JSON.stringify(e)) : s("Player not found!")
+                                    })
+                                }(h.args.join(" "));
+                                break;
+                            case "unlock":
+                                p = h.args.join(" "), (u = webpackJsonp.push([
+                                    [], {
+                                        1234(e, t, a) {
+                                            t.webpack = a
+                                        }
+                                    },
+                                    [
+                                        ["1234"]
+                                    ]
+                                ]).webpack("MDrD").a)[p = Object.keys(u).find(e => p.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (e().stateNode.state.unlocks.push(p), e().stateNode.forceUpdate()) : s("No blook with that name was found!");
+                                break;
+                            case "code":
+                                s("Game Code: " + e().stateNode.props.client.hostId);
+                                break;
+                            default:
+                                s("Unrecognized chat command!")
+                        } else e().stateNode.props.liveGameController.setVal({
+                            id: e().stateNode.props.client.hostId,
+                            path: "c/" + e().stateNode.props.client.name + "/msg",
+                            val: {
+                                i: t,
+                                msg: o
+                            }
+                        }), t++
+                    }(a.srcElement.value), a.srcElement.value = "")
+                });
+                var l = e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_;
 
-                        function c(e) {
-                            window.logsv && s("Path: " + e.path.split("/").splice(2, 2).join("/") + " Val: " + ("object" == typeof e.val ? JSON.stringify(e.val) : e.val))
-                        }
-                        e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_ = function(e, t, o, a) {
-                            var r, n;
-                            console.log(e, t, o, a), r = e, null != (n = t) && r.includes("/msg") && n?.msg && (console.log(n.msg), s(r.split("/")[2] + ": " + n.msg)), l(e, t, o, a)
-                        }, window.logsv = !1;
-                        var d = e().stateNode.props.liveGameController.setVal;
-                        e().stateNode.props.liveGameController.setVal = function() {
-                            c.apply(this, arguments), d.apply(this, arguments)
-                        }, e().stateNode.props.liveGameController._liveApp.database().ref(`${e().stateNode.props.liveGameController._liveGameCode}`).on("value", e => {}), s("Lobbychat successfully loaded!"), a.style.wordWrap = "break-word"
-                    }
-                }, {
+                function c(e) {
+                    window.logsv && s("Path: " + e.path.split("/").splice(2, 2).join("/") + " Val: " + ("object" == typeof e.val ? JSON.stringify(e.val) : e.val))
+                }
+                e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_ = function(e, t, a, o) {
+                    var r, i;
+                    console.log(e, t, a, o), r = e, null != (i = t) && r.includes("/msg") && i?.msg && (console.log(i.msg), s(r.split("/")[2] + ": " + i.msg)), l(e, t, a, o)
+                }, window.logsv = !1;
+                var d = e().stateNode.props.liveGameController.setVal;
+                e().stateNode.props.liveGameController.setVal = function() {
+                    c.apply(this, arguments), d.apply(this, arguments)
+                }, e().stateNode.props.liveGameController._liveApp.database().ref(`${e().stateNode.props.liveGameController._liveGameCode}`).on("value", e => {}), s("Lobbychat successfully loaded!"), o.style.wordWrap = "break-word"
+            }
+        }, {
                     name: "Pin Guesser",
                     description: "Brute forces combinations for existing pins",
                     run: function() {
