@@ -861,7 +861,7 @@
                     Comic: "comic",
                     Crayon: "crayon",
                     Lightning: "lightning",
-                    BaseBall: "baseball",
+                    Baseball: "baseball",
                     "Shamrock Coins": "shamrockCoins",
                     "End Of The Rainbow": "endRainbow",
                     "Easter Field": "easterField"
