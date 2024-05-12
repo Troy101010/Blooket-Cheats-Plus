@@ -1032,7 +1032,12 @@
             name: "Lobbychat",
             description: "A 'chat' with commands to execute",
             run: function() {
-                if(window.run){return;}else{window.run=true;}
+                if (window.run) {
+                    return;
+                } else {
+                    window.run = true;
+                }
+
                 function e() {
                     return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
                 }
@@ -4545,6 +4550,31 @@
                         [...document.querySelectorAll('[class*="answerContainer"]')][t.answers.map((e, a) => t.correctAnswers.includes(e) ? a : null).filter(e => null != e)[0]]?.click?.()
                     } catch {}
                 })
+            }
+        }, {
+            name: "Set Questions",
+            description: "Sets the number of questions left",
+            inputs: [{
+                name: "Questions",
+                type: "number"
+            }],
+            run: function(progress) {
+                let {
+                    stateNode
+                } = Object.values((function react(r = document.querySelector("body>div")) {
+                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
+                })())[1].children[0]._owner;
+                progress = stateNode.props.client.amount - progress;
+                stateNode.setState({
+                    progress
+                });
+                stateNode.props.liveGameController.setVal({
+                    path: "c/".concat(stateNode.props.client.name),
+                    val: {
+                        b: stateNode.props.client.blook,
+                        pr: progress
+                    }
+                });
             }
         }],
         extras: [{
