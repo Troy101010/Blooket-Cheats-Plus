@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      13.1
+// @version      13.2
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/mobileGUI.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/MobileGUI/mobileGui.user.js
@@ -73,7 +73,7 @@
                 paddingTop: "2px",
                 fontSize: "1.5rem",
                 textAlign: "center"
-            }), t.innerHTML = 'Blooket Cheats <span style="font-size: 0.75rem">v12.18.22</span>', document.createElement("button")),
+            }), t.innerHTML = 'Blooket Cheats <span style="font-size: 0.75rem">v13.20.00</span>', document.createElement("button")),
             l = (t.appendChild(l), o(l, {
                 background: "red",
                 height: "45px",
