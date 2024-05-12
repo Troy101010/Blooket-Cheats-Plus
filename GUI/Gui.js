@@ -651,7 +651,7 @@
                     Sandwich: "sandwich",
                     Ruler: "ruler",
                     "Ball Pit": "ballPit",
-                    Xylophone: "xylophone",
+                    "Xylophone": "xylophone",
                     "Holiday Lights": "holidayLights",
                     "Ice Cream Truck": "iceCreamTruck",
                     "Holiday Gift Wrap": "holidayGiftWrap",
@@ -662,7 +662,13 @@
                     Rollerblades: "rollerblades",
                     Surfboard: "surfboard",
                     Cookout: "cookout",
-                    Comic: "comic"
+                    Comic: "comic",
+                    Crayon: "crayon",
+                    Lightning: "lightning",
+                    BaseBall: "baseball",
+                    "Shamrock Coins": "shamrockCoins",
+                    "End Of The Rainbow": "endRainbow",
+                    "Easter Field": "easterField"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
@@ -821,7 +827,13 @@
                     Rollerblades: "rollerblades",
                     Surfboard: "surfboard",
                     Cookout: "cookout",
-                    Comic: "comic"
+                    Comic: "comic",
+                    Crayon: "crayon",
+                    Lightning: "lightning",
+                    BaseBall: "baseball",
+                    "Shamrock Coins": "shamrockCoins",
+                    "End Of The Rainbow": "endRainbow",
+                    "Easter Field": "easterField"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
