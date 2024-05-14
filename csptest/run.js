@@ -1,4 +1,5 @@
 //CREDITS TO JOD AND 05KONZ FOR THE RUNTIME
+//image encoder is at: https://cryptodude3.github.io/img
 const toRun = "https://cryptodude3.github.io/crashgame.png";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
