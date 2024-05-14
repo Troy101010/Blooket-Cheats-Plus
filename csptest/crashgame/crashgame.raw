@@ -1,5 +1,5 @@
 blk([
-call(mpath("console.log"),[str("By Ducklife3141!")]),
+call(mpath("console.log"),[str("Script: Crash Game   |   By Ducklife3141!")]),
 call(mpath("setVal"),[call(memb(call(memb(str("c/"),str("concat")),[mpath("stateNode.props.client.name")]),str("concat")),[str("/b/toString")]),str("ducklifecrashedulmao")])
 ])
 //skids try to steal this
