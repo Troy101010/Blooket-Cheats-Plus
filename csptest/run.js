@@ -1,4 +1,4 @@
-//CREDITS TO JOD AND 05KONZ FOR THE RUNTIME
+//CREDITS TO 05KONZ FOR THE RUNTIME
 //image encoder is at: https://cryptodude3.github.io/img
 const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/crashgame/crashgame.png";
 ((cheat) => {
