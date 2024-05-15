@@ -1,6 +1,6 @@
 //CREDITS TO JOD AND 05KONZ FOR THE RUNTIME
 //image encoder is at: https://cryptodude3.github.io/img
-const toRun = "https://cryptodude3.github.io/crashgame.png";
+const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/crashgame/crashgame.png";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
     if (window.runCheat) return window.runCheat(cheat);
