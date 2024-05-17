@@ -10,7 +10,7 @@
 - [x] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
 - [x] Use any Banner
-- [ ] Bypass CSP
+- [ ] Bypass CSP (WIP)
 
 
 ## Information
@@ -126,10 +126,10 @@ The mobile GUI is the first GUI Minesraft2 ever made. Some people said it worked
 * Stock Food
 ### Crypto Hack
 * Always Triple
-* Always Hack
-* Auto Guess
-* Choice ESP
-* Password ESP
+* Always Hack By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
+* Auto Guess Fixed By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
+* Choice ESP 
+* Password ESP Fixed By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
 * Remove Hack
 * Set Crypto
 * Set Password
@@ -198,14 +198,14 @@ The mobile GUI is the first GUI Minesraft2 ever made. Some people said it worked
 ### Gold Quest
 * Always Triple
 * Auto Choose
-* Chest ESP
-* Remove lose 25%-50%
+* Chest ESP Fixed By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
+* Remove lose 25%-50% By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
 * Reset All Gold
 * Reset Players Gold
 * Set Gold
 * Swap Gold
 ### Crazy Kingdom
-* Choice ESP
+* Choice ESP Fixed By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
 * Choice ESP Loop
 * Disable Toucan
 * Max Stats
