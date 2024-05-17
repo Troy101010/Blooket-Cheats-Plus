@@ -83,7 +83,7 @@
                     name: "Auto Answer (Toggle)",
                     description: "Toggles auto answer on",
                     type: "toggle",
-                    enabled: (o.innerHTML = '<span><a target="blank" href="https://discord.gg/SAHpM8hd">Discord</a><br/><a target="blank" href="https://github.com/DannyDan0167/Blooket-Cheats-Plus/">GitHub - DannyDan0167</a></span>', !1),
+                    enabled: (o.innerHTML = '<span><a target="blank" href="https://discord.gg/8A6J234n7v">Discord</a><br/><a target="blank" href="https://github.com/DannyDan0167/Blooket-Cheats-Plus/">GitHub - DannyDan0167</a></span>', !1),
                     data: null,
                     run: function() {
                         this.enabled ? (this.enabled = !1, clearInterval(this.data), this.data = null) : (this.enabled = !0, this.data = setInterval(() => {
