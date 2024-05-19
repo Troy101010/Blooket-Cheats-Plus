@@ -61,7 +61,7 @@ Battle Royale is a gamemode that works almost entirely on the host's end. The on
 
 <details><summary><h3>What's the difference between Chat and Lobbychat?</h3></summary>
 
-Chat is an online chat that you can talk and send images to anyone, even if they're not on the same game. Lobbychat can chat with anyone if they're in the same game as you. You can talk to BlooketBot users with Lobbychat as well. Aside from chatting Lobbychat can also execute commands. Here is a list:
+Chat (By Yeahbread on Ego Menu) is an online chat that you can talk and send images to anyone, even if they're not on the same game. Lobbychat (by Cryptodude3) can chat with anyone if they're in the same game as you. You can talk to BlooketBot users with Lobbychat as well. Aside from chatting Lobbychat can also execute commands. Here is a list:
 
 ### Commands
 * set gold: /setstate gold:val
