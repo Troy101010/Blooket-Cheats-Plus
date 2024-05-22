@@ -1,11 +1,9 @@
-function gencheat(){var cheatname = "crashgame.blook";
-var logmsg = call(mpath("console.log"),[str(`%cScript: ${cheatname}\n\n%cCreated by Ducklife3141!\n%cJoin the discord server: https://discord.gg/Sta64r9hYp`),str("color:#0bc2cf;font-size:125%;font-weight:bold;"),str("font-size:150%;color:red;"),str("font-size:120%;color:#a000ff;")]);
-
-var usrpath = strconcat(str("c/"),mpath("stateNode.props.client.name"));
-var cheat = call(mpath("setVal"),[strconcat(usrpath,str("/b/toString")),str("crash")]);
-
-return blk([
-logmsg,
-cheat
-]);}
-//try to steal this skids
+console.log(
+"%cScript: ${cheatname}\n\n%cCreated by Ducklife3141!\n%cJoin the discord server: https://discord.gg/Sta64r9hYp",
+"color:#0bc2cf;font-size:125%;font-weight:bold;",
+"font-size:150%;color:red;"
+ );
+var snode = Object.values(window.document.querySelector("#app>div>div"))[1].children[0]._owner;
+if(!snode.props.liveGameController){console.log("You must be in a game to use this cheat!");}else{
+snode.props.liveGameController.setVal({path:"c/"+snode.props.client.name+"/b/toString",val:"this script was run using ducklife3141's crasher"});
+}
