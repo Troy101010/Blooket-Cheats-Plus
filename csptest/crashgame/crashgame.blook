@@ -1,4 +1,4 @@
-console.log(
+window.console.log(
 "%cScript: ${cheatname}\n\n%cCreated by Ducklife3141!\n%cJoin the discord server: https://discord.gg/Sta64r9hYp",
 "color:#0bc2cf;font-size:125%;font-weight:bold;",
 "font-size:150%;color:red;"
