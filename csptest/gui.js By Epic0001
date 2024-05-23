@@ -447,7 +447,7 @@ blookScriptGUI.innerHTML = `
     <div id="blookScriptContent">
         <label for="options">Select an option:</label><br>
         <select id="options">
-        <option value="global/crashgame">Crash Game - Global</option>
+        <option>Loading scripts...</option>
         </select><br>
         <button onclick="runcheat()">Run Cheat</button>
      
