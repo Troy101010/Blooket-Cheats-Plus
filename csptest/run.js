@@ -1,5 +1,5 @@
 //CREDITS TO 05KONZ FOR THE RUNTIME
-const toRun = "crashgame/crashgame.png";
+const toRun = "global/crashgame.png";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
     if (window.runCheat) return window.runCheat(cheat);
