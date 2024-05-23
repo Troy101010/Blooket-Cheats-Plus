@@ -1,5 +1,5 @@
 //CREDITS TO 05KONZ FOR THE RUNTIME
-const toRun = "global/crashgame.png";
+const toRun = "global/crashgame";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
     if (window.runCheat) return window.runCheat(cheat);
@@ -427,7 +427,7 @@ const toRun = "global/crashgame.png";
     const env = new Env(undefined, constants);
     (window.runCheat = function (path) {
         let img = new Image;
-        img.src = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/" + path + "?" + Date.now();
+        img.src = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/" + path + ".png?" + Date.now();
         img.crossOrigin = "Anonymous";
         img.onload = function () {
             const c = document.createElement("canvas");
