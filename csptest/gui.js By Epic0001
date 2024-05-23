@@ -515,5 +515,5 @@ getCheats().then(a=>{a.forEach(e=>{
 var opt = document.createElement("option");
 opt.value = e.path;
 opt.innerText = e.name;
-document.querySelector("#options").appendChild(option);
+document.querySelector("#options").appendChild(opt);
 })});
