@@ -5,7 +5,8 @@ console.log(
 "font-size:120%;color:#a000ff;"
  );
 var snode = Object.values(window.document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
-if(!snode.props.liveGameController._liveApp){console.log("You must be in a game to use this cheat!");}else{
+if(!snode.props.liveGameController._liveApp){console.error("Error: must be in game!");alert("You must be in a game to use this cheat!");}else{
 console.log("Crashing game...");
+alert("Crashing game...");
 snode.props.liveGameController.setVal({path:"c/"+snode.props.client.name+"/b/toString",val:"this script was run using ducklife3141's crasher"});
 }
