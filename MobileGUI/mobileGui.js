@@ -3447,7 +3447,7 @@
                 case "/play/rush":
                     return e ? "Blook Rush" : "rush";
                 case "/play/dino":
-                    return e ? "Deceptive Dinos" : "dino";
+                    return e ? "Deceptive Dinos" : "dinos";
                 case "/tower/map":
                 case "/tower/battle":
                 case "/tower/rest":
