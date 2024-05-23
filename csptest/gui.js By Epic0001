@@ -20,8 +20,6 @@ function getImgText(url){
             e("ERROR!");
         }});
 }
-    const toRun = cheatPath;
-    
     let i = document.querySelector("iframe");
     if (!i) {
         document.createElement('iframe');
