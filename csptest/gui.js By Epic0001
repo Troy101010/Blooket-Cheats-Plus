@@ -511,9 +511,9 @@ document.addEventListener('mouseup', function() {
     isDragging = false;
 });
 document.querySelector("#options").innerHTML = "";
-getCheats().forEach(e=>{
+getCheats().then(a=>{a.forEach(e=>{
 var opt = document.createElement("option");
 opt.value = e.path;
 opt.innerText = e.name;
 document.querySelector("#options").appendChild(option);
-})
+})});
