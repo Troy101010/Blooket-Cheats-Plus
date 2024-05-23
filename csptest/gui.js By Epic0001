@@ -1,6 +1,3 @@
-
-
-window.runCheatt = function() {
     const selectElement = document.getElementById("options");
     const cheatPath = selectElement.value;
 
@@ -446,7 +443,6 @@ window.runCheatt = function() {
         }
     })(cheat);
 })(toRun);
-};
 
 
 
