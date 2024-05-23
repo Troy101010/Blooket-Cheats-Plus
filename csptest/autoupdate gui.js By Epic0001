@@ -431,10 +431,6 @@ function getImgText(url){
             return element;
         }
     };
-    Object.defineProperty(constants, "stateNode", {
-        get: () => Object.values((function react(r = document.querySelector("body>div")) { return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) })())[1].children[0]._owner.stateNode,
-        enumerable: true
-    });
     const env = new Env(undefined, constants);
     function runcode(code){new Eval(code).evaluate(new Env(env));}
 async function runcheat(){runcode(await getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/"+document.querySelector("#options").value+".png?"));}
