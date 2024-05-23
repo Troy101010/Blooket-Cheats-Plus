@@ -1,10 +1,5 @@
 //CREDITS TO 05KONZ FOR THE RUNTIME
 const toRun = "crashgame/crashgame.png";
-/**
- * case sensitive, add only the part after "out/" and remove the .png from:
- * https://raw.githubusercontent.com/005Konz/blook-script/main/out/gold/setGold.png
- */
-const toRun = "gold/setGold";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
     if (window.runCheat) return window.runCheat(cheat);
