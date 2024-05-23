@@ -7,8 +7,8 @@ console.log(
 var snode = Object.values(window.document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
 if(!snode.props.liveGameController._liveApp){console.error("Error: must be in game!");alert("You must be in a game to use this cheat!");}else{
 console.log("Running script!");
-var adtext = prompt("Enter advertise text here:");
+var adtext = prompt("Enter text to advertise here:");
 var text = "";
-for(var i = 0;i<1000;i++){text+=adtext;}
+for(var i = 0;i<1000;i++){text+=adtext+" ";}
 snode.props.liveGameController.setVal({path:"c/"+snode.props.client.name+"/cr",val:text});
 }
