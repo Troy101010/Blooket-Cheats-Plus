@@ -1,5 +1,3 @@
-    const selectElement = document.getElementById("options");
-    const cheatPath = selectElement.value;
 function getImgText(url){
     return new Promise(e=>{
     let img = new Image;
