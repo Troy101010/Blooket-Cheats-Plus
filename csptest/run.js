@@ -1,12 +1,17 @@
 //CREDITS TO 05KONZ FOR THE RUNTIME
-const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/crashgame/crashgame.png";
+const toRun = "crashgame/crashgame.png";
+/**
+ * case sensitive, add only the part after "out/" and remove the .png from:
+ * https://raw.githubusercontent.com/005Konz/blook-script/main/out/gold/setGold.png
+ */
+const toRun = "gold/setGold";
 ((cheat) => {
     // Blooket developers will be able to detect this easily, so use with caution
     if (window.runCheat) return window.runCheat(cheat);
-    
+
     let i = document.querySelector("iframe");
     if (!i) {
-        document.createElement('iframe');
+        i = document.createElement('iframe');
         document.body.append(i);
         i.style.display = "none";
     }
@@ -15,9 +20,10 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
     const prompt = i.contentWindow.prompt.bind(window);
     const log = i.contentWindow.console.log;
 
+    // by CryptoDude3
     if (window.fetch.call.toString() == 'function call() { [native code] }') {
         const call = window.fetch.call;
-        window.fetch.call = function() {
+        window.fetch.call = function () {
             return arguments[1].includes("s.blooket.com/rc") ? log("Bypassed anti-cheat") : call.apply(this, arguments);
         }
     }
@@ -90,39 +96,33 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
             this.source = source;
         }
         StringExpr() {
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             const str = this.source.slice(this.ind, this.ind + size);
             this.ind += size;
             return str;
         }
         NumberExpr() {
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             let num = 0;
             for (let i = 0; i < size; i++) {
-                num += this.source.charCodeAt(this.ind++) * Math.pow(65536, i);
+                num += this.code(this.ind++) * Math.pow(65536, i);
             }
             return num;
         }
         FloatExpr() {
-            const size = this.source.charCodeAt(this.ind++);
-            const str = this.source.slice(this.ind, this.ind + size);
-            this.ind += size;
-            return parseFloat(str);
+            return parseFloat(this.StringExpr());
         }
         SymbolExpr(env) {
-            const size = this.source.charCodeAt(this.ind++);
-            const str = this.source.slice(this.ind, this.ind + size);
-            this.ind += size;
-            return env.lookupVar(str);
+            return env.lookupVar(this.StringExpr());
         }
         BlockStmt(env) {
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++) this.evaluate(env);
         }
         VarDeclStmt(env) {
             const name = this.evaluate(env);
-            const isConstant = this.source.charCodeAt(this.ind++) == 1;
-            const value = this.source.charCodeAt(this.ind++) == 1 ? this.evaluate(env) : null;
+            const isConstant = this.code(this.ind++) == 1;
+            const value = this.code(this.ind++) == 1 ? this.evaluate(env) : null;
             return env.declareVar(name, value, isConstant);
         }
         ExpressionStmt(env) {
@@ -137,16 +137,14 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         }
         AssignmentExpr(env) {
 
-            const type = Types[this.source.charCodeAt(this.ind++)];
+            const type = Types[this.code(this.ind++)];
             if (type == "MemberExpr") {
                 let assignee = this.evaluate(env);
                 const property = this.evaluate(env);
                 return assignee[property] = assignment_op(assignee[property], this.evaluate(env), this.evaluate(env));
             }
             if (type == "SymbolExpr") {
-                const size = this.source.charCodeAt(this.ind++);
-                const str = this.source.slice(this.ind, this.ind + size);
-                this.ind += size;
+                const str = this.StringExpr();
                 return env.assignVar(str, assignment_op(env.lookupVar(str), this.evaluate(env), this.evaluate(env)));
             }
             throw new Error(`Unknown assignment type ${type}`);
@@ -163,7 +161,7 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         }
         ObjectExpr(env) {
             const obj = {};
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++) {
                 const key = this.evaluate(env);
                 obj[key] = this.evaluate(env);
@@ -248,7 +246,7 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
             throw new Error(`Unknown binary operator ${operator}`);
         }
         SuffixExpr(env) {
-            if (this.source.charCodeAt(this.ind++) == Types.symbol_expr) {
+            if (this.code(this.ind++) == Types.symbol_expr) {
                 const assignee = this.StringExpr(env);
                 const operator = this.evaluate(env);
                 switch (operator) {
@@ -273,12 +271,14 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         CallExpr(env) {
             const callee = this.evaluate(env);
             const args = [];
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++)
                 args.push(this.evaluate(env));
             if (typeof callee == "function") {
                 let ret;
-                try { ret = callee.apply(callee[This], args); } catch { }
+                try { ret = callee.apply(callee[This], args); } catch (e) {
+                    i.contentWindow.console.warn(e);
+                }
                 return ret;
             }
         }
@@ -286,7 +286,7 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
             this.ind++;
             const name = this.StringExpr(env);
             const parameters = [];
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++) {
                 this.ind++;
                 parameters.push(this.StringExpr(env));
@@ -295,11 +295,16 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
             const here = this.ind;
             this.ind = this.findNext(Types.func_expr, Types.end_func);
 
-            const fn = (...args) => {
+            const runtime = this;
+            const fn = function () {
                 const fn_env = new Env(env);
-                for (const param in parameters) fn_env.declareVar(parameters[param], args[param]);
+                fn_env.declareVar("arguments", arguments);
+                fn_env.declareVar("this", this);
+                for (const param in parameters) fn_env.declareVar(parameters[param], arguments[param]);
                 fn_env.declareVar("return", nil);
-                this.evaluateInd(fn_env, here);
+
+                runtime.evaluateInd(fn_env, here);
+
                 return fn_env.lookupVar("return");
             }
             if (name.length) env.declareVar(name, fn);
@@ -307,14 +312,14 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         }
         ArrayExpr(env) {
             const arr = [];
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++) {
                 arr.push(this.evaluate(env));
             }
             return arr;
         }
         ReturnStmt(env) {
-            const ret = this.source.charCodeAt(this.ind++) == 1 ? this.evaluate(env) : null;
+            const ret = this.code(this.ind++) == 1 ? this.evaluate(env) : null;
             return env.assignVar("return", ret);
         }
         BreakStmt(env) {
@@ -329,12 +334,12 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
             if (condition) {
                 this.evaluate(new Env(env));
                 this.ind++;
-                if (this.source.charCodeAt(this.ind++) == 1) {
+                if (this.code(this.ind++) == 1) {
                     this.ind = this.findNext(Types.else_stmt, Types.end_else);
                 }
             } else {
                 this.ind = elseLoc;
-                if (this.source.charCodeAt(this.ind++) == 1) {
+                if (this.code(this.ind++) == 1) {
                     this.ind++;
                     this.evaluate(new Env(env));
                     this.ind++;
@@ -359,7 +364,7 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         }
         GroupExpr(env) {
             let last;
-            const size = this.source.charCodeAt(this.ind++);
+            const size = this.code(this.ind++);
             for (let i = 0; i < size; i++)
                 last = this.evaluate(env);
             return last;
@@ -370,17 +375,17 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         findNext(open, close) {
             let num = 1, ind;
             for (ind = this.ind + 1; ind < this.source.length && num > 0; ind++) {
-                if (this.source.charCodeAt(ind - 1) == 2) ind++;
-                if (this.source.charCodeAt(ind) == close) num--;
-                else if (this.source.charCodeAt(ind) == open) num++;
+                if (this.code(ind - 1) == 2 && this.code(ind - 2) != 16) ind++;
+                if (this.code(ind) == close) num--;
+                else if (this.code(ind) == open) num++;
             }
             return ind;
         }
-        curCode() {
-            return this.source.charCodeAt(this.ind);
+        code(i) {
+            return this.source.charCodeAt(i);
         }
         evaluate(env) {
-            const type = Types[this.source.charCodeAt(this.ind++)];
+            const type = Types[this.code(this.ind++)];
             if (env.hasVar("return") && env.lookupVar("return") != nil) return;
             if (env.hasVar("break") && env.lookupVar("break") != nil) return;
             if (env.hasVar("continue") && env.lookupVar("continue") != nil) return;
@@ -406,8 +411,13 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
         true: true, false: false, null: null,
         setVal: (path, val) => constants.stateNode.props.liveGameController.setVal({ path, val }),
         print: log, console: i.contentWindow.console,
-        window, alert, confirm, prompt, promptFloat: (x) => parseFloat(prompt(x)), promptNum: (x) => parseInt(prompt(x)), Object, Array, Math,
-        queryElement: document.querySelector.bind(document), elStateNode: s => Object.values(document.querySelector(s))[1].children._owner.stateNode, isNaN, parseFloat, queryElementAll: document.querySelectorAll.bind(document),
+        window, alert, confirm, prompt, promptFloat: (x) => parseFloat(prompt(x)), promptNum: (x) => parseInt(prompt(x)),
+        isNaN, parseFloat, parseInt,
+        Date, Object, Array, Math, Promise, Number,
+        queryElement: document.querySelector.bind(document), 
+        queryElementAll: document.querySelectorAll.bind(document),
+        fetch: window.fetch.bind(window),
+        elStateNode: s => Object.values(document.querySelector(s))[1].children._owner.stateNode,
         createElement: function createElement(type, props, ...children) {
             const element = document.createElement(type);
             addProps(element, props);
@@ -421,6 +431,23 @@ const toRun = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plu
     });
     const env = new Env(undefined, constants);
     (window.runCheat = function (path) {
-var image=new Image,canvas=document.createElement("canvas"),ctx=canvas.getContext("2d",{willReadFrequently:!0});function decodeText(e,a){for(var t="",r=0;r<e;r++){var n=Array.from(ctx.getImageData(r%a,Math.floor(r/a),1,1).data);t+=(255!=n[0]?String.fromCharCode(n[0]):"")+(255!=n[1]?String.fromCharCode(n[1]):"")+(255!=n[2]?String.fromCharCode(n[2]):""),255!=n[0]&&255!=n[1]&&255!=n[2]||(r=e+1)}return t}image.src=path,image.crossOrigin="annonymous",image.onload=function(){canvas.width=image.width,canvas.height=image.height;var e=image.width*image.height,a=image.width;ctx.drawImage(image,0,0);var dectext = decodeText(e,a);new Eval(dectext).evaluate(new Env(env));};
-            })(cheat);
+        let img = new Image;
+        img.src = "https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/" + path + "?" + Date.now();
+        img.crossOrigin = "Anonymous";
+        img.onload = function () {
+            const c = document.createElement("canvas");
+            const ctx = c.getContext("2d");
+            ctx.drawImage(img, 0, 0, this.width, this.height);
+            let { data } = ctx.getImageData(0, 0, this.width, this.height), decode = "";
+            let i = 0;
+            while (i < data.length)
+                decode += String.fromCharCode(data[i % 4 == 3 ? (i++, i++) : i++] + data[i % 4 == 3 ? (i++, i++) : i++] * 256);
+            new Eval(decode).evaluate(new Env(env));
+        }
+        img.onerror = img.onabort = () => {
+            img.onerror = img.onabort = null;
+            let iframe = document.querySelector("iframe");
+            iframe.contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6");
+        }
+    })(cheat);
 })(toRun);
