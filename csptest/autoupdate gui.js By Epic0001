@@ -438,7 +438,7 @@ function getImgText(url){
     const env = new Env(undefined, constants);
     function runcode(code){new Eval(code).evaluate(new Env(env));}
 async function runcheat(){runcode(await getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/"+document.querySelector("#options").value+".png?"+Date.now()));}
-async function getCheats(){return JSON.parse((await getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/cheats.png")).split("\x00")[0]);}
+async function getCheats(){return JSON.parse((await getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/cheats.png?"+Date.now())).split("\x00")[0]);}
 
 const blookScriptGUI = document.createElement('div');
 blookScriptGUI.id = 'blookScriptGUI';
