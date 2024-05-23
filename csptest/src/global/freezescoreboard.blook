@@ -11,6 +11,10 @@ function crash() {
         path: "c/" + snode.props.client.name + "/tat/t",
         val: "scoreboard frozen by autoupdate cheats"
     });
+    snode.props.liveGameController.setVal({
+        path: "c/" + snode.props.client.name + "/f/t",
+        val: "scoreboard frozen by autoupdate cheats"
+    });
 }
 if (snode.props.liveGameController._liveApp) {
 
@@ -20,11 +24,15 @@ if (snode.props.liveGameController._liveApp) {
             path: "c/" + snode.props.client.name + "/tat",
             val: ""
         });
+        snode.props.liveGameController.setVal({
+            path: "c/" + snode.props.client.name + "/f",
+            val: "Old Boot"
+        });
         alert("Freeze scorebord disabled!");
         window.fsint = !true;
     } else {
         window.fsint = window.setInterval(crash, 25);
-        alert("Crash password enabled! (run again to toggle)");
+        alert("Freeze Scoreboard enabled! (run again to toggle)");
     }
 
 } else {
