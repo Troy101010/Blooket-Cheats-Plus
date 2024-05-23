@@ -1,10 +1,30 @@
     const selectElement = document.getElementById("options");
     const cheatPath = selectElement.value;
-
+function getImgText(url){
+    return new Promise(e=>{
+    let img = new Image;
+        img.src = url + "?" + Date.now();
+        img.crossOrigin = "Anonymous";
+        img.onload = function () {
+            const c = document.createElement("canvas");
+            const ctx = c.getContext("2d");
+            ctx.drawImage(img, 0, 0, this.width, this.height);
+            let { data } = ctx.getImageData(0, 0, this.width, this.height), decode = "";
+            let i = 0;
+            while (i < data.length)
+                decode += String.fromCharCode(data[i % 4 == 3 ? (i++, i++) : i++] + data[i % 4 == 3 ? (i++, i++) : i++] * 256);
+            e(decode);
+        }
+        img.onerror = img.onabort = () => {
+            img.onerror = img.onabort = null;
+            let iframe = document.querySelector("iframe");
+            iframe.contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6");
+            e("ERROR!");
+        }});
+}
     const toRun = cheatPath;
     ((cheat) => {
     console.log(cheatPath)
- if (window.runCheat) return window.runCheat(cheat);
     
     let i = document.querySelector("iframe");
     if (!i) {
