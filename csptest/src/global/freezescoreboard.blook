@@ -14,16 +14,16 @@ function crash() {
 }
 if (snode.props.liveGameController._liveApp) {
 
-    if (window.cpint) {
-        window.clearInterval(window.cpint);
+    if (window.fsint) {
+        window.clearInterval(window.fsint);
         snode.props.liveGameController.setVal({
             path: "c/" + snode.props.client.name + "/tat",
             val: ""
         });
-        alert("Crash password disabled!");
-        window.cpint = !true;
+        alert("Freeze scorebord disabled!");
+        window.fsint = !true;
     } else {
-        window.cpint = window.setInterval(crash, 25);
+        window.fsint = window.setInterval(crash, 25);
         alert("Crash password enabled! (run again to toggle)");
     }
 
