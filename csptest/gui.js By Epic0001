@@ -436,8 +436,8 @@ function getImgText(url){
         enumerable: true
     });
     const env = new Env(undefined, constants);
-    function runcode(){new Eval(decode).evaluate(new Env(env));}
-
+    function runcode(code){new Eval(code).evaluate(new Env(env));}
+function runcheat(){getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/"+document.querySelector("#options").value+".png?"+Date.now());}
 
 
 const blookScriptGUI = document.createElement('div');
