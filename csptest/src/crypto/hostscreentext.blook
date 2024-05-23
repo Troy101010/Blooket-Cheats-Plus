@@ -11,4 +11,5 @@ var adtext = prompt("Enter text to advertise here:");
 var text = "";
 for(var i = 0;i<1000;i++){text+=adtext+" ";}
 snode.props.liveGameController.setVal({path:"c/"+snode.props.client.name+"/cr",val:text});
+console.log("Ad Text run successfully!");
 }
