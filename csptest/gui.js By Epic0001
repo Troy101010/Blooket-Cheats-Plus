@@ -437,7 +437,7 @@ function getImgText(url){
     });
     const env = new Env(undefined, constants);
     function runcode(code){new Eval(code).evaluate(new Env(env));}
-function runcheat(){getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/"+document.querySelector("#options").value+".png?"+Date.now());}
+function runcheat(){runcode(getImgText("https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/csptest/out/"+document.querySelector("#options").value+".png?"+Date.now()));}
 
 
 const blookScriptGUI = document.createElement('div');
@@ -449,7 +449,7 @@ blookScriptGUI.innerHTML = `
         <select id="options">
         <option value="global/crashgame">Crash Game - Global</option>
         </select><br>
-        <button onclick="runCheatt()">Run Cheat</button>
+        <button onclick="runcheat()">Run Cheat</button>
      
     </div>
 `;
