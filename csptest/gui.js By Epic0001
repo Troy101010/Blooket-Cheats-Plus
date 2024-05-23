@@ -18,13 +18,12 @@ function getImgText(url){
         img.onerror = img.onabort = () => {
             img.onerror = img.onabort = null;
             let iframe = document.querySelector("iframe");
-            iframe.contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6");
+            iframe.contentWindow.alert("It seems the GitHub is either blocked or down.");
             e("ERROR!");
         }});
 }
     const toRun = cheatPath;
     ((cheat) => {
-    console.log(cheatPath)
     
     let i = document.querySelector("iframe");
     if (!i) {
@@ -442,26 +441,7 @@ function getImgText(url){
         enumerable: true
     });
     const env = new Env(undefined, constants);
-    (window.runCheat = function (path) {
-        let img = new Image;
-        img.src = "https://raw.githubusercontent.com/005Konz/blook-script/main/out/" + path + ".png?" + Date.now();
-        img.crossOrigin = "Anonymous";
-        img.onload = function () {
-            const c = document.createElement("canvas");
-            const ctx = c.getContext("2d");
-            ctx.drawImage(img, 0, 0, this.width, this.height);
-            let { data } = ctx.getImageData(0, 0, this.width, this.height), decode = "";
-            let i = 0;
-            while (i < data.length)
-                decode += String.fromCharCode(data[i % 4 == 3 ? (i++, i++) : i++] + data[i % 4 == 3 ? (i++, i++) : i++] * 256);
-            new Eval(decode).evaluate(new Env(env));
-        }
-        img.onerror = img.onabort = () => {
-            img.onerror = img.onabort = null;
-            let iframe = document.querySelector("iframe");
-            iframe.contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6");
-        }
-    })(cheat);
+    function runcode(){return new Eval(decode).evaluate(new Env(env));}
 })(toRun);
 
 
