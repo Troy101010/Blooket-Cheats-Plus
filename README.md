@@ -82,7 +82,7 @@ Chat (By Yeahbread on Ego Menu) is an online chat that you can talk and send ima
 
 <details><summary><h3>What happend to 05konz?</h3></summary>
 
-05konz's github was suspended but the original cheats still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
+05konz's github was suspended but the original cheats can still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
 </details>
 
 <details><summary><h3>What happend to Minesraft2?</h3></summary>
