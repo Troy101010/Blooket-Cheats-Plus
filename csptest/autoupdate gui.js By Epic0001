@@ -507,7 +507,7 @@ document.addEventListener('mousemove', function(event) {
 document.addEventListener('mouseup', function() {
     isDragging = false;
 });
-document.querySelector("#ch").addEventListener(e=>{runcheat();});
+document.querySelector("#ch").addEventListener("click",e=>{runcheat();});
 document.querySelector("#options").innerHTML = "";
 getCheats().then(a=>{a.forEach(e=>{
 var opt = document.createElement("option");
