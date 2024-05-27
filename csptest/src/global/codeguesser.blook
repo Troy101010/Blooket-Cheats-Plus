@@ -16,12 +16,12 @@ var g = 0;
 function guess(){
 const code = gCode();
 i++;g++;
-window.fetch("https://fb.blooket.com/c/firebase/id?id=" + code,{credentials:"include"}).then(e=>{if(e.status == 429){window.setTimeout(guess,1000);console.log("too many reqs");return {tmreq:1};}return e.json()}).then(e=>{
+window.fetch("https://fb.blooket.com/c/firebase/id?id=" + code,{credentials:"include"}).then(e=>{if(e.status == 429){window.setTimeout(guess,1000);console.log("too many requests");return {tmreq:1};}return e.json()}).then(e=>{
 if(e.success){display.innerText = "Game Found!";snode.setState({client:{hostId:code.toString()}});}else{
 snode.setState({client:{hostId:code.toString()}});
 display.innerText = "Guesses: " + g;
 if(e.tmreq){return;}
-if(i>15){window.setTimeout(guess,10);i=0;}else{guess();}
+if(i>15){window.setTimeout(guess,400);i=0;}else{guess();}
 }
 });
 }
