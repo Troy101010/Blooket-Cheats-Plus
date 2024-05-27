@@ -16,7 +16,7 @@ var g = 0;
 function guess(){
 const code = gCode();
 i++;g++;
-window.fetch("https://fb.blooket.com/c/firebase/id?id=" + code,{credentials:"include"}).then(e=>{if(e.status == 429){window.setTimeout(guess,1000);console.log("too many requests fired");return {tmreq:1};}return e.json()}).then(e=>{
+window.fetch("https://fb.blooket.com/c/firebase/id?id=" + code,{credentials:"include"}).then(e=>{if(e.status == 429){window.setTimeout(guess,1000);console.log("too many reqs");return {tmreq:1};}return e.json()}).then(e=>{
 if(e.success){display.innerText = "Game Found!";snode.setState({client:{hostId:code.toString()}});}else{
 snode.setState({client:{hostId:code.toString()}});
 display.innerText = "Guesses: " + g;
