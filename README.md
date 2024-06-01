@@ -33,6 +33,14 @@ New and fixed features are in BCP to give you a better experience and an advanta
 We don't actually know what to do about this or how to fix it, sorry.
 </details>
 
+<details><summary><h3>What can I do if Github is blocked?</h3></summary>
+
+No problem! Here are the links to go:
+https://cdn.jsdelivr.net/gh/dannydan0167/Blooket-Cheats-Plus/(gui folder)/(gui)
+or
+<a href="https://cocalc.com/github/dannydan0167/Blooket-Cheats-Plus">Cocalc</a> 
+</details>
+
 <details><summary><h3>(script) is not working?</h3></summary>
 
 Make sure you're running it properly (see [How to use](https://gitlab.com/blooket/blooket-cheats/-/tree/main/tutorial?ref_type=heads)), if it still doesn't work and other cheats do, then [make an issue](https://github.com/DannyDan0167/Blooket-Cheats-Plus)
