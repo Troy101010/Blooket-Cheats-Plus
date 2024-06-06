@@ -6,7 +6,7 @@
 <h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 05konz repository</a></h2>
 
 ## Todo
- 
+
 - [ ] Auto Play
 - [x] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
