@@ -266,7 +266,7 @@
             display: "flex",
             flexDirection: "column"
         },
-        innerHTML: '<span style="text-shadow: 1px 1px rgb(0 0 0 / 40%)">Cheats</span>'
+        innerHTML: '<span style="text-shadow: 1px 1px rgb(0 0 0 / 40%); font-size: 0.8em;">Cheats<sup>v14.0</sup></span>'
     }, l("a", {
         className: "bigButton",
         style: {
@@ -904,450 +904,11 @@
                 c()
             }
         }, {
-            name: "Auto Answer",
-            description: "Click the correct answer for you",
-            run: function() {
-                let {
-                    state: {
-                        question: e,
-                        stage: t,
-                        feedback: a
-                    },
-                    props: {
-                        client: {
-                            question: o
-                        }
-                    }
-                } = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                try {
-                    "typing" != e.qType ? ("feedback" === t || a ? document.querySelector('[class*="feedback"]')?.firstChild : [...document.querySelectorAll('[class*="answerContainer"]')][(e || o).answers.map((t, a) => (e || o).correctAnswers.includes(t) ? a : null).filter(e => null != e)[0]])?.click?.() : Object.values(document.querySelector("[class*='typingAnswerWrapper']"))[1].children._owner.stateNode.sendAnswer(e.answers[0])
-                } catch {}
-            }
-        }, {
-            name: "Highlight Answers",
-            description: "Colors answers to be red or green highlighting the correct ones",
-            run: function() {
-                let {
-                    stateNode: {
-                        state: e,
-                        props: t
-                    }
-                } = Object.values(function e(t = document.querySelector("body>div")) {
-                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                }())[1].children[0]._owner;
-                [...document.querySelectorAll('[class*="answerContainer"]')].forEach((a, o) => {
-                    (e.question || t.client.question).correctAnswers.includes((e.question || t.client.question).answers[o]) ? a.style.backgroundColor = "rgb(0, 207, 119)" : a.style.backgroundColor = "rgb(189, 15, 38)"
-                })
-            }
-        }, {
-            name: "Subtle Highlight Answers",
-            description: "Removes the shadow from correct answers",
-            run: function() {
-                let {
-                    stateNode: {
-                        state: e,
-                        props: t
-                    }
-                } = Object.values(function e(t = document.querySelector("body>div")) {
-                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                }())[1].children[0]._owner;
-                [...document.querySelectorAll('[class*="answerContainer"]')].forEach((a, o) => {
-                    (e.question || t.client.question).correctAnswers.includes((e.question || t.client.question).answers[o]) && (a.style.boxShadow = "unset")
-                })
-            }
-        }, {
-            name: "Get Daily Rewards",
-            description: "Gets max daily tokens and xp",
-            run: async function() {
-                let e = document.createElement("iframe");
-                if (document.body.append(e), window.alert = e.contentWindow.alert.bind(window), e.remove(), location.href.includes("play.blooket.com")) {
-                    let {
-                        t
-                    } = await fetch("https://play.blooket.com/api/playersessions/solo", {
-                        body: JSON.stringify({
-                            gameMode: "Factory",
-                            questionSetId: ["60101da869e8c70013913b59", "625db660c6842334835cb4c6", "60268f8861bd520016eae038", "611e6c804abdf900668699e3", "60ba5ff6077eb600221b7145", "642467af9b704783215c1f1b", "605bd360e35779001bf57c5e", "6234cc7add097ff1c9cff3bd", "600b1491d42a140004d5215a", "5db75fa3f1fa190017b61c0c", "5fac96fe2ca0da00042b018f", "600b14d8d42a140004d52165", "5f88953cdb209e00046522c7", "600b153ad42a140004d52172", "5fe260e72a505b00040e2a11", "5fe3d085a529560004cd3076", "5f5fc017aee59500041a1456", "608b0a5863c4f2001eed43f4", "5fad491512c8620004918ace", "5fc91a9b4ea2e200046bd49a", "5c5d06a7deebc70017245da7", "5ff767051b68750004a6fd21", "5fdcacc85d465a0004b021b9", "5fb7eea20bd44300045ba495"][Math.floor(24 * Math.random())]
-                        }),
-                        credentials: "include",
-                        method: "POST"
-                    }).then(e => e.json());
-                    await fetch("https://play.blooket.com/api/playersessions/landings", {
-                        body: JSON.stringify({
-                            t
-                        }),
-                        credentials: "include",
-                        method: "POST"
-                    }), await fetch("https://play.blooket.com/api/playersessions/questions?t=" + t, {
-                        credentials: "include"
-                    });
-                    let {
-                        name: a,
-                        blook: {
-                            name: o
-                        }
-                    } = Object.values(function e(t = document.querySelector("body>div")) {
-                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                    }())[1].children[0]._owner.stateNode.props.user.data;
-                    await fetch("https://play.blooket.com/api/users/factorystats", {
-                        body: JSON.stringify({
-                            blookUsed: o,
-                            t,
-                            name: a,
-                            cash: Math.floor(9e7 * Math.random()) + 1e7,
-                            correctAnswers: Math.floor(500 * Math.random()) + 500,
-                            upgrades: Math.floor(300 * Math.random()) + 300,
-                            mode: "Time-Solo",
-                            nameUsed: "You",
-                            place: 1,
-                            playersDefeated: 0
-                        }),
-                        credentials: "include",
-                        method: "PUT"
-                    }), fetch("https://play.blooket.com/api/users/add-rewards", {
-                        body: JSON.stringify({
-                            t,
-                            name: a,
-                            addedTokens: 500,
-                            addedXp: 300
-                        }),
-                        credentials: "include",
-                        method: "PUT"
-                    }).then(e => e.json()).then(({
-                        dailyReward: e
-                    }) => alert(`Added max tokens and xp, and got ${e} daily wheel tokens!`)).catch(() => alert("There was an error when adding rewards."))
-                } else alert("This cheat only works on play.blooket.com, opening a new tab."), window.open("https://play.blooket.com/")
-            }
-        }, {
-            name: "Use any Blook",
-            description: "Allows you to play as any blook",
-            run: function() {
-                (() => {
-                    let e = ["Chick", "Chicken", "Cow", "Goat", "Horse", "Pig", "Sheep", "Duck", "Alpaca", "Dog", "Cat", "Rabbit", "Goldfish", "Hamster", "Turtle", "Kitten", "Puppy", "Bear", "Moose", "Fox", "Raccoon", "Squirrel", "Owl", "Hedgehog", "Deer", "Wolf", "Beaver", "Tiger", "Orangutan", "Cockatoo", "Parrot", "Anaconda", "Jaguar", "Macaw", "Toucan", "Panther", "Capuchin", "Gorilla", "Hippo", "Rhino", "Giraffe", "Snowy Owl", "Polar Bear", "Arctic Fox", "Baby Penguin", "Penguin", "Arctic Hare", "Seal", "Walrus", "Witch", "Wizard", "Elf", "Fairy", "Slime Monster", "Jester", "Dragon", "Queen", "Unicorn", "King", "Two of Spades", "Eat Me", "Drink Me", "Alice", "Queen of Hearts", "Dormouse", "White Rabbit", "Cheshire Cat", "Caterpillar", "Mad Hatter", "King of Hearts", "Toast", "Cereal", "Yogurt", "Breakfast Combo", "Orange Juice", "Milk", "Waffle", "Pancakes", "French Toast", "Pizza", "Earth", "Meteor", "Stars", "Alien", "Planet", "UFO", "Spaceship", "Astronaut", "Lil Bot", "Lovely Bot", "Angry Bot", "Happy Bot", "Watson", "Buddy Bot", "Brainy Bot", "Mega Bot", "Old Boot", "Jellyfish", "Clownfish", "Frog", "Crab", "Pufferfish", "Blobfish", "Octopus", "Narwhal", "Dolphin", "Baby Shark", "Megalodon", "Panda", "Sloth", "Tenrec", "Flamingo", "Zebra", "Elephant", "Lemur", "Peacock", "Chameleon", "Lion", "Amber", "Dino Egg", "Dino Fossil", "Stegosaurus", "Velociraptor", "Brontosaurus", "Triceratops", "Tyrannosaurus Rex", "Ice Bat", "Ice Bug", "Ice Elemental", "Rock Monster", "Dink", "Donk", "Bush Monster", "Yeti", "Dingo", "Echidna", "Koala", "Kookaburra", "Platypus", "Joey", "Kangaroo", "Crocodile", "Sugar Glider", "Deckhand", "Buccaneer", "Swashbuckler", "Treasure Map", "Seagull", "Jolly Pirate", "Pirate Ship", "Kraken", "Captain Blackbeard", "Snow Globe", "Holiday Gift", "Hot Chocolate", "Holiday Wreath", "Stocking", "Gingerbread Man", "Gingerbread House", "Reindeer", "Snowman", "Santa Claus", "Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Candy Corn", "Werewolf", "Ghost", "Rainbow Jellyfish", "Blizzard Clownfish", "Lovely Frog", "Lucky Frog", "Spring Frog", "Poison Dart Frog", "Lucky Hamster", "Chocolate Rabbit", "Spring Rabbit", "Lemon Crab", "Pirate Pufferfish", "Donut Blobfish", "Crimson Octopus", "Rainbow Narwhal", "Frost Wreath", "Tropical Globe", "New York Snow Globe", "London Snow Globe", "Japan Snow Globe", "Egypt Snow Globe", "Paris Snow Globe", "Red Sweater Snowman", "Blue Sweater Snowman", "Elf Sweater Snowman", "Santa Claws", "Cookies Combo", "Chilly Flamingo", "Snowy Bush Monster", "Nutcracker Koala", "Sandwich", "Ice Slime", "Frozen Fossil", "Ice Crab", "Rainbow Panda", "White Peacock", "Tiger Zebra", "Teal Platypus", "Red Astronaut", "Orange Astronaut", "Yellow Astronaut", "Lime Astronaut", "Green Astronaut", "Cyan Astronaut", "Blue Astronaut", "Pink Astronaut", "Purple Astronaut", "Brown Astronaut", "Black Astronaut", "Lovely Planet", "Lovely Peacock", "Haunted Pumpkin", "Pumpkin Cookie", "Ghost Cookie", "Red Gummy Bear", "Blue Gummy Bear", "Green Gummy Bear", "Chick Chicken", "Chicken Chick", "Raccoon Bandit", "Owl Sheriff", "Vampire Frog", "Pumpkin King", "Leprechaun", "Anaconda Wizard", "Spooky Pumpkin", "Spooky Mummy", "Agent Owl", "Master Elf", "Party Pig", "Wise Owl", "Spooky Ghost", "Phantom King", "Tim the Alien", "Rainbow Astronaut", "Hamsta Claus", "Light Blue", "Black", "Red", "Purple", "Pink", "Orange", "Lime", "Green", "Teal", "Tan", "Maroon", "Gray", "Mint", "Salmon", "Burgandy", "Baby Blue", "Dust", "Brown", "Dull Blue", "Yellow", "Blue"],
-                        t = {};
-                    e.forEach(e => {
-                        t[e] = 1
-                    });
-                    let a = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
-
-                    function o() {
-                        return a
-                    }
-                    a.setState({
-                        blookData: t,
-                        unlocks: e
-                    });
-                    var r = a.state;
-                    r.user && (r.user.unlocks = t, a.setState(r))
-                })()
-            }
-        }, {
-            name: "Lobbychat",
-            description: "Chat with other people and execute commands",
-            run: function() {
-                if (window.run) {
-                    return;
-                } else {
-                    window.run = true;
-                }
-
-                function e() {
-                    return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
-                }
-                var t = 0,
-                    a = !1;
-                document.addEventListener("keydown", function(e) {
-                    "`" === e.key && (a = !a, o.style.display = a ? "none" : "block")
-                });
-                let o = document.createElement("div");
-                o.className = "chat-box", document.body.appendChild(o);
-                let r = document.createElement("div");
-                r.className = "chat-header", r.textContent = "Chat", o.appendChild(r);
-                let i = document.createElement("div");
-                i.className = "chat-body", o.appendChild(i);
-                let n = document.createElement("input");
-
-                function s(e) {
-                    let t = document.createElement("div");
-                    t.textContent = e, i.appendChild(t)
-                }
-                n.type = "text", n.className = "chat-input", n.placeholder = "Type a message...", o.appendChild(n), o.style.position = "fixed", o.style.bottom = "20px", o.style.right = "20px", o.style.width = "300px", o.style.backgroundColor = "#fff", o.style.border = "1px solid #ccc", o.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)", r.addEventListener("click", () => {
-                    i.classList.toggle("open")
-                }), n.addEventListener("keydown", function(a) {
-                    13 === a.keyCode && (function a(o) {
-                        var r, n, l, c, d, p, u, h = function e(t) {
-                            if ("/" !== t.charAt(0)) return !1;
-                            var a = t.split(" "),
-                                o = a[0].replace("/", "");
-                            return a.splice(0, 1), {
-                                cmd: o,
-                                args: a
-                            }
-                        }(o);
-                        if (h) switch (h.cmd) {
-                            case "cb":
-                                r = h.args.join(" "), (n = webpackJsonp.push([
-                                    [], {
-                                        1234(e, t, a) {
-                                            t.webpack = a
-                                        }
-                                    },
-                                    [
-                                        ["1234"]
-                                    ]
-                                ]).webpack("MDrD").a)[r = Object.keys(n).find(e => r.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (s("Setting blook to " + r + "!"), e().stateNode.props.liveGameController.setVal({
-                                    id: e().stateNode.props.client.hostId,
-                                    path: "c/" + e().stateNode.props.client.name,
-                                    val: {
-                                        b: r
-                                    }
-                                }), e().stateNode.props.client.blook = r) : s("No blook with that name was found!");
-                                break;
-                            case "clear":
-                                i.innerHTML = "";
-                                break;
-                            case "dumpstate":
-                                Object.keys(e().stateNode.state).map(t => {
-                                    var a = e().stateNode.state[t];
-                                    if (null == a) return "N/A";
-                                    Array.from(a) && "object" == typeof a && (a = "[Array]"), s(t + ":" + a)
-                                }).join(";");
-                                break;
-                            case "list":
-                                e().stateNode.props.liveGameController.getDatabaseVal("c").then(e => {
-                                    s("Current Players(" + Object.keys(e).length + "): " + Object.keys(e).join(","))
-                                });
-                                break;
-                            case "tlog":
-                                window.logsv = !window.logsv, s("SetVal log set to " + (window.logsv ? "Enabled" : "Disabled"));
-                                break;
-                            case "setval":
-                                l = h.args, e().stateNode.props.liveGameController.setVal({
-                                    path: "c/" + e().stateNode.props.client.name + "/" + l[0],
-                                    val: l.slice(1, l.length).join(" ")
-                                });
-                                break;
-                            case "setstate":
-                                c = h.args, d = {}, c.forEach(e => {
-                                    var t = e.split(":");
-                                    Number.isNaN(parseInt(t[1])) || parseInt(t[1]).toString() !== t[1] || (t[1] = parseInt(t[1])), d[t[0]] = t[1]
-                                }), e().stateNode.setState(d), s("Set Successful!");
-                                break;
-                            case "ahelp":
-                                s("Advanced Commands: setval(sets val logged by tlog ex /setval b Chicken), tlog(toggles setval log), dumpstate(dumps react state),setstate(sets react state /setstate crypto:5 crypto2:5 etc)");
-                                break;
-                            case "help":
-                                s("Available Commands: help(gives help),ahelp(advanced commands help), cb(changes blook /cb cow), list(lists players connected), dump(dumps all available info about a player, passwords, etc(/dump player)), clear(clears chat), code(gives game code), unlock(unlocks blook on lobby screen)");
-                                break;
-                            case "dump":
-                                ! function t(a) {
-                                    e().stateNode.props.liveGameController.getDatabaseVal("c/" + a).then(e => {
-                                        null != e ? s("Dump: " + JSON.stringify(e)) : s("Player not found!")
-                                    })
-                                }(h.args.join(" "));
-                                break;
-                            case "unlock":
-                                p = h.args.join(" "), (u = webpackJsonp.push([
-                                    [], {
-                                        1234(e, t, a) {
-                                            t.webpack = a
-                                        }
-                                    },
-                                    [
-                                        ["1234"]
-                                    ]
-                                ]).webpack("MDrD").a)[p = Object.keys(u).find(e => p.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (e().stateNode.state.unlocks.push(p), e().stateNode.forceUpdate()) : s("No blook with that name was found!");
-                                break;
-                            case "code":
-                                s("Game Code: " + e().stateNode.props.client.hostId);
-                                break;
-                            default:
-                                s("Unrecognized chat command!")
-                        } else e().stateNode.props.liveGameController.setVal({
-                            id: e().stateNode.props.client.hostId,
-                            path: "c/" + e().stateNode.props.client.name + "/msg",
-                            val: {
-                                i: t,
-                                msg: o
-                            }
-                        }), t++
-                    }(a.srcElement.value), a.srcElement.value = "")
-                });
-                var l = e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_;
-
-                function c(e) {
-                    window.logsv && s("Path: " + e.path.split("/").splice(2, 2).join("/") + " Val: " + ("object" == typeof e.val ? JSON.stringify(e.val) : e.val))
-                }
-                e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_ = function(e, t, a, o) {
-                    var r, i;
-                    console.log(e, t, a, o), r = e, null != (i = t) && r.includes("/msg") && i?.msg && (console.log(i.msg), s(r.split("/")[2] + ": " + i.msg)), l(e, t, a, o)
-                }, window.logsv = !1;
-                var d = e().stateNode.props.liveGameController.setVal;
-                e().stateNode.props.liveGameController.setVal = function() {
-                    c.apply(this, arguments), d.apply(this, arguments)
-                }, e().stateNode.props.liveGameController._liveApp.database().ref(`${e().stateNode.props.liveGameController._liveGameCode}`).on("value", e => {}), s("Lobbychat successfully loaded!"), o.style.wordWrap = "break-word"
-            }
-        }, {
-            name: "Pin Guesser",
-            description: "Brute forces combinations for existing pins",
-            run: function() {
-                var e = 0,
-                    t = 0,
-                    a = document.querySelector("div[class*='titleText']");
-
-                function o() {
-                    return Object.values(function e(t = document.querySelector("body>div")) {
-                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                    }())[1].children[0]._owner.stateNode
-                }! function r() {
-                    let i = Math.floor(9e6 * Math.random()) + 1e6;
-                    fetch(`https://fb.blooket.com/c/firebase/id?id=${i}`, {
-                        method: "GET",
-                        credentials: "include"
-                    }).then(e => e.json()).then(n => {
-                        !0 === n.success ? (console.log("Game found:", i), a.innerHTML = "Game Found!", o().setState({
-                            client: {
-                                hostId: i.toString()
-                            }
-                        })) : (console.log("No game found for:", i), o().setState({
-                            client: {
-                                hostId: i.toString()
-                            }
-                        }), e++, a.innerHTML = "Guesses: " + e, ++t > 15 ? (setTimeout(r, 1e3), t = 0) : r())
-                    }).catch(e => {
-                        alert("Error:" + e)
-                    })
-                }()
-            }
-        }, {
-            name: "Crash Game",
-            description: "Crashes the host's game",
-            run: function() {
-                var e = Object.values(function e(t = document.querySelector("#app")) {
-                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                }())[1].children[0]._owner.stateNode;
-                e.props.liveGameController.setVal({
-                    path: `c/${e.props.client.name}/b/toString`,
-                    val: "Crashed"
-                })
-            }
-        }, {
-            name: "Chat",
-            description: "Opens a chatroom",
-            run: function() {
-                window.open("https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
-            }
-        }, {
-            name: "Every Answer Correct",
-            description: "Sets every answer to be correct",
-            run: function() {
-                let {
-                    stateNode: e
-                } = Object.values(function e(t = document.querySelector("body>div")) {
-                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                }())[1].children[0]._owner;
-                e.freeQuestions = e.freeQuestions?.map?.(e => ({
-                    ...e,
-                    correctAnswers: e.answers
-                })), e.questions = e.questions?.map?.(e => ({
-                    ...e,
-                    correctAnswers: e.answers
-                })), e.props.client.questions = e.props.client.questions.map(e => ({
-                    ...e,
-                    correctAnswers: e.answers
-                }))
-            }
-        }, {
-            name: "Remove Name Limit",
-            description: "Sets the name limit to 120, which is the actual max name length limit",
-            run: function() {
-                var e = document.createElement("iframe");
-                document.body.append(e), window.alert = e.contentWindow.alert.bind(window), e.remove(), document.querySelector('input[class*="nameInput"]').maxLength = 120, alert("Removed name length limit")
-            }
-        }, {
-            name: "Remove Random Name",
-            description: "Allows you to put a custom name",
-            run: function() {
-                Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode.setState({
-                    isRandom: !1,
-                    client: {
-                        name: ""
-                    }
-                }), document.querySelector('[class*="nameInput"]')?.focus?.()
-            }
-        }, {
-            name: "Sell Cheap Duplicates",
-            description: "Sells all of your uncommon to epic dupes (not legendaries+)",
-            run: function() {
-                var e = document.createElement("iframe");
-                document.body.append(e), window.alert = e.contentWindow.alert.bind(window), window.confirm = e.contentWindow.confirm.bind(window), e.remove();
-                let t = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]).webpack,
-                    a = Object.values(t.c).find(e => e.exports?.a?.get).exports.a,
-                    o = Object.values(t.c).find(e => e.exports.a?.sellBlook).exports.a.sellBlook;
-                a.get("https://dashboard.blooket.com/api/users").then(async ({
-                    data: {
-                        unlocks: e
-                    }
-                }) => {
-                    if (e = Object.entries(e).filter(([e, t]) => 1 < t && !["Legendary", "Chroma", "Mystical"].includes(webpackJsonp.push([
-                            [], {
-                                1234(e, t, a) {
-                                    t.webpack = a
-                                }
-                            },
-                            [
-                                ["1234"]
-                            ]
-                        ]).webpack("MDrD").a[e].rarity)), confirm("Are you sure you want to sell your uncommon to epic dupes?")) {
-                        var t, a, r = Date.now();
-                        for ([t, a] of e) await o({
-                            blook: t,
-                            numToSell: a - 1
-                        });
-                        alert(`(${Date.now()-r}ms) Results: ` + e.map(([e, t]) => `    ${e} ` + (t - 1)).join(" "))
-                    }
-                }).catch(() => alert("There was an error user data!"))
-            }
-        }, {
-            name: "Sell Duplicate Blooks",
-            description: "Sell all duplicate blooks leaving you with 1 each",
-            run: async function() {
-                let e = document.createElement("iframe");
-                if (document.body.append(e), window.alert = e.contentWindow.alert.bind(window), window.confirm = e.contentWindow.confirm.bind(window), e.remove(), /dashboard.*\/blooks/.test(window.location.href)) {
-                    if (confirm("Are you sure you want to sell your dupes? (Legendaries and rarer will not be sold)")) {
-                        let {
-                            stateNode: t
-                        } = Object.values(function e(t = document.querySelector("body>div")) {
-                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
-                        }())[1].children[0]._owner, a = Date.now(), o = "";
-                        for (let r in t.state.blookData)
-                            if (t.state.blookData[r] > 1) {
-                                if (t.setState({
-                                        blook: r,
-                                        numToSell: t.state.blookData[r] - 1
-                                    }), ["Legendary", "Chroma", "Mystical"].includes(document.querySelector("[class*='highlightedRarity']").innerText.trim())) continue;
-                                o += `    ${r} ${t.state.blookData[r]-1} `, await t.sellBlook({
-                                    preventDefault() {}
-                                }, !0)
-                            } alert(`(${Date.now()-a}ms) Results: ${o.trim()}`)
-                    }
-                } else alert("This can only be ran in the Blooks page.")
-            }
-        }, {
             name: "Bypass Filter",
             description: "Bypasses the name filter",
             inputs: [{
                 name: "Text",
                 type: "text",
-                placeholder: "Enter some text"
             }],
             run: function(e) {
                 var t, a, o;
@@ -1357,6 +918,60 @@
                     return o
                 }(t = e), r = document.createElement("iframe"), document.body.appendChild(r), window.alert = r.contentWindow.alert.bind(r.contentWindow), (o = document.createElement("textarea")).value = a, o.style.position = "fixed", o.style.top = 0, o.style.left = 0, o.style.opacity = 0, document.body.appendChild(o), o.select(), document.execCommand("copy"), alert("Bypassed text copied to clipboard!"), r.remove(), document.body.removeChild(o)
             }
+        }, {
+            name: "Change Name Ingame",
+            description: "Changes your name ingame",
+            inputs: [{
+                name: "New Name",
+                type: "text"
+            }],
+            run: (function(newname) {
+                (async () => {
+                    const reactHandler = (e => Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode);
+                    let i = document.createElement('iframe');
+                    document.body.append(i);
+                    let alert = i.contentWindow.alert.bind(window);
+                    i.remove();
+
+                    async function genToken(name) {
+                        const res = await fetch("https://fb.blooket.com/c/firebase/join", {
+                            body: JSON.stringify({
+                                id: reactHandler().props.client.hostId,
+                                name
+                            }),
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            method: "PUT",
+                            credentials: "include"
+                        }).then(e => e.json());
+                        if (!res.success) {
+                            alert("Error: " + res.msg);
+                            return;
+                        }
+                        return res.fbToken;
+                    }
+
+                    const oldname = reactHandler().props.client.name;
+                    reactHandler().props.client.name = newname;
+                    const olddata = await reactHandler().props.liveGameController.getDatabaseVal(`c/${oldname}`);
+                    await reactHandler().props.liveGameController.removeVal(`c/${oldname}`);
+                    const token = await genToken(newname);
+                    if (!token) {
+                        return;
+                    }
+                    await reactHandler().props.liveGameController._liveApp.auth().signInWithCustomToken(token);
+                    reactHandler().props.liveGameController._liveApp.auth().onAuthStateChanged(e => {
+                        if (e.uid.split(":")[1] === newname) {
+                            reactHandler().props.liveGameController.setVal({
+                                path: `c/${newname}`,
+                                val: olddata
+                            });
+                        }
+                    });
+                    reactHandler().render();
+                })();
+            })
         }, {
             name: "Simulate Pack",
             description: "Simulate opening a pack",
@@ -1968,7 +1583,6 @@
             inputs: [{
                 name: "Banner ID",
                 type: "text",
-                placeholder: "Enter the banner ID"
             }],
             run: function(e) {
                 var t = document.createElement("iframe");
@@ -2035,6 +1649,444 @@
                         type: e
                     }
                 })
+            }
+        }, {
+            name: "Auto Answer",
+            description: "Click the correct answer for you",
+            run: function() {
+                let {
+                    state: {
+                        question: e,
+                        stage: t,
+                        feedback: a
+                    },
+                    props: {
+                        client: {
+                            question: o
+                        }
+                    }
+                } = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                try {
+                    "typing" != e.qType ? ("feedback" === t || a ? document.querySelector('[class*="feedback"]')?.firstChild : [...document.querySelectorAll('[class*="answerContainer"]')][(e || o).answers.map((t, a) => (e || o).correctAnswers.includes(t) ? a : null).filter(e => null != e)[0]])?.click?.() : Object.values(document.querySelector("[class*='typingAnswerWrapper']"))[1].children._owner.stateNode.sendAnswer(e.answers[0])
+                } catch {}
+            }
+        }, {
+            name: "Highlight Answers",
+            description: "Colors answers to be red or green highlighting the correct ones",
+            run: function() {
+                let {
+                    stateNode: {
+                        state: e,
+                        props: t
+                    }
+                } = Object.values(function e(t = document.querySelector("body>div")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                }())[1].children[0]._owner;
+                [...document.querySelectorAll('[class*="answerContainer"]')].forEach((a, o) => {
+                    (e.question || t.client.question).correctAnswers.includes((e.question || t.client.question).answers[o]) ? a.style.backgroundColor = "rgb(0, 207, 119)" : a.style.backgroundColor = "rgb(189, 15, 38)"
+                })
+            }
+        }, {
+            name: "Subtle Highlight Answers",
+            description: "Removes the shadow from correct answers",
+            run: function() {
+                let {
+                    stateNode: {
+                        state: e,
+                        props: t
+                    }
+                } = Object.values(function e(t = document.querySelector("body>div")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                }())[1].children[0]._owner;
+                [...document.querySelectorAll('[class*="answerContainer"]')].forEach((a, o) => {
+                    (e.question || t.client.question).correctAnswers.includes((e.question || t.client.question).answers[o]) && (a.style.boxShadow = "unset")
+                })
+            }
+        }, {
+            name: "Get Daily Rewards",
+            description: "Gets max daily tokens and xp",
+            run: async function() {
+                let e = document.createElement("iframe");
+                if (document.body.append(e), window.alert = e.contentWindow.alert.bind(window), e.remove(), location.href.includes("play.blooket.com")) {
+                    let {
+                        t
+                    } = await fetch("https://play.blooket.com/api/playersessions/solo", {
+                        body: JSON.stringify({
+                            gameMode: "Factory",
+                            questionSetId: ["60101da869e8c70013913b59", "625db660c6842334835cb4c6", "60268f8861bd520016eae038", "611e6c804abdf900668699e3", "60ba5ff6077eb600221b7145", "642467af9b704783215c1f1b", "605bd360e35779001bf57c5e", "6234cc7add097ff1c9cff3bd", "600b1491d42a140004d5215a", "5db75fa3f1fa190017b61c0c", "5fac96fe2ca0da00042b018f", "600b14d8d42a140004d52165", "5f88953cdb209e00046522c7", "600b153ad42a140004d52172", "5fe260e72a505b00040e2a11", "5fe3d085a529560004cd3076", "5f5fc017aee59500041a1456", "608b0a5863c4f2001eed43f4", "5fad491512c8620004918ace", "5fc91a9b4ea2e200046bd49a", "5c5d06a7deebc70017245da7", "5ff767051b68750004a6fd21", "5fdcacc85d465a0004b021b9", "5fb7eea20bd44300045ba495"][Math.floor(24 * Math.random())]
+                        }),
+                        credentials: "include",
+                        method: "POST"
+                    }).then(e => e.json());
+                    await fetch("https://play.blooket.com/api/playersessions/landings", {
+                        body: JSON.stringify({
+                            t
+                        }),
+                        credentials: "include",
+                        method: "POST"
+                    }), await fetch("https://play.blooket.com/api/playersessions/questions?t=" + t, {
+                        credentials: "include"
+                    });
+                    let {
+                        name: a,
+                        blook: {
+                            name: o
+                        }
+                    } = Object.values(function e(t = document.querySelector("body>div")) {
+                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                    }())[1].children[0]._owner.stateNode.props.user.data;
+                    await fetch("https://play.blooket.com/api/users/factorystats", {
+                        body: JSON.stringify({
+                            blookUsed: o,
+                            t,
+                            name: a,
+                            cash: Math.floor(9e7 * Math.random()) + 1e7,
+                            correctAnswers: Math.floor(500 * Math.random()) + 500,
+                            upgrades: Math.floor(300 * Math.random()) + 300,
+                            mode: "Time-Solo",
+                            nameUsed: "You",
+                            place: 1,
+                            playersDefeated: 0
+                        }),
+                        credentials: "include",
+                        method: "PUT"
+                    }), fetch("https://play.blooket.com/api/users/add-rewards", {
+                        body: JSON.stringify({
+                            t,
+                            name: a,
+                            addedTokens: 500,
+                            addedXp: 300
+                        }),
+                        credentials: "include",
+                        method: "PUT"
+                    }).then(e => e.json()).then(({
+                        dailyReward: e
+                    }) => alert(`Added max tokens and xp, and got ${e} daily wheel tokens!`)).catch(() => alert("There was an error when adding rewards."))
+                } else alert("This cheat only works on play.blooket.com, opening a new tab."), window.open("https://play.blooket.com/")
+            }
+        }, {
+            name: "Use any Blook",
+            description: "Allows you to play as any blook",
+            run: function() {
+                (() => {
+                    let e = ["Chick", "Chicken", "Cow", "Goat", "Horse", "Pig", "Sheep", "Duck", "Alpaca", "Dog", "Cat", "Rabbit", "Goldfish", "Hamster", "Turtle", "Kitten", "Puppy", "Bear", "Moose", "Fox", "Raccoon", "Squirrel", "Owl", "Hedgehog", "Deer", "Wolf", "Beaver", "Tiger", "Orangutan", "Cockatoo", "Parrot", "Anaconda", "Jaguar", "Macaw", "Toucan", "Panther", "Capuchin", "Gorilla", "Hippo", "Rhino", "Giraffe", "Snowy Owl", "Polar Bear", "Arctic Fox", "Baby Penguin", "Penguin", "Arctic Hare", "Seal", "Walrus", "Witch", "Wizard", "Elf", "Fairy", "Slime Monster", "Jester", "Dragon", "Queen", "Unicorn", "King", "Two of Spades", "Eat Me", "Drink Me", "Alice", "Queen of Hearts", "Dormouse", "White Rabbit", "Cheshire Cat", "Caterpillar", "Mad Hatter", "King of Hearts", "Toast", "Cereal", "Yogurt", "Breakfast Combo", "Orange Juice", "Milk", "Waffle", "Pancakes", "French Toast", "Pizza", "Earth", "Meteor", "Stars", "Alien", "Planet", "UFO", "Spaceship", "Astronaut", "Lil Bot", "Lovely Bot", "Angry Bot", "Happy Bot", "Watson", "Buddy Bot", "Brainy Bot", "Mega Bot", "Old Boot", "Jellyfish", "Clownfish", "Frog", "Crab", "Pufferfish", "Blobfish", "Octopus", "Narwhal", "Dolphin", "Baby Shark", "Megalodon", "Panda", "Sloth", "Tenrec", "Flamingo", "Zebra", "Elephant", "Lemur", "Peacock", "Chameleon", "Lion", "Amber", "Dino Egg", "Dino Fossil", "Stegosaurus", "Velociraptor", "Brontosaurus", "Triceratops", "Tyrannosaurus Rex", "Ice Bat", "Ice Bug", "Ice Elemental", "Rock Monster", "Dink", "Donk", "Bush Monster", "Yeti", "Dingo", "Echidna", "Koala", "Kookaburra", "Platypus", "Joey", "Kangaroo", "Crocodile", "Sugar Glider", "Deckhand", "Buccaneer", "Swashbuckler", "Treasure Map", "Seagull", "Jolly Pirate", "Pirate Ship", "Kraken", "Captain Blackbeard", "Snow Globe", "Holiday Gift", "Hot Chocolate", "Holiday Wreath", "Stocking", "Gingerbread Man", "Gingerbread House", "Reindeer", "Snowman", "Santa Claus", "Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Candy Corn", "Werewolf", "Ghost", "Rainbow Jellyfish", "Blizzard Clownfish", "Lovely Frog", "Lucky Frog", "Spring Frog", "Poison Dart Frog", "Lucky Hamster", "Chocolate Rabbit", "Spring Rabbit", "Lemon Crab", "Pirate Pufferfish", "Donut Blobfish", "Crimson Octopus", "Rainbow Narwhal", "Frost Wreath", "Tropical Globe", "New York Snow Globe", "London Snow Globe", "Japan Snow Globe", "Egypt Snow Globe", "Paris Snow Globe", "Red Sweater Snowman", "Blue Sweater Snowman", "Elf Sweater Snowman", "Santa Claws", "Cookies Combo", "Chilly Flamingo", "Snowy Bush Monster", "Nutcracker Koala", "Sandwich", "Ice Slime", "Frozen Fossil", "Ice Crab", "Rainbow Panda", "White Peacock", "Tiger Zebra", "Teal Platypus", "Red Astronaut", "Orange Astronaut", "Yellow Astronaut", "Lime Astronaut", "Green Astronaut", "Cyan Astronaut", "Blue Astronaut", "Pink Astronaut", "Purple Astronaut", "Brown Astronaut", "Black Astronaut", "Lovely Planet", "Lovely Peacock", "Haunted Pumpkin", "Pumpkin Cookie", "Ghost Cookie", "Red Gummy Bear", "Blue Gummy Bear", "Green Gummy Bear", "Chick Chicken", "Chicken Chick", "Raccoon Bandit", "Owl Sheriff", "Vampire Frog", "Pumpkin King", "Leprechaun", "Anaconda Wizard", "Spooky Pumpkin", "Spooky Mummy", "Agent Owl", "Master Elf", "Party Pig", "Wise Owl", "Spooky Ghost", "Phantom King", "Tim the Alien", "Rainbow Astronaut", "Hamsta Claus", "Light Blue", "Black", "Red", "Purple", "Pink", "Orange", "Lime", "Green", "Teal", "Tan", "Maroon", "Gray", "Mint", "Salmon", "Burgandy", "Baby Blue", "Dust", "Brown", "Dull Blue", "Yellow", "Blue"],
+                        t = {};
+                    e.forEach(e => {
+                        t[e] = 1
+                    });
+                    let a = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+
+                    function o() {
+                        return a
+                    }
+                    a.setState({
+                        blookData: t,
+                        unlocks: e
+                    });
+                    var r = a.state;
+                    r.user && (r.user.unlocks = t, a.setState(r))
+                })()
+            }
+        }, {
+            name: "Lobbychat",
+            description: "Chat with other people and execute commands",
+            run: function() {
+                if (window.run) {
+                    return;
+                } else {
+                    window.run = true;
+                }
+
+                function e() {
+                    return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
+                }
+                var t = 0,
+                    a = !1;
+                document.addEventListener("keydown", function(e) {
+                    "`" === e.key && (a = !a, o.style.display = a ? "none" : "block")
+                });
+                let o = document.createElement("div");
+                o.className = "chat-box", document.body.appendChild(o);
+                let r = document.createElement("div");
+                r.className = "chat-header", r.textContent = "Chat", o.appendChild(r);
+                let i = document.createElement("div");
+                i.className = "chat-body", o.appendChild(i);
+                let n = document.createElement("input");
+
+                function s(e) {
+                    let t = document.createElement("div");
+                    t.textContent = e, i.appendChild(t)
+                }
+                n.type = "text", n.className = "chat-input", n.placeholder = "Type a message...", o.appendChild(n), o.style.position = "fixed", o.style.bottom = "20px", o.style.right = "20px", o.style.width = "300px", o.style.backgroundColor = "#fff", o.style.border = "1px solid #ccc", o.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)", r.addEventListener("click", () => {
+                    i.classList.toggle("open")
+                }), n.addEventListener("keydown", function(a) {
+                    13 === a.keyCode && (function a(o) {
+                        var r, n, l, c, d, p, u, h = function e(t) {
+                            if ("/" !== t.charAt(0)) return !1;
+                            var a = t.split(" "),
+                                o = a[0].replace("/", "");
+                            return a.splice(0, 1), {
+                                cmd: o,
+                                args: a
+                            }
+                        }(o);
+                        if (h) switch (h.cmd) {
+                            case "cb":
+                                r = h.args.join(" "), (n = webpackJsonp.push([
+                                    [], {
+                                        1234(e, t, a) {
+                                            t.webpack = a
+                                        }
+                                    },
+                                    [
+                                        ["1234"]
+                                    ]
+                                ]).webpack("MDrD").a)[r = Object.keys(n).find(e => r.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (s("Setting blook to " + r + "!"), e().stateNode.props.liveGameController.setVal({
+                                    id: e().stateNode.props.client.hostId,
+                                    path: "c/" + e().stateNode.props.client.name,
+                                    val: {
+                                        b: r
+                                    }
+                                }), e().stateNode.props.client.blook = r) : s("No blook with that name was found!");
+                                break;
+                            case "clear":
+                                i.innerHTML = "";
+                                break;
+                            case "dumpstate":
+                                Object.keys(e().stateNode.state).map(t => {
+                                    var a = e().stateNode.state[t];
+                                    if (null == a) return "N/A";
+                                    Array.from(a) && "object" == typeof a && (a = "[Array]"), s(t + ":" + a)
+                                }).join(";");
+                                break;
+                            case "list":
+                                e().stateNode.props.liveGameController.getDatabaseVal("c").then(e => {
+                                    s("Current Players(" + Object.keys(e).length + "): " + Object.keys(e).join(","))
+                                });
+                                break;
+                            case "tlog":
+                                window.logsv = !window.logsv, s("SetVal log set to " + (window.logsv ? "Enabled" : "Disabled"));
+                                break;
+                            case "setval":
+                                l = h.args, e().stateNode.props.liveGameController.setVal({
+                                    path: "c/" + e().stateNode.props.client.name + "/" + l[0],
+                                    val: l.slice(1, l.length).join(" ")
+                                });
+                                break;
+                            case "setstate":
+                                c = h.args, d = {}, c.forEach(e => {
+                                    var t = e.split(":");
+                                    Number.isNaN(parseInt(t[1])) || parseInt(t[1]).toString() !== t[1] || (t[1] = parseInt(t[1])), d[t[0]] = t[1]
+                                }), e().stateNode.setState(d), s("Set Successful!");
+                                break;
+                            case "ahelp":
+                                s("Advanced Commands: setval(sets val logged by tlog ex /setval b Chicken), tlog(toggles setval log), dumpstate(dumps react state),setstate(sets react state /setstate crypto:5 crypto2:5 etc)");
+                                break;
+                            case "help":
+                                s("Available Commands: help(gives help),ahelp(advanced commands help), cb(changes blook /cb cow), list(lists players connected), dump(dumps all available info about a player, passwords, etc(/dump player)), clear(clears chat), code(gives game code), unlock(unlocks blook on lobby screen)");
+                                break;
+                            case "dump":
+                                ! function t(a) {
+                                    e().stateNode.props.liveGameController.getDatabaseVal("c/" + a).then(e => {
+                                        null != e ? s("Dump: " + JSON.stringify(e)) : s("Player not found!")
+                                    })
+                                }(h.args.join(" "));
+                                break;
+                            case "unlock":
+                                p = h.args.join(" "), (u = webpackJsonp.push([
+                                    [], {
+                                        1234(e, t, a) {
+                                            t.webpack = a
+                                        }
+                                    },
+                                    [
+                                        ["1234"]
+                                    ]
+                                ]).webpack("MDrD").a)[p = Object.keys(u).find(e => p.toLocaleLowerCase() === e.toLocaleLowerCase())] ? (e().stateNode.state.unlocks.push(p), e().stateNode.forceUpdate()) : s("No blook with that name was found!");
+                                break;
+                            case "code":
+                                s("Game Code: " + e().stateNode.props.client.hostId);
+                                break;
+                            default:
+                                s("Unrecognized chat command!")
+                        } else e().stateNode.props.liveGameController.setVal({
+                            id: e().stateNode.props.client.hostId,
+                            path: "c/" + e().stateNode.props.client.name + "/msg",
+                            val: {
+                                i: t,
+                                msg: o
+                            }
+                        }), t++
+                    }(a.srcElement.value), a.srcElement.value = "")
+                });
+                var l = e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_;
+
+                function c(e) {
+                    window.logsv && s("Path: " + e.path.split("/").splice(2, 2).join("/") + " Val: " + ("object" == typeof e.val ? JSON.stringify(e.val) : e.val))
+                }
+                e().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_ = function(e, t, a, o) {
+                    var r, i;
+                    console.log(e, t, a, o), r = e, null != (i = t) && r.includes("/msg") && i?.msg && (console.log(i.msg), s(r.split("/")[2] + ": " + i.msg)), l(e, t, a, o)
+                }, window.logsv = !1;
+                var d = e().stateNode.props.liveGameController.setVal;
+                e().stateNode.props.liveGameController.setVal = function() {
+                    c.apply(this, arguments), d.apply(this, arguments)
+                }, e().stateNode.props.liveGameController._liveApp.database().ref(`${e().stateNode.props.liveGameController._liveGameCode}`).on("value", e => {}), s("Lobbychat successfully loaded!"), o.style.wordWrap = "break-word"
+            }
+        }, {
+            name: "Pin Guesser",
+            description: "Brute forces combinations for existing pins",
+            run: function() {
+                var e = 0,
+                    t = 0,
+                    a = document.querySelector("div[class*='titleText']");
+
+                function o() {
+                    return Object.values(function e(t = document.querySelector("body>div")) {
+                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                    }())[1].children[0]._owner.stateNode
+                }! function r() {
+                    let i = Math.floor(9e6 * Math.random()) + 1e6;
+                    fetch(`https://fb.blooket.com/c/firebase/id?id=${i}`, {
+                        method: "GET",
+                        credentials: "include"
+                    }).then(e => e.json()).then(n => {
+                        !0 === n.success ? (console.log("Game found:", i), a.innerHTML = "Game Found!", o().setState({
+                            client: {
+                                hostId: i.toString()
+                            }
+                        })) : (console.log("No game found for:", i), o().setState({
+                            client: {
+                                hostId: i.toString()
+                            }
+                        }), e++, a.innerHTML = "Guesses: " + e, ++t > 15 ? (setTimeout(r, 1e3), t = 0) : r())
+                    }).catch(e => {
+                        alert("Error:" + e)
+                    })
+                }()
+            }
+        }, {
+            name: "Crash Game",
+            description: "Crashes the host's game",
+            run: function() {
+                var e = Object.values(function e(t = document.querySelector("#app")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                }())[1].children[0]._owner.stateNode;
+                e.props.liveGameController.setVal({
+                    path: `c/${e.props.client.name}/b/toString`,
+                    val: "Crashed"
+                })
+            }
+        }, {
+            name: "Chat",
+            description: "Opens a chatroom",
+            run: function() {
+                window.open("https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
+            }
+        }, {
+            name: "Every Answer Correct",
+            description: "Sets every answer to be correct",
+            run: function() {
+                let {
+                    stateNode: e
+                } = Object.values(function e(t = document.querySelector("body>div")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                }())[1].children[0]._owner;
+                e.freeQuestions = e.freeQuestions?.map?.(e => ({
+                    ...e,
+                    correctAnswers: e.answers
+                })), e.questions = e.questions?.map?.(e => ({
+                    ...e,
+                    correctAnswers: e.answers
+                })), e.props.client.questions = e.props.client.questions.map(e => ({
+                    ...e,
+                    correctAnswers: e.answers
+                }))
+            }
+        }, {
+            name: "Remove Name Limit",
+            description: "Sets the name limit to 120, which is the actual max name length limit",
+            run: function() {
+                var e = document.createElement("iframe");
+                document.body.append(e), window.alert = e.contentWindow.alert.bind(window), e.remove(), document.querySelector('input[class*="nameInput"]').maxLength = 120, alert("Removed name length limit")
+            }
+        }, {
+            name: "Remove Random Name",
+            description: "Allows you to put a custom name",
+            run: function() {
+                Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode.setState({
+                    isRandom: !1,
+                    client: {
+                        name: ""
+                    }
+                }), document.querySelector('[class*="nameInput"]')?.focus?.()
+            }
+        }, {
+            name: "Sell Cheap Duplicates",
+            description: "Sells all of your uncommon to epic dupes (not legendaries+)",
+            run: function() {
+                var e = document.createElement("iframe");
+                document.body.append(e), window.alert = e.contentWindow.alert.bind(window), window.confirm = e.contentWindow.confirm.bind(window), e.remove();
+                let t = webpackJsonp.push([
+                        [], {
+                            1234(e, t, a) {
+                                t.webpack = a
+                            }
+                        },
+                        [
+                            ["1234"]
+                        ]
+                    ]).webpack,
+                    a = Object.values(t.c).find(e => e.exports?.a?.get).exports.a,
+                    o = Object.values(t.c).find(e => e.exports.a?.sellBlook).exports.a.sellBlook;
+                a.get("https://dashboard.blooket.com/api/users").then(async ({
+                    data: {
+                        unlocks: e
+                    }
+                }) => {
+                    if (e = Object.entries(e).filter(([e, t]) => 1 < t && !["Legendary", "Chroma", "Mystical"].includes(webpackJsonp.push([
+                            [], {
+                                1234(e, t, a) {
+                                    t.webpack = a
+                                }
+                            },
+                            [
+                                ["1234"]
+                            ]
+                        ]).webpack("MDrD").a[e].rarity)), confirm("Are you sure you want to sell your uncommon to epic dupes?")) {
+                        var t, a, r = Date.now();
+                        for ([t, a] of e) await o({
+                            blook: t,
+                            numToSell: a - 1
+                        });
+                        alert(`(${Date.now()-r}ms) Results: ` + e.map(([e, t]) => `    ${e} ` + (t - 1)).join(" "))
+                    }
+                }).catch(() => alert("There was an error user data!"))
+            }
+        }, {
+            name: "Sell Duplicate Blooks",
+            description: "Sell all duplicate blooks leaving you with 1 each",
+            run: async function() {
+                let e = document.createElement("iframe");
+                if (document.body.append(e), window.alert = e.contentWindow.alert.bind(window), window.confirm = e.contentWindow.confirm.bind(window), e.remove(), /dashboard.*\/blooks/.test(window.location.href)) {
+                    if (confirm("Are you sure you want to sell your dupes? (Legendaries and rarer will not be sold)")) {
+                        let {
+                            stateNode: t
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                        }())[1].children[0]._owner, a = Date.now(), o = "";
+                        for (let r in t.state.blookData)
+                            if (t.state.blookData[r] > 1) {
+                                if (t.setState({
+                                        blook: r,
+                                        numToSell: t.state.blookData[r] - 1
+                                    }), ["Legendary", "Chroma", "Mystical"].includes(document.querySelector("[class*='highlightedRarity']").innerText.trim())) continue;
+                                o += `    ${r} ${t.state.blookData[r]-1} `, await t.sellBlook({
+                                    preventDefault() {}
+                                }, !0)
+                            } alert(`(${Date.now()-a}ms) Results: ${o.trim()}`)
+                    }
+                } else alert("This can only be ran in the Blooks page.")
             }
         }],
         voyage: [{
@@ -2362,6 +2414,62 @@
                 })
             }
         }, {
+            name: "Spam Attack Player",
+            description: "Attacks the player to make the game unplayable",
+            inputs: [{
+                name: "Player's Name",
+                type: "text"
+            }],
+            type: "toggle",
+            enabled: false,
+            data: null,
+            run: function(name) {
+                if (this.enabled) {
+                    this.enabled = false;
+                    clearInterval(this.data);
+                    this.data = null;
+                } else {
+                    this.enabled = true;
+
+                    function reactHandler() {
+                        return Object.values(document.querySelector('body div[class*="_body"]'))[1].children[0]._owner;
+                    }
+
+                    var action = name + ":inspect";
+
+                    function spamAction() {
+                        var handler = reactHandler();
+                        if (handler && handler.stateNode && handler.stateNode.props && handler.stateNode.props.liveGameController) {
+                            handler.stateNode.props.liveGameController.setVal({
+                                id: handler.stateNode.props.client.hostId,
+                                path: "c/" + handler.stateNode.props.client.name + "/tat",
+                                val: action
+                            });
+                        }
+                    }
+
+                    this.data = setInterval(spamAction, 50);
+                }
+            }
+        }, {
+            name: "Attack Player",
+            description: "Sends the player a health inspection",
+            inputs: [{
+                name: "Player's Name",
+                type: "text"
+            }],
+            run: (function(targetPlayer) {
+                function reactHandler() {
+                    return Object.values(document.querySelector('body div[class*="_body"]'))[1].children[0]._owner;
+                }
+
+                reactHandler().stateNode.props.liveGameController.setVal({
+                    id: reactHandler().stateNode.props.client.hostId,
+                    path: "c/" + reactHandler().stateNode.props.client.name + "/tat",
+                    val: targetPlayer + ":inspect"
+                });
+            })
+        }, {
             name: "Stock Food",
             description: "Stocks all food to 99 (Not usable in the shop)",
             run: function() {
@@ -2555,7 +2663,6 @@
             inputs: [{
                 name: "Text",
                 type: "text",
-                placeholder: "Enter the text you want to display"
             }],
             run: function(e) {
                 let t = document.createElement("iframe");
@@ -4697,11 +4804,9 @@
             inputs: [{
                 name: "Icon URL",
                 type: "text",
-                placeholder: "ex. https://example.com/favicon.ico"
             }, {
                 name: "Tab Title",
                 type: "text",
-                placeholder: "ex. Example Title"
             }],
             run: function(e, t) {
                 var a = document.querySelector("link[rel*='icon']") || document.createElement("link");
