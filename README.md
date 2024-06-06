@@ -3,6 +3,7 @@
 <h3 align="center"><a href="https://discord.gg/8A6J234n7v">Support Server</a></h2>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
+<h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 05konz repository</a></h2>
 
 ## Todo
 
@@ -88,10 +89,6 @@ Chat (By Yeahbread on Ego Menu) is an online chat that you can talk and send ima
 ## Run while in lobby or in game, not before, not on nickname screen, INGAME!
 </details>
 
-<details><summary><h3>What happend to 05konz?</h3></summary>
-
-05konz's github was suspended but the original cheats can still be found on <a href="https://gitlab.com/blooket/blooket-cheats/">Gitlab</a>
-</details>
 
 <details><summary><h3>What happend to Minesraft2?</h3></summary>
 
