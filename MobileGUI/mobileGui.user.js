@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      13.2
+// @version      14.0
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/mobileGUI.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/MobileGUI/mobileGui.user.js
@@ -73,7 +73,7 @@
                 paddingTop: "2px",
                 fontSize: "1.5rem",
                 textAlign: "center"
-            }), t.innerHTML = 'Blooket Cheats <span style="font-size: 0.75rem">v13.20.00</span>', document.createElement("button")),
+            }), t.innerHTML = 'Blooket Cheats <span style="font-size: 0.75rem">v14.00.00</span>', document.createElement("button")),
             l = (t.appendChild(l), o(l, {
                 background: "red",
                 height: "45px",
@@ -341,6 +341,58 @@
                             }
                         }), document.querySelector('[class*="nameInput"]')?.focus?.()
                     }
+                }, {
+                    name: "Change Name Ingame",
+                    description: "A 'chat' with commands to execute",
+                    run: (function() {
+                        (async () => {
+                            const reactHandler = (e => Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode);
+                            let i = document.createElement('iframe');
+                            document.body.append(i);
+                            let prompt = i.contentWindow.prompt.bind(window);
+                            let alert = i.contentWindow.alert.bind(window);
+                            i.remove();
+
+                            async function genToken(name) {
+                                const res = await fetch("https://fb.blooket.com/c/firebase/join", {
+                                    body: JSON.stringify({
+                                        id: reactHandler().props.client.hostId,
+                                        name
+                                    }),
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    method: "PUT",
+                                    credentials: "include"
+                                }).then(e => e.json());
+                                if (!res.success) {
+                                    alert("Error: " + res.msg);
+                                    return;
+                                }
+                                return res.fbToken;
+                            }
+
+                            const newname = prompt("Enter your new name here:");
+                            const oldname = reactHandler().props.client.name;
+                            reactHandler().props.client.name = newname;
+                            const olddata = await reactHandler().props.liveGameController.getDatabaseVal(`c/${oldname}`);
+                            await reactHandler().props.liveGameController.removeVal(`c/${oldname}`);
+                            const token = await genToken(newname);
+                            if (!token) {
+                                return;
+                            }
+                            await reactHandler().props.liveGameController._liveApp.auth().signInWithCustomToken(token);
+                            reactHandler().props.liveGameController._liveApp.auth().onAuthStateChanged(e => {
+                                if (e.uid.split(":")[1] === newname) {
+                                    reactHandler().props.liveGameController.setVal({
+                                        path: `c/${newname}`,
+                                        val: olddata
+                                    });
+                                }
+                            });
+                            reactHandler().render();
+                        })();
+                    })
                 }, {
                     name: "Sell Duplicate Blooks",
                     description: "Sell all duplicate blooks leaving you with 1 each",
@@ -1033,6 +1085,57 @@
                     }
                 }],
                 cafe: [{
+                    name: "Spam Attack Player",
+                    description: "Attacks the player to make the game unplayable",
+                    type: "toggle",
+                    enabled: false,
+                    data: null,
+                    run: function() {
+                        var name = window.prompt("Enter the player's name:");
+                        if (this.enabled) {
+                            this.enabled = false;
+                            clearInterval(this.data);
+                            this.data = null;
+                        } else {
+                            this.enabled = true;
+
+                            function reactHandler() {
+                                return Object.values(document.querySelector('body div[class*="_body"]'))[1].children[0]._owner;
+                            }
+
+                            var action = name + ":inspect";
+
+                            function spamAction() {
+                                var handler = reactHandler();
+                                if (handler && handler.stateNode && handler.stateNode.props && handler.stateNode.props.liveGameController) {
+                                    handler.stateNode.props.liveGameController.setVal({
+                                        id: handler.stateNode.props.client.hostId,
+                                        path: "c/" + handler.stateNode.props.client.name + "/tat",
+                                        val: action
+                                    });
+                                }
+                            }
+
+                            this.data = setInterval(spamAction, 50);
+                        }
+                    }
+                }, {
+                    name: "Attack Player",
+                    description: "Sends the player a health inspection",
+                    run: function() {
+                        var targetPlayer = window.prompt("Enter the player's name:");
+
+                        function reactHandler() {
+                            return Object.values(document.querySelector('body div[class*="_body"]'))[1].children[0]._owner;
+                        }
+
+                        reactHandler().stateNode.props.liveGameController.setVal({
+                            id: reactHandler().stateNode.props.client.hostId,
+                            path: "c/" + reactHandler().stateNode.props.client.name + "/tat",
+                            val: targetPlayer + ":inspect"
+                        });
+                    }
+                }, {
                     name: "Max Items",
                     description: "Maxes out items in the shop (Only usable in the shop)",
                     run: function() {
