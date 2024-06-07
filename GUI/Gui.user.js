@@ -29,6 +29,7 @@
 // @require     https://unpkg.com/idb-keyval@6.0.3/dist/umd.js
 // ==/UserScript==
 
+
 (async () => {
     if (console.log("%c Blooket Cheats Plus %c\n	By DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c	gui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c	Star the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e, t, a, o, r, i, n, s, e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
@@ -4345,25 +4346,30 @@
             }
         }],
         flappy: [{
-            name: "Toggle Ghost",
-            description: "Lets you go through the pipes",
-            type: "toggle",
-            enabled: !1,
-            run: function() {
-                this.enabled = !this.enabled, Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.game.current.scene.scenes[0].physics.world.bodies.entries.forEach(e => e.gameObject.frame.texture.key.startsWith("blook") && (e.checkCollision.none = this.enabled, e.gameObject.setAlpha(this.enabled ? .5 : 1)))
-            }
-        }, {
-            name: "Set Score",
-            description: "Sets flappy blook score",
-            inputs: [{
-                name: "Score",
-                type: "number"
-            }],
-            run: function(e) {
-                Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.setState({
-                    score: e
-                })
-            }
+                    name: "Toggle Ghost",
+                    description: "Lets you go through the pipes",
+                    type: "toggle",
+                    enabled: false,
+                    run: function () {
+                        this.enabled = !this.enabled;
+                        for (const body of Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig.physics.world.bodies.entries) {
+                            if (!body.gameObject.frame.texture.key.startsWith("blook")) continue;
+                            body.checkCollision.none = this.enabled;
+                            body.gameObject.setAlpha(this.enabled ? 0.5 : 1);
+                            break;
+                        };
+                    }
+                },
+                {
+                    name: "Set Score",
+                    description: "Sets flappy blook score",
+                    inputs: [{
+                        name: "Score",
+                        type: "number"
+                    }],
+                    run: function (score) {
+                        Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](score || 0);
+                    }
         }],
         gold: [{
             name: "Always Triple",
