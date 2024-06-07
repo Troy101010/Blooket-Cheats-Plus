@@ -2946,18 +2946,21 @@
                     name: "Toggle Ghost",
                     description: "Lets you go through the pipes",
                     type: "toggle",
-                    enabled: !1,
-                    run: function() {
-                        this.enabled = !this.enabled, Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.state.game.scene.physics.world.bodies.entries.forEach(e => e.gameObject.frame.texture.key.startsWith("blook") && (e.checkCollision.none = this.enabled, e.gameObject.setAlpha(this.enabled ? .5 : 1)))
+                    enabled: false,
+                    run: function () {
+                        this.enabled = !this.enabled;
+                        for (const body of Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig.physics.world.bodies.entries) {
+                            if (!body.gameObject.frame.texture.key.startsWith("blook")) continue;
+                            body.checkCollision.none = this.enabled;
+                            body.gameObject.setAlpha(this.enabled ? 0.5 : 1);
+                            break;
+                        };
                     }
-                }, {
+                },{
                     name: "Set Score",
                     description: "Sets flappy blook score",
-                    run: function() {
-                        var e = document.createElement("iframe");
-                        document.body.append(e), window.prompt = e.contentWindow.prompt.bind(window), e.remove(), Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.setState({
-                            score: parseFloat("0" + prompt("What do you want to set your score to?"))
-                        })
+                    run: function () {
+                        Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](parseInt(prompt("What do you want to set your score to?")) || 0);
                     }
                 }],
                 gold: [{
@@ -3567,6 +3570,8 @@
                     return e ? "Tower Defense 2" : "defense2";
                 case "/kingdom":
                     return e ? "Crazy Kingdom" : "kingdom";
+                 case "/play/lobby":
+                    return e ? "Lobby" : "flappy";
                 default:
                     return !1
             }
