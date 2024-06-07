@@ -4314,25 +4314,30 @@
             }
         }],
         flappy: [{
-            name: "Toggle Ghost",
-            description: "Lets you go through the pipes",
-            type: "toggle",
-            enabled: !1,
-            run: function() {
-                this.enabled = !this.enabled, Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.game.current.scene.scenes[0].physics.world.bodies.entries.forEach(e => e.gameObject.frame.texture.key.startsWith("blook") && (e.checkCollision.none = this.enabled, e.gameObject.setAlpha(this.enabled ? .5 : 1)))
-            }
-        }, {
-            name: "Set Score",
-            description: "Sets flappy blook score",
-            inputs: [{
-                name: "Score",
-                type: "number"
-            }],
-            run: function(e) {
-                Object.values(document.querySelector("#phaser-bouncy"))[1].children[0]._owner.stateNode.setState({
-                    score: e
-                })
-            }
+                    name: "Toggle Ghost",
+                    description: "Lets you go through the pipes",
+                    type: "toggle",
+                    enabled: false,
+                    run: function () {
+                        this.enabled = !this.enabled;
+                        for (const body of Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig.physics.world.bodies.entries) {
+                            if (!body.gameObject.frame.texture.key.startsWith("blook")) continue;
+                            body.checkCollision.none = this.enabled;
+                            body.gameObject.setAlpha(this.enabled ? 0.5 : 1);
+                            break;
+                        };
+                    }
+                },
+                {
+                    name: "Set Score",
+                    description: "Sets flappy blook score",
+                    inputs: [{
+                        name: "Score",
+                        type: "number"
+                    }],
+                    run: function (score) {
+                        Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](score || 0);
+                    }
         }],
         gold: [{
             name: "Always Triple",
