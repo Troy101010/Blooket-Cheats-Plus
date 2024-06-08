@@ -1537,128 +1537,74 @@
                     }
                 }],
                 dinos: [{
-                    name: "Auto Choose",
-                    description: "Automatically choose the best fossil when excavating",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function() {
-                        if (this.enabled) {
-                            this.enabled = false;
-                            clearInterval(this.data);
-                            this.data = null;
-                        } else {
-                            this.enabled = true;
-                            this.data = setInterval(() => {
-                                const cheat = (async () => {
-                                    function rand(e, t) {
-                                        const s = [];
-                                        while (s.length < t) {
-                                            const i = Math.random();
-                                            let r = 0,
-                                                g = null;
-                                            for (let o = 0; o < e.length; o++) {
-                                                r += e[o].rate;
-                                                if (r >= i) {
-                                                    g = e[o];
-                                                    break;
-                                                }
-                                            }
-                                            g && !s.includes(g) && s.push(g);
-                                        }
-                                        return s;
-                                    }
-
-                                    try {
-                                        let {
-                                            stateNode
-                                        } = Object.values((function react(r = document.querySelector("body>div")) {
-                                            return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
-                                        })())[1].children[0]._owner;
-
-                                        if (stateNode.state.stage === "excavate") {
-                                            stateNode.state.choices.length || (stateNode.state.choices = rand([{
-                                                    type: "fossil",
-                                                    val: 10,
-                                                    rate: .1,
-                                                    blook: "Amber"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 25,
-                                                    rate: .1,
-                                                    blook: "Dino Egg"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 50,
-                                                    rate: .175,
-                                                    blook: "Dino Fossil"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 75,
-                                                    rate: .175,
-                                                    blook: "Stegosaurus"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 100,
-                                                    rate: .15,
-                                                    blook: "Velociraptor"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 125,
-                                                    rate: .125,
-                                                    blook: "Brontosaurus"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 250,
-                                                    rate: .075,
-                                                    blook: "Triceratops"
-                                                },
-                                                {
-                                                    type: "fossil",
-                                                    val: 500,
-                                                    rate: .025,
-                                                    blook: "Tyrannosaurus Rex"
-                                                },
-                                                {
-                                                    type: "mult",
-                                                    val: 1.5,
-                                                    rate: .05
-                                                },
-                                                {
-                                                    type: "mult",
-                                                    val: 2,
-                                                    rate: .025
-                                                }
-                                            ], 3));
-
-                                            let max = 0,
-                                                index = -1;
-                                            for (let i = 0; i < stateNode.state.choices.length; i++) {
-                                                const {
-                                                    type,
-                                                    val
-                                                } = stateNode.state.choices[i];
-                                                const value = (type == "fossil" ? stateNode.state.fossils + val * stateNode.state.fossilMult : stateNode.state.fossils * val) || 0;
-                                                if (value <= max && type != "mult") continue;
-                                                max = value;
-                                                index = i + 1;
-                                            }
-
-                                            document.querySelector('div[class*=rockRow] > div[role="button"]:nth-child(' + index + ')').click();
-                                        }
-                                    } catch {}
-                                });
-                                cheat();
-                            }, 50);
+    name: "Auto Choose",
+    description: "Automatically choose the best fossil when excavating",
+    type: "toggle",
+    enabled: false,
+    data: null,
+    run: function () {
+        if (this.enabled) {
+            this.enabled = false;
+            clearInterval(this.data);
+            this.data = null;
+        } else {
+            this.enabled = true;
+            this.data = setInterval(() => {
+                const cheat = (async () => {
+                    function rand(e, t) {
+                        const s = [];
+                        while (s.length < t) {
+                            const i = Math.random();
+                            let r = 0, g = null;
+                            for (let o = 0; o < e.length; o++) {
+                                r += e[o].rate;
+                                if (r >= i) {
+                                    g = e[o];
+                                    break;
+                                }
+                            }
+                            g && !s.includes(g) && s.push(g);
                         }
+                        return s;
                     }
-                }, {
+
+                    try {
+                        let { stateNode } = Object.values((function react(r = document.querySelector("body>div")) { 
+                            return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) 
+                        })())[1].children[0]._owner;
+
+                        if (stateNode.state.stage === "excavate") {
+                            stateNode.state.choices.length || (stateNode.state.choices = rand([
+                                { type: "fossil", val: 10, rate: .1, blook: "Amber" }, 
+                                { type: "fossil", val: 25, rate: .1, blook: "Dino Egg" }, 
+                                { type: "fossil", val: 50, rate: .175, blook: "Dino Fossil" }, 
+                                { type: "fossil", val: 75, rate: .175, blook: "Stegosaurus" }, 
+                                { type: "fossil", val: 100, rate: .15, blook: "Velociraptor" }, 
+                                { type: "fossil", val: 125, rate: .125, blook: "Brontosaurus" }, 
+                                { type: "fossil", val: 250, rate: .075, blook: "Triceratops" }, 
+                                { type: "fossil", val: 500, rate: .025, blook: "Tyrannosaurus Rex" }, 
+                                { type: "mult", val: 1.5, rate: .05 }, 
+                                { type: "mult", val: 2, rate: .025 }
+                            ], 3));
+
+                            let max = 0, index = -1;
+                            for (let i = 0; i < stateNode.state.choices.length; i++) {
+                                const { type, val } = stateNode.state.choices[i];
+                                const value = (type == "fossil" ? stateNode.state.fossils + val * stateNode.state.fossilMult : stateNode.state.fossils * val) || 0;
+                                if (value <= max && type != "mult") continue;
+                                max = value;
+                                index = i + 1;
+                            }
+
+                            document.querySelector('div[class*=rockRow] > div[role="button"]:nth-child(' + index + ')').click();
+                        }
+                    } catch { }
+                });
+                cheat();
+            }, 50);
+        }
+    }
+},{
                     name: "Rock ESP",
                     description: "Shows what is under the rocks",
                     type: "toggle",
@@ -2641,40 +2587,38 @@
                         })
                     }
                 }, {
-                    name: "Always Frenzy",
-                    description: "Always sets everyone to frenzy mode",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function() {
-                        if (this.enabled) {
-                            this.enabled = false;
-                            clearInterval(this.data);
-                            this.data = null;
-                        } else {
-                            this.enabled = true;
-                            this.data = setInterval(() => {
-                                const cheat = (async () => {
-                                    let {
-                                        stateNode
-                                    } = Object.values((function react(r = document.querySelector("body>div")) {
-                                        return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
-                                    })())[1].children[0]._owner;
-                                    stateNode.props.liveGameController.setVal({
-                                        path: `c/${stateNode.props.client.name}`,
-                                        val: {
-                                            b: stateNode.props.client.blook,
-                                            w: stateNode.state.weight,
-                                            f: "Frenzy",
-                                            s: true
-                                        }
-                                    });
-                                });
-                                cheat();
-                            }, 50);
+                      name: "Always Frenzy",
+    description: "Always sets everyone to frenzy mode",
+    type: "toggle",
+    enabled: false,
+    data: null,
+    run: function () {
+        if (this.enabled) {
+            this.enabled = false;
+            clearInterval(this.data);
+            this.data = null;
+        } else {
+            this.enabled = true;
+            this.data = setInterval(() => {
+                const cheat = (async () => {
+                    let { stateNode } = Object.values((function react(r = document.querySelector("body>div")) { 
+                        return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) 
+                    })())[1].children[0]._owner;
+                    stateNode.props.liveGameController.setVal({
+                        path: `c/${stateNode.props.client.name}`,
+                        val: {
+                            b: stateNode.props.client.blook,
+                            w: stateNode.state.weight,
+                            f: "Frenzy",
+                            s: true
                         }
-                    }
-                }, {
+                    });
+                });
+                cheat();
+            }, 50);
+        }
+    }
+},{
                     name: "Remove Distractions",
                     description: "Removes distractions",
                     type: "toggle",
@@ -3006,7 +2950,7 @@
                     description: "Lets you go through the pipes",
                     type: "toggle",
                     enabled: false,
-                    run: function() {
+                    run: function () {
                         this.enabled = !this.enabled;
                         for (const body of Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig.physics.world.bodies.entries) {
                             if (!body.gameObject.frame.texture.key.startsWith("blook")) continue;
@@ -3015,10 +2959,10 @@
                             break;
                         };
                     }
-                }, {
+                },{
                     name: "Set Score",
                     description: "Sets flappy blook score",
-                    run: function() {
+                    run: function () {
                         Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](parseInt(prompt("What do you want to set your score to?")) || 0);
                     }
                 }],
@@ -3042,97 +2986,91 @@
                         }, 50))
                     }
                 }, {
-                    name: "Auto Choose",
-                    description: "Automatically picks the option that would give you the most gold",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function() {
-                        if (this.enabled) {
-                            this.enabled = false;
-                            clearInterval(this.data);
-                            this.data = null;
-                        } else {
-                            this.enabled = true;
-                            this.data = setInterval(() => {
-                                let {
-                                    stateNode
-                                } = Object.values((function react(r = document.querySelector("body>div")) {
-                                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
-                                })())[1].children[0]._owner;
+    name: "Auto Choose",
+    description: "Automatically picks the option that would give you the most gold",
+    type: "toggle",
+    enabled: false,
+    data: null,
+    run: function() {
+        if (this.enabled) {
+            this.enabled = false;
+            clearInterval(this.data);
+            this.data = null;
+        } else {
+            this.enabled = true;
+            this.data = setInterval(() => {
+                let { stateNode } = Object.values((function react(r = document.querySelector("body>div")) { 
+                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) 
+                })())[1].children[0]._owner;
 
-                                if (stateNode.state.stage == "prize") {
-                                    stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
-                                        if (players == null) return;
-                                        players = Object.entries(players);
-                                        let most = 0,
-                                            max = 0,
-                                            index = -1;
-                                        for (let i = 0; i < players.length; i++) {
-                                            if (players[i][0] != stateNode.props.client.name && players[i][1] > most) {
-                                                most = players[i][1];
-                                            }
-                                        }
-                                        for (let i = 0; i < stateNode.state.choices.length; i++) {
-                                            const choice = stateNode.state.choices[i];
-                                            let value = stateNode.state.gold;
-                                            if (choice.type == "gold") {
-                                                value = stateNode.state.gold + (choice.val || 0);
-                                            } else if (choice.type == "multiply" || choice.type == "divide") {
-                                                value = Math.round(stateNode.state.gold * choice.val) || stateNode.state.gold;
-                                            } else if (choice.type == "swap") {
-                                                value = most || stateNode.state.gold;
-                                            } else if (choice.type == "take") {
-                                                value = stateNode.state.gold + (most * choice.val || 0);
-                                            }
-                                            if ((value || 0) <= max) continue;
-                                            max = value;
-                                            index = i + 1;
-                                        }
-                                        document.querySelector("div[class*='choice" + index + "']")?.click();
-                                    });
-                                }
-                            }, 50);
+                if (stateNode.state.stage == "prize") {
+                    stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
+                        if (players == null) return;
+                        players = Object.entries(players);
+                        let most = 0, max = 0, index = -1;
+                        for (let i = 0; i < players.length; i++) {
+                            if (players[i][0] != stateNode.props.client.name && players[i][1] > most) {
+                                most = players[i][1];
+                            }
                         }
-                    }
-                }, {
-                    name: "Chest ESP",
-                    description: "Shows what each chest will give you",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function() {
-                        if (this.enabled) {
-                            this.enabled = false;
-                            clearInterval(this.data);
-                            this.data = null;
-                        } else {
-                            this.enabled = true;
-                            this.data = setInterval(() => {
-                                const cheat = (async () => {
-                                    Object.values((function react(r = document.querySelector("body>div")) {
-                                        return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
-                                    })())[1].children[0]._owner.stateNode.state.choices.forEach(({
-                                        text
-                                    }, index) => {
-                                        let chest = document.querySelector(`div[class*='choice${index + 1}']`);
-                                        if (!chest || chest.querySelector('div')) return;
-                                        let choice = document.createElement('div')
-                                        choice.style.color = "white";
-                                        choice.style.fontFamily = "Eczar";
-                                        choice.style.fontSize = "2em";
-                                        choice.style.display = "flex";
-                                        choice.style.justifyContent = "center";
-                                        choice.style.transform = "translateY(200px)";
-                                        choice.innerText = text;
-                                        chest.append(choice)
-                                    });
-                                });
-                                cheat();
-                            }, 50);
+                        for (let i = 0; i < stateNode.state.choices.length; i++) {
+                            const choice = stateNode.state.choices[i];
+                            let value = stateNode.state.gold;
+                            if (choice.type == "gold") {
+                                value = stateNode.state.gold + (choice.val || 0);
+                            } else if (choice.type == "multiply" || choice.type == "divide") {
+                                value = Math.round(stateNode.state.gold * choice.val) || stateNode.state.gold;
+                            } else if (choice.type == "swap") {
+                                value = most || stateNode.state.gold;
+                            } else if (choice.type == "take") {
+                                value = stateNode.state.gold + (most * choice.val || 0);
+                            }
+                            if ((value || 0) <= max) continue;
+                            max = value;
+                            index = i + 1;
                         }
-                    }
-                }, {
+                        document.querySelector("div[class*='choice" + index + "']")?.click();
+                    });
+                }
+            }, 50);
+        }
+    }
+},{
+    name: "Chest ESP",
+    description: "Shows what each chest will give you",
+    type: "toggle",
+    enabled: false,
+    data: null,
+    run: function () {
+        if (this.enabled) {
+            this.enabled = false;
+            clearInterval(this.data);
+            this.data = null;
+        } else {
+            this.enabled = true;
+            this.data = setInterval(() => {
+                const cheat = (async () => {
+                    Object.values((function react(r = document.querySelector("body>div")) { 
+                        return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) 
+                    })())[1].children[0]._owner.stateNode.state.choices.forEach(({ text }, index) => {
+                        let chest = document.querySelector(`div[class*='choice${index + 1}']`);
+                        if (!chest || chest.querySelector('div')) return;
+                        let choice = document.createElement('div')
+                        choice.style.color = "white";
+                        choice.style.fontFamily = "Eczar";
+                        choice.style.fontSize = "2em";
+                        choice.style.display = "flex";
+                        choice.style.justifyContent = "center";
+                        choice.style.transform = "translateY(200px)";
+                        choice.innerText = text;
+                        chest.append(choice)
+                    });
+                });
+                cheat();
+            }, 50);
+        }
+    }
+},{
                     name: "Remove Lose 25%-50%",
                     description: "Blocks buttons with text 'Lose 25%' and 'Lose 50%'",
                     type: "toggle",
@@ -3219,32 +3157,24 @@
                 }, {
                     name: "Swap Gold",
                     description: "Swaps gold with someone",
-                    run: function() {
-                        let e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                        e.props.liveGameController.getDatabaseVal("c", t => {
-                            e.setState({
-                                players: t ? Object.entries(t).map(([e, {
-                                    b: t,
-                                    g: o
-                                }]) => ({
-                                    name: e,
-                                    blook: t,
-                                    gold: o || 0
-                                })).filter(t => t.name != e.props.client.name).sort(({
-                                    gold: e
-                                }, {
-                                    gold: t
-                                }) => t - e) : [],
-                                ready: !0,
-                                phaseTwo: !0,
-                                stage: "prize",
-                                choiceObj: {
-                                    type: "swap"
+                    run: function () {
+                        const player = prompt("Who's gold would you like to swap with? (Case sensitive)");
+                        let stateNode = getStateNode();
+                        stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
+                            if (!players || players[player] == null) return;
+                            const gold = players[player].g || 0;
+                            stateNode.props.liveGameController.setVal({
+                                path: "c/" + stateNode.props.client.name,
+                                val: {
+                                    b: stateNode.props.client.blook,
+                                    tat: player + ":swap:" + (stateNode.state.gold || 0),
+                                    g: gold
                                 }
-                            })
-                        })
+                            });
+                            stateNode.setState({ gold, gold2: gold });
+                        });
                     }
-                }, {
+                },{
                     name: "Reset All Players' Gold",
                     description: "Set's everyone else's gold to 0",
                     run: function() {
@@ -3269,60 +3199,58 @@
                     }
                 }],
                 kingdom: [{
-                    name: "Choice ESP",
-                    description: "Shows you what will happen if you say Yes or No",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function() {
-                        if (this.enabled) {
-                            this.enabled = false;
-                            clearInterval(this.data);
-                            this.data = null;
-                        } else {
-                            this.enabled = true;
-                            this.data = setInterval((stats => {
-                                let {
-                                    stateNode
-                                } = Object.values((function react(r = document.querySelector("body>div")) {
-                                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
-                                })())[1].children[0]._owner;
+    name: "Choice ESP",
+    description: "Shows you what will happen if you say Yes or No",
+    type: "toggle",
+    enabled: false,
+    data: null,
+    run: function() {
+        if (this.enabled) {
+            this.enabled = false;
+            clearInterval(this.data);
+            this.data = null;
+        } else {
+            this.enabled = true;
+            this.data = setInterval((stats => {
+                let { stateNode } = Object.values((function react(r = document.querySelector("body>div")) { 
+                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div")) 
+                })())[1].children[0]._owner;
 
-                                let elements = Array.prototype.reduce.call(
-                                    document.querySelectorAll('[class*=statContainer]'),
-                                    (obj, container, i) => (obj[stats[i]] = container, obj), {}
-                                );
+                let elements = Array.prototype.reduce.call(
+                    document.querySelectorAll('[class*=statContainer]'), 
+                    (obj, container, i) => (obj[stats[i]] = container, obj), {}
+                );
 
-                                if (stateNode.state.phase == "choice") {
-                                    Array.prototype.forEach.call(document.querySelectorAll('.choiceESP'), x => x.remove());
+                if (stateNode.state.phase == "choice") {
+                    Array.prototype.forEach.call(document.querySelectorAll('.choiceESP'), x => x.remove());
 
-                                    Object.keys(stateNode.state.guest.yes || {}).forEach(x => {
-                                        if (elements[x] == null) return;
-                                        let element = document.createElement('div');
-                                        element.className = 'choiceESP';
-                                        element.style = 'font-size: 24px; color: rgb(75, 194, 46); font-weight: bolder;';
-                                        element.innerText = String(stateNode.state.guest.yes[x]);
-                                        elements[x].appendChild(element);
-                                    });
+                    Object.keys(stateNode.state.guest.yes || {}).forEach(x => {
+                        if (elements[x] == null) return;
+                        let element = document.createElement('div');
+                        element.className = 'choiceESP';
+                        element.style = 'font-size: 24px; color: rgb(75, 194, 46); font-weight: bolder;';
+                        element.innerText = String(stateNode.state.guest.yes[x]);
+                        elements[x].appendChild(element);
+                    });
 
-                                    Object.keys(stateNode.state.guest.no || {}).forEach(x => {
-                                        if (elements[x] == null) return;
-                                        let element = document.createElement('div');
-                                        element.className = 'choiceESP';
-                                        element.style = 'font-size: 24px; color: darkred; font-weight: bolder;';
-                                        element.innerText = String(stateNode.state.guest.no[x]);
-                                        elements[x].appendChild(element);
-                                    });
+                    Object.keys(stateNode.state.guest.no || {}).forEach(x => {
+                        if (elements[x] == null) return;
+                        let element = document.createElement('div');
+                        element.className = 'choiceESP';
+                        element.style = 'font-size: 24px; color: darkred; font-weight: bolder;';
+                        element.innerText = String(stateNode.state.guest.no[x]);
+                        elements[x].appendChild(element);
+                    });
 
-                                    Array.prototype.forEach.call(
-                                        document.querySelectorAll("[class*=guestButton][role=button]"),
-                                        x => (x.onclick = () => Array.prototype.forEach.call(document.querySelectorAll(".choiceESP"), x => x.remove()))
-                                    );
-                                }
-                            }), 50, ['materials', 'people', 'happiness', 'gold']);
-                        }
-                    }
-                }, {
+                    Array.prototype.forEach.call(
+                        document.querySelectorAll("[class*=guestButton][role=button]"), 
+                        x => (x.onclick = () => Array.prototype.forEach.call(document.querySelectorAll(".choiceESP"), x => x.remove()))
+                    );
+                }
+            }), 50, ['materials', 'people', 'happiness', 'gold']);
+        }
+    }
+},{
                     name: "Disable Tax Toucan",
                     description: "Tax evasion",
                     run: function() {
@@ -3645,7 +3573,7 @@
                     return e ? "Tower Defense 2" : "defense2";
                 case "/kingdom":
                     return e ? "Crazy Kingdom" : "kingdom";
-                case "/play/lobby":
+                 case "/play/lobby":
                     return e ? "Lobby" : "flappy";
                 default:
                     return !1
