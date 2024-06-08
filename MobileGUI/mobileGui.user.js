@@ -3251,29 +3251,33 @@
                     name: "Swap Gold",
                     description: "Swaps gold with someone",
                     run: function() {
-                        let e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                        e.props.liveGameController.getDatabaseVal("c", t => {
-                            e.setState({
-                                players: t ? Object.entries(t).map(([e, {
-                                    b: t,
-                                    g: o
-                                }]) => ({
-                                    name: e,
-                                    blook: t,
-                                    gold: o || 0
-                                })).filter(t => t.name != e.props.client.name).sort(({
-                                    gold: e
-                                }, {
-                                    gold: t
-                                }) => t - e) : [],
-                                ready: !0,
-                                phaseTwo: !0,
-                                stage: "prize",
-                                choiceObj: {
-                                    type: "swap"
-                                }
-                            })
-                        })
+                        (() => {
+                            const cheat = (async () => {
+                                let {
+                                    stateNode
+                                } = Object.values((function react(r = document.querySelector("body>div")) {
+                                    return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
+                                })())[1].children[0]._owner;
+                                const player = prompt("Who's gold would you like to swap with? (Case sensitive)");
+                                stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
+                                    if (!players || players[player] == null) return;
+                                    const gold = players[player].g || 0;
+                                    stateNode.props.liveGameController.setVal({
+                                        path: "c/" + stateNode.props.client.name,
+                                        val: {
+                                            b: stateNode.props.client.blook,
+                                            tat: player + ":swap:" + (stateNode.state.gold || 0),
+                                            g: gold
+                                        }
+                                    });
+                                    stateNode.setState({
+                                        gold,
+                                        gold2: gold
+                                    });
+                                });
+                            });
+                            cheat();
+                        })();
                     }
                 }, {
                     name: "Reset All Players' Gold",
