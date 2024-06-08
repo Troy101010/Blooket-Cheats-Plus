@@ -42,7 +42,7 @@
                 paddingTop: "2px",
                 fontSize: "1.5rem",
                 textAlign: "center"
-            }), t.innerHTML = 'Blooket Cheats <span style="font-size: 0.75rem">v14.00.00</span>', document.createElement("button")),
+            }), t.innerHTML = 'Blooket Cheats Plus <span style="font-size: 0.75rem">v14.00.00</span>', document.createElement("button")),
             l = (t.appendChild(l), o(l, {
                 background: "red",
                 height: "45px",
