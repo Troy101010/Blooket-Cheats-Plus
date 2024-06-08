@@ -16,6 +16,10 @@
 
 ## Information
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=DannyDan0167/Blooket-Cheats-Plus&type=Date)](https://star-history.com/#DannyDan0167/Blooket-Cheats-Plus&Date)
+
 <details><summary><h3>How to use</h3></summary>
 
 There are 3 good methods to using these scripts:
