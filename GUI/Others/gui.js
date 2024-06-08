@@ -1645,6 +1645,38 @@
                 run: function() {
                     T().game.current.events._events.respawn.fn()
                 }
+            }, {
+                name: "Set XP",
+                description: "Sets amount of XP",
+                inputs: [{
+                    name: "XP",
+                    type: "number"
+                }],
+                run: function(e) {
+                    var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                    t.setState({
+                        xp: e,
+                        totalXp: e
+                    }), t.xp = e, t.totalXp = e, t.props?.liveGameController.setVal({
+                        path: "c/".concat(t.props.client.name),
+                        val: {
+                            b: t.props.client.blook,
+                            xp: e
+                        }
+                    })
+                }
+            }, {
+                name: "Set Level",
+                description: "Sets your level",
+                inputs: [{
+                    name: "XP",
+                    type: "number"
+                }],
+                run: function(e) {
+                    Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode.setState({
+                        level: e
+                    })
+                }
             }],
             cafe: [{
                 name: "Max Items",
@@ -3203,6 +3235,275 @@
                     T().setState({
                         lure: Math.max(Math.min(e - 1, 4), 0)
                     })
+                }
+            }, {
+                name: "Set Next Fish",
+                description: "Sets the next fish to catch",
+                inputs: [{
+                    name: "Fish",
+                    type: "options",
+                    options: ["Old Boot", "Waffle", "Two of Spades", "Jellyfish", "Clownfish", "Goldfish", "Frog", "Blizzard Clownfish", "Turtle", "Cat", "Lovely Frog", "Lucky Frog", "Poison Dart Frog", "Seal", "Walrus", "Fairy", "Crab", "Lemon Crab", "Pufferfish", "Blobfish", "Rainbow Jellyfish", "Octopus", "Pirate Pufferfish", "Donut Blobfish", "Crimson Octopus", "Narwhal", "Baby Shark", "Megalodon", "Alien", "Rainbow Narwhal", "UFO", "Santa Claus", "Swamp Monster", "Red Astronaut", "Spooky Pumpkin", "Dragon", "Tim the Alien"]
+                }],
+                run: function(e) {
+                    function t() {
+                        return Object.values(document.querySelector("#app > div > div"))[1].children[0]._owner
+                    }
+                    var a = {
+                            "Old Boot": {
+                                rarity: "Trash",
+                                minWeight: 1,
+                                maxWeight: 10,
+                                tiers: ["F", "D", "C"]
+                            },
+                            Waffle: {
+                                rarity: "Trash",
+                                minWeight: 1,
+                                maxWeight: 10,
+                                tiers: ["F", "D", "C"]
+                            },
+                            "Two of Spades": {
+                                rarity: "Trash",
+                                minWeight: 1,
+                                maxWeight: 10,
+                                tiers: ["F", "D", "C"]
+                            },
+                            Jellyfish: {
+                                rarity: "Easy One",
+                                minWeight: 10,
+                                maxWeight: 25,
+                                tiers: ["D", "C", "B"]
+                            },
+                            Clownfish: {
+                                rarity: "Easy One",
+                                minWeight: 20,
+                                maxWeight: 45,
+                                tiers: ["D", "C", "B"]
+                            },
+                            Goldfish: {
+                                rarity: "Easy One",
+                                minWeight: 30,
+                                maxWeight: 65,
+                                tiers: ["D", "C", "B"]
+                            },
+                            Frog: {
+                                rarity: "Easy One",
+                                minWeight: 50,
+                                maxWeight: 100,
+                                tiers: ["D", "C", "B"]
+                            },
+                            "Blizzard Clownfish": {
+                                rarity: "Great Catch",
+                                minWeight: 75,
+                                maxWeight: 125,
+                                tiers: ["D", "C", "B"]
+                            },
+                            Turtle: {
+                                rarity: "Great Catch",
+                                minWeight: 100,
+                                maxWeight: 150,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Cat: {
+                                rarity: "Great Catch",
+                                minWeight: 100,
+                                maxWeight: 200,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            "Lovely Frog": {
+                                rarity: "Great Catch",
+                                minWeight: 150,
+                                maxWeight: 350,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            "Lucky Frog": {
+                                rarity: "Great Catch",
+                                minWeight: 200,
+                                maxWeight: 400,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            "Poison Dart Frog": {
+                                rarity: "Great Catch",
+                                minWeight: 250,
+                                maxWeight: 750,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Seal: {
+                                rarity: "Rare Find",
+                                minWeight: 500,
+                                maxWeight: 1e3,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Walrus: {
+                                rarity: "Rare Find",
+                                minWeight: 700,
+                                maxWeight: 2200,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Fairy: {
+                                rarity: "Rare Find",
+                                minWeight: 1500,
+                                maxWeight: 2500,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Crab: {
+                                rarity: "Rare Find",
+                                minWeight: 1e3,
+                                maxWeight: 3e3,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            "Lemon Crab": {
+                                rarity: "Rare Find",
+                                minWeight: 2e3,
+                                maxWeight: 5e3,
+                                tiers: ["C", "B", "A"]
+                            },
+                            Pufferfish: {
+                                rarity: "Rare Find",
+                                minWeight: 2e3,
+                                maxWeight: 4e3,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            Blobfish: {
+                                rarity: "Rare Find",
+                                minWeight: 3e3,
+                                maxWeight: 5e3,
+                                tiers: ["D", "C", "B", "A"]
+                            },
+                            "Rainbow Jellyfish": {
+                                rarity: "Epic Grab",
+                                minWeight: 7e3,
+                                maxWeight: 1e4,
+                                tiers: ["C", "B", "A"]
+                            },
+                            Octopus: {
+                                rarity: "Epic Grab",
+                                minWeight: 1e4,
+                                maxWeight: 15e3,
+                                tiers: ["C", "B", "A"]
+                            },
+                            "Pirate Pufferfish": {
+                                rarity: "Epic Grab",
+                                minWeight: 12e3,
+                                maxWeight: 2e4,
+                                tiers: ["C", "B", "A"]
+                            },
+                            "Donut Blobfish": {
+                                rarity: "Epic Grab",
+                                minWeight: 13e3,
+                                maxWeight: 25e3,
+                                tiers: ["C", "B", "A"]
+                            },
+                            "Crimson Octopus": {
+                                rarity: "Epic Grab",
+                                minWeight: 15e3,
+                                maxWeight: 3e4,
+                                tiers: ["B", "A"]
+                            },
+                            Narwhal: {
+                                rarity: "Catch of the Day",
+                                minWeight: 25e3,
+                                maxWeight: 5e4,
+                                tiers: ["B", "A", "S"]
+                            },
+                            "Baby Shark": {
+                                rarity: "Catch of the Day",
+                                minWeight: 5e4,
+                                maxWeight: 1e5,
+                                tiers: ["B", "A", "S"]
+                            },
+                            Megalodon: {
+                                rarity: "Catch of the Day",
+                                minWeight: 25e4,
+                                maxWeight: 5e5,
+                                tiers: ["B", "A", "S"]
+                            },
+                            Alien: {
+                                rarity: "Angler's Legend",
+                                minWeight: 5e5,
+                                maxWeight: 7e5,
+                                tiers: ["A", "S"]
+                            },
+                            "Rainbow Narwhal": {
+                                rarity: "Angler's Legend",
+                                minWeight: 75e4,
+                                maxWeight: 1e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            UFO: {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            "Santa Claus": {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            "Swamp Monster": {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            "Red Astronaut": {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            "Spooky Pumpkin": {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            Dragon: {
+                                rarity: "Angler's Legend",
+                                minWeight: 1e6,
+                                maxWeight: 2e6,
+                                tiers: ["A", "S", "S+"]
+                            },
+                            "Tim the Alien": {
+                                rarity: "Angler's Legend",
+                                minWeight: 15e5,
+                                maxWeight: 25e5,
+                                tiers: ["A", "S", "S+"]
+                            }
+                        },
+                        o = ["Crab", "Jellyfish", "Frog", "Pufferfish", "Octopus", "Narwhal", "Megalodon", "Blobfish", "Baby Shark"];
+                    if (!window.functionSet) {
+                        var r = t().stateNode.answerNext;
+                        t().stateNode.answerNext = function() {
+                            if (t().stateNode.state.hackFish) {
+                                var i, n, s;
+                                t().stateNode.setState({
+                                    stage: "caught",
+                                    isCast: !1,
+                                    fish: {
+                                        name: i = e,
+                                        rarity: a[i].rarity,
+                                        weight: (n = a[i].minWeight, Math.floor(Math.random() * ((s = a[i].maxWeight) - n) + n)),
+                                        tier: a[i].tiers[Math.floor(Math.random() * a[i].tiers.length)],
+                                        isSpecial: o.includes(i) && 8 > Math.floor(100 * Math.random())
+                                    },
+                                    claimReady: !1
+                                }), setTimeout(function() {
+                                    t().stateNode.setState({
+                                        claimReady: !0
+                                    })
+                                }, 1600), t().stateNode.state.hackFish = null
+                            } else r.apply(this, arguments)
+                        }
+                    }
+                    window.functionSet = !0, ! function e(o) {
+                        if (Object.keys(a).includes(o)) t().stateNode.state.hackFish = o;
+                        else {
+                            alert("That fish does not exist!");
+                            return
+                        }
+                    }(e)
                 }
             }, {
                 name: "Set Weight",
