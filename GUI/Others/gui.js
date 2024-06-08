@@ -4272,6 +4272,6 @@
             [s, i, l] = o.match(/LastUpdated: (.+?); ErrorMessage: "((.|\n)+?)"/)
         } catch (e) {}(parseInt(i) <= 1716818721250 || c.contentWindow.confirm(l)) && d()
     }, u.onerror = u.onabort = () => {
-        u.onerror = u.onabort = null, d(), document.querySelector("iframe").contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6\n(The cheat will still run after this alert)")
+        u.onerror = u.onabort = null, d(), document.querySelector("iframe").contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it's NOT blocked, join the Discord server for updates\nhttps://discord.gg/8A6J234n7v\n(The cheat will still run after this alert)")
     }
 })();
