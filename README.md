@@ -132,6 +132,8 @@ The mobile GUI is the first GUI Minesraft2 ever made. Some people said it worked
 * Reset Abilities
 * Set Cash
 * Stock Food
+* Attack Player  By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
+* Spam Attack Player  By <a href="https://github.com/cryptodude3">Cryptodude3</a> aka Ducklife3141
 ### Crypto Hack
 * Always Triple
 * Always Hack By <a href="https://github.com/dannydan0167">DannyDan0167</a> aka me
