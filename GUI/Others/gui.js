@@ -1,6 +1,6 @@
 (() => {
     let c = document.querySelector("iframe");
-    console.log("%c Blooket Cheats %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\treactGui", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", "");
+    console.log("%c Blooket Cheats Plus %c\n\tBy DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c\treactGui", "color: #0bc2cf; font-size: 1rem"), console.log("%c\tStar the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", "");
     if ("function call() { [native code] }" == window.fetch.call.toString()) {
         const e = window.fetch.call;
         window.fetch.call = function() {
