@@ -2021,6 +2021,16 @@
                     }
                 }), document.querySelector('[class*="nameInput"]')?.focus?.()
             }
+        },{
+            name: "Dynamic Player Count",
+            description: "Updates the player count at the top of the screen in realtime as players join or leave.",
+            run: function() {
+                (async ()=>{
+const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+const ref = await stateNode.props.liveGameController.getDatabaseRef("")
+ref.on("value",e=>{document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;});
+})()
+            }
         }, {
             name: "Sell Cheap Duplicates",
             description: "Sells all of your uncommon to epic dupes (not legendaries+)",
