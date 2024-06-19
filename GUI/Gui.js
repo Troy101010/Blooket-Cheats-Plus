@@ -1774,7 +1774,8 @@
             name: "Remove all Taken Blooks",
             description: "Removes all taken blooks, allowing you to use any taken blook. Only works in lobby.",
             run: function() {
-            Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode.setState({takenBlooks:{includes:e=>!1}});
+            const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+            stateNode.setState({takenBlooks:{includes:e=>!1}});
             stateNode.setState = function(a,b){
     if(a?.takenBlooks){return;}
     stateNode.updater.enqueueSetState(stateNode,a,b,"setState");
