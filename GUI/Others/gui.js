@@ -1150,6 +1150,35 @@
                     })) : x("This only works in lobbies or the dashboard blooks page.")
                 }
             }, {
+                name: "Remove all Taken Blooks",
+                description: "Removes all taken blooks, allowing you to use any taken blook. Only works in lobby.",
+                run: function() {
+                    const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                    stateNode.setState({
+                        takenBlooks: {
+                            includes: e => !1
+                        }
+                    });
+                    stateNode.setState = function(a, b) {
+                        if (a?.takenBlooks) {
+                            return;
+                        }
+                        stateNode.updater.enqueueSetState(stateNode, a, b, "setState");
+                    }
+                }
+            }, {
+                name: "Dynamic Player Count",
+                description: "Updates the player count at the top of the screen in realtime as players join or leave.",
+                run: function() {
+                    (async () => {
+                        const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                        const ref = await stateNode.props.liveGameController.getDatabaseRef("")
+                        ref.on("value", e => {
+                            document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;
+                        });
+                    })()
+                }
+            }, {
                 name: "Lobbychat",
                 description: "Chat with other people and execute commands",
                 run: function() {
