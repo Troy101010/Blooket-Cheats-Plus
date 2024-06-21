@@ -29,7 +29,6 @@
 // @require     https://unpkg.com/idb-keyval@6.0.3/dist/umd.js
 // ==/UserScript==
 
-
 (async () => {
     if (console.log("%c Blooket Cheats Plus %c\n	By DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c	gui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c	Star the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e, t, a, o, r, i, n, s, e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
@@ -1800,28 +1799,40 @@
             name: "Use any Blook",
             description: "Allows you to play as any blook. Only works in lobby.",
             run: function() {
-            Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode.setState({unlocks:{includes:e=>!0}});
+                Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode.setState({
+                    unlocks: {
+                        includes: e => !0
+                    }
+                });
             }
         }, {
             name: "Remove all Taken Blooks",
             description: "Removes all taken blooks, allowing you to use any taken blook. Only works in lobby.",
             run: function() {
-            const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
-            stateNode.setState({takenBlooks:{includes:e=>!1}});
-            stateNode.setState = function(a,b){
-    if(a?.takenBlooks){return;}
-    stateNode.updater.enqueueSetState(stateNode,a,b,"setState");
-}
+                const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                stateNode.setState({
+                    takenBlooks: {
+                        includes: e => !1
+                    }
+                });
+                stateNode.setState = function(a, b) {
+                    if (a?.takenBlooks) {
+                        return;
+                    }
+                    stateNode.updater.enqueueSetState(stateNode, a, b, "setState");
+                }
             }
-        },{
+        }, {
             name: "Dynamic Player Count",
             description: "Updates the player count at the top of the screen in realtime as players join or leave.",
             run: function() {
-                (async ()=>{
-const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
-const ref = await stateNode.props.liveGameController.getDatabaseRef("")
-ref.on("value",e=>{document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;});
-})()
+                (async () => {
+                    const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                    const ref = await stateNode.props.liveGameController.getDatabaseRef("")
+                    ref.on("value", e => {
+                        document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;
+                    });
+                })()
             }
         }, {
             name: "Lobbychat",
@@ -2126,6 +2137,56 @@ ref.on("value",e=>{document.querySelector("div[class*='headerTextCenter']").inne
             }
         }],
         voyage: [{
+            name: "Heist ESP",
+            description: "Shows you what's under each chest during a heist",
+            type: "toggle",
+            enabled: false,
+            data: null,
+            run: function() {
+                if (this.enabled) {
+                    this.enabled = false;
+                    clearInterval(this.data);
+                    this.data = null;
+                    Array.prototype.forEach.call(document.querySelectorAll(".chestESP"), x => x.remove());
+                } else {
+                    this.enabled = true;
+                    this.data = setInterval(() => {
+                        const cheat = (async () => {
+                            let {
+                                stateNode
+                            } = Object.values((function react(r = document.querySelector("body>div")) {
+                                return Object.values(r)[1]?.children?.[0]?._owner.stateNode ? r : react(r.querySelector(":scope>div"))
+                            })())[1].children[0]._owner;
+                            if (stateNode.state.stage == "heist") {
+                                const imgs = Array.prototype.map.call(Array.prototype.slice.call(document.querySelector("[class*=prizesList]").children, 1, 4), (x) => x.querySelector("img").src);
+                                const esp = Object.values(document.querySelector("[class*=modal]"))[0].return.memoizedState.memoizedState;
+                                for (const e of document.querySelectorAll("[class*=boxContent] > div")) e.remove();
+                                const open = Object.values(document.querySelector("[class*=modal]"))[0].return.memoizedState.next.next.memoizedState;
+                                Array.prototype.forEach.call(document.querySelector("[class*=chestsWrapper]").children, (container, i) => {
+                                    const box = container.firstChild.firstChild;
+                                    if (open.includes(i)) return box.style.opacity = "";
+                                    box.style.opacity = "0.5";
+                                    let d = document.createElement("div");
+                                    d.innerHTML = "<img src='" + imgs[2 - esp[i]] + "' style='max-width: 75%; max-height: 75%'></img>";
+                                    d.className = "chestESP";
+                                    d.style.position = "absolute";
+                                    d.style.inset = "0";
+                                    d.style.display = "grid";
+                                    d.style.placeItems = "center";
+                                    d.style.pointerEvents = "none";
+                                    container.onclick = () => {
+                                        d.remove();
+                                        box.style.opacity = "";
+                                    };
+                                    container.firstChild.prepend(d);
+                                });
+                            }
+                        });
+                        cheat();
+                    }, 50);
+                }
+            }
+        }, {
             name: "Max Levels",
             description: "Maxes out all islands and your boat",
             run: function() {
