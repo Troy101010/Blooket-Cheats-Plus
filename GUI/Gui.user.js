@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      15.0
+// @version      14.0
 // @description  Blooket Cheats Plus
 // @updateURL    https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/Update/Gui.meta.js
 // @downloadURL  https://github.com/DannyDan0167/Blooket-Cheats-Plus/raw/main/GUI/Gui.user.js
