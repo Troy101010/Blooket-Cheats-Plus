@@ -15,7 +15,7 @@ const toRun = "global/crashgame";
     const prompt = i.contentWindow.prompt.bind(window);
     const log = i.contentWindow.console.log;
 
-    // by CryptoDude3
+    // by CryptoDude3 or me!
     if (window.fetch.call.toString() == 'function call() { [native code] }') {
         const call = window.fetch.call;
         window.fetch.call = function () {
