@@ -592,7 +592,6 @@
                     "Tech Chip": "techChip",
                     Shamrocks: "shamrocks",
                     "Orange Ice Pop": "orangeIcePop",
-                    "End Rainbow": "endRainbow",
                     Slime: "slime",
                     Sushi: "sushi",
                     "Falling Blocks": "fallingBlocks",
@@ -614,6 +613,11 @@
                     Theater: "theater",
                     Farm: "farm",
                     Spooky: "spooky",
+                    "Spooky Cat": "spookyCat",
+                    "Spooky Window": "spookyWindow",
+                    Frankenstein: "frankenstein",
+                    Ghosts: "ghosts",
+                    Mummy: "mummy",
                     Spiders: "spiders",
                     Coffin: "coffin",
                     Pumpkins: "pumpkins",
@@ -668,7 +672,13 @@
                     Baseball: "baseball",
                     "Shamrock Coins": "shamrockCoins",
                     "End Of The Rainbow": "endRainbow",
-                    "Easter Field": "easterField"
+                    "Easter Field": "easterField",
+                    "Marker": "marker",
+                    "Pizza": "pizza",
+                    Marker: "marker",
+                    Pizza: "pizza",
+                    Leaf: "leaf",
+                    "Alphabet Soup": "alphabetSoup"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
@@ -757,7 +767,6 @@
                     "Tech Chip": "techChip",
                     Shamrocks: "shamrocks",
                     "Orange Ice Pop": "orangeIcePop",
-                    "End Rainbow": "endRainbow",
                     Slime: "slime",
                     Sushi: "sushi",
                     "Falling Blocks": "fallingBlocks",
@@ -779,6 +788,11 @@
                     Theater: "theater",
                     Farm: "farm",
                     Spooky: "spooky",
+                    "Spooky Cat": "spookyCat",
+                    "Spooky Window": "spookyWindow",
+                    Frankenstein: "frankenstein",
+                    Ghosts: "ghosts",
+                    Mummy: "mummy",
                     Spiders: "spiders",
                     Coffin: "coffin",
                     Pumpkins: "pumpkins",
@@ -816,7 +830,7 @@
                     Sandwich: "sandwich",
                     Ruler: "ruler",
                     "Ball Pit": "ballPit",
-                    Xylophone: "xylophone",
+                    "Xylophone": "xylophone",
                     "Holiday Lights": "holidayLights",
                     "Ice Cream Truck": "iceCreamTruck",
                     "Holiday Gift Wrap": "holidayGiftWrap",
@@ -833,7 +847,13 @@
                     Baseball: "baseball",
                     "Shamrock Coins": "shamrockCoins",
                     "End Of The Rainbow": "endRainbow",
-                    "Easter Field": "easterField"
+                    "Easter Field": "easterField",
+                    "Marker": "marker",
+                    "Pizza": "pizza",
+                    Marker: "marker",
+                    Pizza: "pizza",
+                    Leaf: "leaf",
+                    "Alphabet Soup": "alphabetSoup"
                 }).map(([e, t]) => ({
                     name: e,
                     value: t
