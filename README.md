@@ -2,7 +2,7 @@
 <p align="center">⚠️Keep in mind that these cheats do not contain an update checker (execpt for the userscript), reason being to prevent the GUIs from breaking. Occasionally check this repo for any updates that you might miss⚠️</p>
 <h3 align="center"><a href="https://discord.gg/8A6J234n7v">Support Server</a></h2>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
-<h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
+<h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 <h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 005konz repository</a></h2>
 
 ## Todo
@@ -29,8 +29,8 @@
 <details><summary><h3>How to use</h3></summary>
 
 There are 3 good methods to using these scripts:
-1. Importing one of the Bookmarklets.html files using [these instructions](https://gitlab.com/blooket/blooket-cheats/-/tree/main/tutorial?ref_type=heads)
-2. Going to the [GitHub pages site](https://githubman6996.github.io/05konz-blooket-site/), choosing a gamemode, then dragging a cheat to your bookmarks bar or clicking one to copy the script
+1. Importing one of the Bookmarklets.html files using [these instructions](https://github.com/005Konz/Blooket-Cheats/blob/main/tutorial/readme.md)
+2. Going to the [GitHub pages site](https://005konz.github.io/Blooket-Cheats/), choosing a gamemode, then dragging a cheat to your bookmarks bar or clicking one to copy the script
 3. Copying a script and running it in the inspect element console
 </details>
 
