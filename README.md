@@ -12,6 +12,7 @@
 - [x] Anti-Ban
 - [x] Use any Banner
 - [x] Change Name ingame
+- [ ] Bypass CSP (WIP)
 
 ## Star History
 
