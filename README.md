@@ -3,7 +3,7 @@
 <h3 align="center"><a href="https://discord.gg/8A6J234n7v">Support Server</a></h2>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
 <h3 align="center"><a href="https://gitlab.com/blooket/blooket-cheats/-/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
-<h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 05konz repository</a></h2>
+<h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 005konz repository</a></h2>
 
 ## Todo
 
@@ -15,7 +15,13 @@
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=DannyDan0167/Blooket-Cheats-Plus&type=Date)](https://star-history.com/#DannyDan0167/Blooket-Cheats-Plus&Date)
+<a href="https://star-history.com/#DannyDan0167/Blooket-Cheats-Plus&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DannyDan0167/Blooket-Cheats-Plus&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DannyDan0167/Blooket-Cheats-Plus&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=DannyDan0167/Blooket-Cheats-Plus&type=Date" />
+ </picture>
+</a>
 
 ## Information
 
