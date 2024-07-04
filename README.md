@@ -7,7 +7,7 @@
 
 ## Todo
 
-- [ ] Auto Play
+- [ ] Auto Play (who really wants this?)
 - [x] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
 - [x] Use any Banner
