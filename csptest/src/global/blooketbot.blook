@@ -1,7 +1,7 @@
 console.log('%c Blooket Cheats%c *CSP Bypass %c\n\tBy DannyDan0167 And Cryptodude3 on GitHub', "color: #0bc2cf; font-size: 3rem", "color: #0000ff; font-size: 1rem", "color: #8000ff; font-size: 1rem");
 console.log('%c\t*Blooket Bot*', "color: #099441; font-size: 1rem");
 console.log('%c\tStar the github repo and join the Discord!\n\t%chttps://github.com/DannyDan0167/Blooket-Cheats-Plus/\thttps://discord.gg/8A6J234n7v', "color: #ffd000; font-size: 1rem", "");
-
+ 
 var container = document.createElement('div');
 container.style.position = 'absolute';
 container.style.width = '500px';
