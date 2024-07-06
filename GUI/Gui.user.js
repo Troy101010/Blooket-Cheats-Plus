@@ -1418,12 +1418,6 @@
                 })
             }
         }, {
-            name: "Chat",
-            description: "Opens a chatroom",
-            run: function() {
-                window.open("https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
-            }
-        }, {
             name: "Every Answer Correct",
             description: "Sets every answer to be correct",
             run: function() {
@@ -4407,7 +4401,7 @@
                 })
             }
         }, {
-            name: "Toggle Spooky Theme For Gold Quest",
+            name: "Toggle Spooky Theme",
             description: "Toggles the spooky theme for Gold Quest",
             run: function() {
                 (() => {
@@ -4415,6 +4409,109 @@
                     sn.season = sn.season ? 0 : 1;
                     sn.render();
                 })();
+            }
+        }, {
+            name: "Freeze Time",
+            description: "Makes the host time stop ingame (Host Only)",
+            run: function() {
+                (() => {
+                    const {
+                        stateNode
+                    } = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner;
+                    clearInterval(stateNode.timerInterval);
+                    stateNode.timerInterval = setInterval(function() {
+                        stateNode?.getClients?.(!1);
+                    }, 4000);
+                })();
+            }
+        }, {
+            name: "View Lobbychat Logs",
+            description: "View messages players type in chat",
+            run: function() {
+                function reactHandler() {
+                    return Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner;
+                }
+
+                document.addEventListener("keydown", function(e) {
+                    if (e.key === "Shift" && e.code === "ShiftRight") {
+                        c.style.display = c.style.display === "none" ? "block" : "none";
+                    }
+                });
+
+                const c = document.createElement("div");
+                c.className = "chat-box";
+                document.body.appendChild(c);
+                const h = document.createElement("div");
+                h.className = "chat-header";
+                h.textContent = "Chat Logs (RSHIFT to hide)";
+                c.appendChild(h);
+                const b = document.createElement("div");
+                b.className = "chat-body";
+                c.appendChild(b);
+
+                function a(e) {
+                    const t = document.createElement("div");
+                    t.textContent = e;
+                    b.appendChild(t);
+                    b.scrollTop = b.scrollHeight;
+                }
+
+                c.style.position = "fixed";
+                c.style.bottom = "20px";
+                c.style.right = "20px";
+                c.style.width = "300px";
+                c.style.height = "400px";
+                c.style.backgroundColor = "#fff";
+                c.style.border = "1px solid #ccc";
+                c.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)";
+                c.style.display = "block";
+
+                b.style.height = "360px";
+                b.style.overflowY = "scroll";
+                b.style.padding = "10px";
+
+                h.addEventListener("click", () => {
+                    b.classList.toggle("open");
+                });
+
+                var da = reactHandler().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_;
+
+                function handleChat(e, t) {
+                    if (t != null) {
+                        if (e.includes("/msg")) {
+                            t?.msg && (console.log(t.msg), a(e.split("/")[2] + ": " + t.msg));
+                        }
+                    }
+                }
+
+                reactHandler().stateNode.props.liveGameController._liveApp.database()._delegate._repoInternal.server_.onDataUpdate_ = function(e, t, a, n) {
+                    console.log(e, t, a, n);
+                    handleChat(e, t);
+                    da(e, t, a, n);
+                };
+
+                window.logsv = false;
+
+                function onsv(e) {
+                    if (window.logsv) {
+                        a("Path: " + e.path.split("/").splice(2, 2).join("/") + " Val: " + ((typeof e.val === 'object') ? JSON.stringify(e.val) : e.val));
+                    }
+                }
+
+                var orgsv = reactHandler().stateNode.props.liveGameController.setVal;
+                reactHandler().stateNode.props.liveGameController.setVal = function() {
+                    onsv.apply(this, arguments);
+                    orgsv.apply(this, arguments);
+                };
+
+                reactHandler().stateNode.props.liveGameController._liveApp.database().ref(`${reactHandler().stateNode.props.liveGameController._liveGameCode}`).on("value", e => {});
+                a("Lobbychat successfully loaded!");
+
+                function app() {
+                    c.style.wordWrap = "break-word";
+                }
+
+                app();
             }
         }, {
             name: "Remove Host Time Limit",
