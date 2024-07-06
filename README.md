@@ -5,6 +5,7 @@
 <h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats/blob/main/tutorial/readme.md">Instructions for importing bookmarklets</a></h2>
 <h3 align="center"><a href="https://github.com/005Konz/Blooket-Cheats">Original Offical 005konz repository</a></h2>
 <p align="center">⚠️All host cheats are for HOST ONLY⚠️</p>
+
 ## Todo
 
 - [ ] Auto Play (who really wants this?)
