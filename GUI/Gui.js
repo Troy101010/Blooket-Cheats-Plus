@@ -2659,7 +2659,7 @@
                 let e = ["⁰", "\xb9", "\xb2", "\xb3", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"],
                     t = t => {
                         let a = "";
-                        for (; t > 0;) a = e[t % 10] + a, t = ~~(t / 10);
+                        for (; t > 0;) a = e[t % parseInt("10")] + a, t = ~~(t / 10);
                         return a
                     },
                     a = e => {
@@ -4825,7 +4825,7 @@
                     }
                     stateNode.state.blockedUsers.push(name);
                     freed++;
-                    if (freed % 15 == 0) {
+                    if (freed % parseInt("15") == 0) {
                         await wait(600);
                     }
                     C.alerts?.[0].addLog("Freed user: " + name);
