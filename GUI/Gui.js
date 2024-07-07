@@ -1051,9 +1051,7 @@
                 type: "input",
             }],
             run: function(e) {
-                let {
-                    props: t
-                } = Object.values(function e(t = document.querySelector("body>div")) {
+let t = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
                 if(!String.prototype.inc){String.prototype.inc = String.prototype.includes;}
@@ -1061,12 +1059,12 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
     return !0;
 }return String.prototype.inc.apply(this,arguments);}
                 let repeatedText = Array(500).fill(e).join(' ');
-                t.client.blook = repeatedText;
-                t.liveGameController.setVal({
-                    path: `c/${t.client.name}/b`,
+                if(!t.state.unlocks){t.client.blook = repeatedText;}
+                t.props.liveGameController.setVal({
+                    path: `c/${t.props.client.name}/b`,
                     val: repeatedText
                 });
-            }
+}
         }, {
             name: "Auto Answer",
             description: "Click the correct answer for you",
@@ -1817,7 +1815,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
 
-                let repeatedText = `Dog:${Array(500).fill(e).join(' ')}`;
+                let repeatedText = `dog:${Array(500).fill(e).join(' ')}`;
                 t2.client.blook = repeatedText;
                 t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/b`,
@@ -2306,7 +2304,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Text",
+                name: "Blook",
                 type: "options",
                 async options() {
                     let {
