@@ -7,13 +7,13 @@
 <p align="center">⚠️All host cheats are for HOST ONLY⚠️</p>
 
 ## Todo
-
+- [ ] Bypass CSP (WIP)
 - [ ] Auto Play (who really wants this?)
 - [x] GUI Chat for other cheaters (Crossover with BlooketBot)
 - [x] Anti-Ban
 - [x] Use any Banner
 - [x] Change Name ingame
-- [ ] Bypass CSP (WIP)
+
 
 ## Star History
 
