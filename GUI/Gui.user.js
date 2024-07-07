@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      14.0
+// @version      15.0
 // @description  Blooket Cheats Plus
 // @updateURL    https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/Update/Gui.meta.js
 // @downloadURL  https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/GUI/Gui.user.js
@@ -2625,7 +2625,7 @@
                     } = Object.values(function e(t = document.querySelector("body>div")) {
                         return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
                     }())[1].children[0]._owner;
-                    t.props.tower.artifacts = "Medical Kit|Fury Relic|Survival Guide|Steel Socks|Piggy Bank|Lucky Feather|Coupon|Cheese|Tasty Egg|Training Weights|Mighty Shield|Toxic Waste|Lifeline Totem|Cursed Hourglass|Band-Aid|Elder Coins|Captain's Anchor|Chess Pieces|Pink Hippo|Anorak's Wizard Cap|Dave's Doggo|Anubis' Obelisk|Farm Tractor|Magic Seedling|Just A Bone|Cozy Igloo|King's Crown|Sacred Scroll".split("|"), t.props.tower.cards = "Chick,\uD83C\uDF3D|Chicken,\uD83C\uDF3D|Cow,\uD83C\uDF3D|Goat,\uD83C\uDF3D|Horse,\uD83C\uDF3D|Pig,\uD83C\uDF3D|Sheep,\uD83C\uDF3D|Duck,\uD83C\uDF3D|Dog,\uD83C\uDF3D|Cat,\uD83D\uDC3E|Rabbit,\uD83D\uDC3E|Goldfish,\uD83D\uDC3E|Hamster,\uD83D\uDC3E|Turtle,\uD83D\uDC3E|Kitten,\uD83D\uDC3E|Puppy,\uD83D\uDC3E|Bear,\uD83C\uDF32|Moose,\uD83C\uDF32|Fox,\uD83C\uDF32|Raccoon,\uD83C\uDF32|Squirrel,\uD83C\uDF32|Owl,\uD83C\uDF32|Hedgehog,\uD83C\uDF32|Baby Penguin,❄️|Penguin,❄️|Arctic Fox,❄️|Snowy Owl,❄️|Polar Bear,❄️|Arctic Hare,❄️|Seal,❄️|Walrus,❄️|Tiger,\uD83C\uDF34|Panther,\uD83C\uDF34|Cockatoo,\uD83C\uDF34|Orangutan,\uD83C\uDF34|Anaconda,\uD83C\uDF34|Macaw,\uD83C\uDF34|Jaguar,\uD83C\uDF34|Capuchin,\uD83C\uDF34|Toucan,\uD83C\uDF34|Parrot,\uD83C\uDF34|Elf,⚔️|Witch,⚔️|Wizard,⚔️|Fairy,⚔️|Slime Monster,⚔️|Jester,⚔️|Dragon,⚔️|Unicorn,⚔️|Queen,⚔️|King,⚔️|Snow Globe,☃️|Holiday Gift,☃️|Hot Chocolate,☃️|Gingerbread Man,☃️|Gingerbread House,☃️|Holiday Wreath,☃️|Snowman,☃️|Santa Claus,☃️|Two of Spades,\uD83C\uDFF0|Eat Me,\uD83C\uDFF0|Drink Me,\uD83C\uDFF0|Alice,\uD83C\uDFF0|Queen of Hearts,\uD83C\uDFF0|Dormouse,\uD83C\uDFF0|White Rabbit,\uD83C\uDFF0|Cheshire Cat,\uD83C\uDFF0|Caterpillar,\uD83C\uDFF0|Mad Hatter,\uD83C\uDFF0|King of Hearts,\uD83C\uDFF0".split("|").map(e => {
+                    t.props.tower.artifacts = "Medical Kit|Fury Relic|Survival Guide|Steel Socks|Piggy Bank|Lucky Feather|Coupon|Cheese|Tasty Egg|Training Weights|Mighty Shield|Toxic Waste|Lifeline Totem|Cursed Hourglass|Band-Aid|Elder Coins|Captain's Anchor|Chess Pieces|Pink Hippo|Anorak's Wizard Cap|Dave's Doggo|Anubis' Obelisk|Farm Tractor|Magic Seedling|Just A Bone|Cozy Igloo|King's Crown|Sacred Scroll".split("|"), t.props.tower.cards = "Chick,\uD83C\uDF3D|Chicken,\uD83C\uDF3D|Cow,\uD83C\uDF3D|Goat,\uD83C\uDF3D|Horse,\uD83C\uDF3D|Pig,\uD83C\uDF3D|Sheep,\uD83C\uDF3D|Duck,\uD83C\uDF3D|Dog,\uD83C\uDF3D|Cat,\uD83D\uDC3E|Rabbit,\uD83D\uDC3E|Goldfish,\uD83D\uDC3E|Hamster,\uD83D\uDC3E|Turtle,\uD83D\uDC3E|Kitten,\uD83D\uDC3E|Puppy,\uD83D\uDC3E|Bear,\uD83C\uDF32|Moose,\uD83C\uDF32|Fox,\uD83C\uDF32|Raccoon,\uD83C\uDF32|Squirrel,\uD83C\uDF32|Owl,\uD83C\uDF32|Hedgehog,\uD83C\uDF32|Baby Penguin❄️|Penguin,❄️|Arctic Fox,❄️|Snowy Owl,❄️|Polar Bear,❄️|Arctic Hare,❄️|Seal,❄️|Walrus,❄️|Tiger,\uD83C\uDF34|Panther,\uD83C\uDF34|Cockatoo,\uD83C\uDF34|Orangutan,\uD83C\uDF34|Anaconda,\uD83C\uDF34|Macaw,\uD83C\uDF34|Jaguar,\uD83C\uDF34|Capuchin,\uD83C\uDF34|Toucan,\uD83C\uDF34|Parrot,\uD83C\uDF34|Elf,⚔️|Witch,⚔️|Wizard,⚔️|Fairy,⚔️|Slime Monster,⚔️|Jester,⚔️|Dragon,⚔️|Unicorn,⚔️|Queen,⚔️|King,⚔️|Snow Globe,☃️|Holiday Gift,☃️|Hot Chocolate,☃️|Gingerbread Man,☃️|Gingerbread House,☃️|Holiday Wreath,☃️|Snowman,☃️|Santa Claus,☃️|Two of Spades,\uD83C\uDFF0|Eat Me,\uD83C\uDFF0|Drink Me,\uD83C\uDFF0|Alice,\uD83C\uDFF0|Queen of Hearts,\uD83C\uDFF0|Dormouse,\uD83C\uDFF0|White Rabbit,\uD83C\uDFF0|Cheshire Cat,\uD83C\uDFF0|Caterpillar,\uD83C\uDFF0|Mad Hatter,\uD83C\uDFF0|King of Hearts,\uD83C\uDFF0".split("|").map(e => {
                         let [t, a] = e.split(",");
                         return {
                             strength: 20,
@@ -4105,7 +4105,25 @@
                     }))
                 })
             }
-        }, {
+        },{
+            name: "Set Player's Gold",
+            description: "Sets a players gold to any amount.",
+            inputs: [{
+                name: "Player",
+                type: "options",
+                options() {
+                    let e = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                    return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]))
+                }
+            },{
+                name: "Amount",
+                type: "input"
+            }],
+            run: (player,amount)=>{
+const sn = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+sn.props.liveGameController.setVal({path:`c/${sn.props.client.name}/tat`,val:`${player}:swap:${amount}`});   
+}
+}, {
             name: "Reset All Players' Gold",
             description: "Set's everyone else's gold to 0",
             run: function() {
