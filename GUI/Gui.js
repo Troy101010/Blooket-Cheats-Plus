@@ -4515,6 +4515,32 @@ sn.props.liveGameController.setVal({path:`c/${sn.props.client.name}/tat`,val:`${
                     }
                 })();
             }
+        }, {
+            name: "Free Player Slots",
+            description: "Allows more players to join if the game is full(host only)",
+            run: async()=>{let i = document.createElement('iframe');
+document.body.append(i);
+const alert = i.contentWindow.alert.bind(window);
+i.remove();
+const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+const players = await stateNode.props.liveGameController.getDatabaseVal("c");
+let freed = 0;
+if(!stateNode.state.blockedUsers){stateNode.state.blockedUsers=[];}
+async function wait(time){return new Promise(e=>{setTimeout(e,time);});}
+async function blockUser(name){
+if(stateNode.state.blockedUsers.includes(name)){return;}
+const res = await fetch("https://fb.blooket.com/c/firebase/block",{headers:{"Content-Type":"application/json"},method:"POST",body:JSON.stringify({g:stateNode.props.host.id,u:name}),credentials:"include"});
+if(res.status !== 200){return;}
+stateNode.state.blockedUsers.push(name);
+freed++;
+if(freed%15 == 0){await wait(600);}
+C.alerts?.[0].addLog("Freed user: "+name);
+}
+for(let i in players){
+await blockUser(i);
+}
+alert(`Freed slots: ${freed}`);
+}
         }],
         royale: [{
             name: "Auto Answer (Toggle)",
