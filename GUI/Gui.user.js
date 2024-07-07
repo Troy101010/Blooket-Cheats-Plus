@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      15.0
+// @version      15.1
 // @description  Blooket Cheats Plus
 // @updateURL    https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/Update/Gui.meta.js
 // @downloadURL  https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/GUI/Gui.user.js
@@ -1020,7 +1020,7 @@
                             });
                         }
                     });
-                    reactHandler().render();
+                    reactHandler().setState({});
                 })();
             })
         }, {
@@ -1076,40 +1076,26 @@
             }
         }, {
             name: "Set Blook Ad Text",
-            description: "Sets a load of text as your blook (INGAME ONLY)",
+            description: "Sets a load of text as your blook and floods teachers screen on lobby",
             inputs: [{
-                name: "Text (INGAME ONLY)",
-                type: "options",
-                async options() {
-                    let {
-                        webpack: e
-                    } = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]);
-                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
-                }
+                name: "Text",
+                type: "input",
             }],
             run: function(e) {
-                let {
-                    props: t
-                } = Object.values(function e(t = document.querySelector("body>div")) {
+let t = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
-
+                if(!String.prototype.inc){String.prototype.inc = String.prototype.includes;}
+String.prototype.includes = function(a){if(a == "#" && this.length > 30){
+    return !0;
+}return String.prototype.inc.apply(this,arguments);}
                 let repeatedText = Array(500).fill(e).join(' ');
-                t.client.blook = repeatedText;
-                t.liveGameController.setVal({
-                    path: `c/${t.client.name}/b`,
+                if(!t.state.unlocks){t.client.blook = repeatedText;}
+                t.props.liveGameController.setVal({
+                    path: `c/${t.props.client.name}/b`,
                     val: repeatedText
                 });
-            }
+}
         }, {
             name: "Auto Answer",
             description: "Click the correct answer for you",
@@ -1860,7 +1846,7 @@
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
 
-                let repeatedText = `Dog:${Array(500).fill(e).join(' ')}`;
+                let repeatedText = `dog:${Array(500).fill(e).join(' ')}`;
                 t2.client.blook = repeatedText;
                 t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/b`,
@@ -2349,7 +2335,7 @@
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Text",
+                name: "Blook",
                 type: "options",
                 async options() {
                     let {
@@ -2690,7 +2676,7 @@
                 let e = ["⁰", "\xb9", "\xb2", "\xb3", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"],
                     t = t => {
                         let a = "";
-                        for (; t > 0;) a = e[t % 10] + a, t = ~~(t / 10);
+                        for (; t > 0;) a = e[t % parseInt("10")] + a, t = ~~(t / 10);
                         return a
                     },
                     a = e => {
@@ -4856,7 +4842,7 @@
                     }
                     stateNode.state.blockedUsers.push(name);
                     freed++;
-                    if (freed % 15 == 0) {
+                    if (freed % parseInt("15") == 0) {
                         await wait(600);
                     }
                     C.alerts?.[0].addLog("Freed user: " + name);
