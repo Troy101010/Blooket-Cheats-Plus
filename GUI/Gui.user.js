@@ -1860,7 +1860,7 @@
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
 
-                let repeatedText = `dog:${Array(500).fill(e).join(' ')}`;
+                let repeatedText = `Dog:${Array(500).fill(e).join(' ')}`;
                 t2.client.blook = repeatedText;
                 t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/b`,
@@ -2349,7 +2349,7 @@
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Blook",
+                name: "Text",
                 type: "options",
                 async options() {
                     let {
