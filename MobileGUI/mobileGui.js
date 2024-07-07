@@ -1540,7 +1540,7 @@
                     description: "Sends a load of text to another player (This will override your blook!)",
                     run: async function() {
                         var player = window.prompt("Enter the player's name:");
-                        var blook = window.prompt("Enter the blook to send:");
+                        var blook = window.prompt("Enter the text to send:");
 
                         let t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
                         t.props.liveGameController.getDatabaseVal("c", a => {
