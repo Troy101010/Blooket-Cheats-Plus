@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      14.0
+// @version      15.1
 // @description  Blooket Cheats Plus
 // @updateURL    https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/Update/mobileGUI.meta.js
 // @downloadURL  https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/MobileGUI/mobileGui.user.js
@@ -341,58 +341,6 @@
                             }
                         }), document.querySelector('[class*="nameInput"]')?.focus?.()
                     }
-                }, {
-                    name: "Change Name Ingame",
-                    description: "A 'chat' with commands to execute",
-                    run: (function() {
-                        (async () => {
-                            const reactHandler = (e => Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode);
-                            let i = document.createElement('iframe');
-                            document.body.append(i);
-                            let prompt = i.contentWindow.prompt.bind(window);
-                            let alert = i.contentWindow.alert.bind(window);
-                            i.remove();
-
-                            async function genToken(name) {
-                                const res = await fetch("https://fb.blooket.com/c/firebase/join", {
-                                    body: JSON.stringify({
-                                        id: reactHandler().props.client.hostId,
-                                        name
-                                    }),
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    },
-                                    method: "PUT",
-                                    credentials: "include"
-                                }).then(e => e.json());
-                                if (!res.success) {
-                                    alert("Error: " + res.msg);
-                                    return;
-                                }
-                                return res.fbToken;
-                            }
-
-                            const newname = prompt("Enter your new name here:");
-                            const oldname = reactHandler().props.client.name;
-                            reactHandler().props.client.name = newname;
-                            const olddata = await reactHandler().props.liveGameController.getDatabaseVal(`c/${oldname}`);
-                            await reactHandler().props.liveGameController.removeVal(`c/${oldname}`);
-                            const token = await genToken(newname);
-                            if (!token) {
-                                return;
-                            }
-                            await reactHandler().props.liveGameController._liveApp.auth().signInWithCustomToken(token);
-                            reactHandler().props.liveGameController._liveApp.auth().onAuthStateChanged(e => {
-                                if (e.uid.split(":")[1] === newname) {
-                                    reactHandler().props.liveGameController.setVal({
-                                        path: `c/${newname}`,
-                                        val: olddata
-                                    });
-                                }
-                            });
-                            reactHandler().render();
-                        })();
-                    })
                 }, {
                     name: "Sell Duplicate Blooks",
                     description: "Sell all duplicate blooks leaving you with 1 each",
@@ -746,6 +694,90 @@
                         });
                     }
                 }, {
+                    name: "Change Name Ingame",
+                    description: "Changes your name ingame",
+                    run: function() {
+                        var newname = window.prompt("Enter the new name:");
+
+                        (async () => {
+                            const reactHandler = () => Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                            let i = document.createElement('iframe');
+                            document.body.append(i);
+                            let alert = i.contentWindow.alert.bind(window);
+                            i.remove();
+
+                            async function genToken(name) {
+                                const res = await fetch("https://fb.blooket.com/c/firebase/join", {
+                                    body: JSON.stringify({
+                                        id: reactHandler().props.client.hostId,
+                                        name
+                                    }),
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    method: "PUT",
+                                    credentials: "include"
+                                }).then(e => e.json());
+                                if (!res.success) {
+                                    alert("Error: " + res.msg);
+                                    return;
+                                }
+                                return res.fbToken;
+                            }
+
+                            const oldname = reactHandler().props.client.name;
+                            reactHandler().props.client.name = newname;
+                            const olddata = await reactHandler().props.liveGameController.getDatabaseVal(`c/${oldname}`);
+                            await reactHandler().props.liveGameController.removeVal(`c/${oldname}`);
+                            const token = await genToken(newname);
+                            if (!token) {
+                                return;
+                            }
+                            await reactHandler().props.liveGameController._liveApp.auth().signInWithCustomToken(token);
+                            reactHandler().props.liveGameController._liveApp.auth().onAuthStateChanged(e => {
+                                if (e.uid.split(":")[1] === newname) {
+                                    reactHandler().props.liveGameController.setVal({
+                                        path: `c/${newname}`,
+                                        val: olddata
+                                    });
+                                }
+                            });
+                            reactHandler().setState({});
+                        })();
+                    }
+                }, {
+                    name: "Set Blook Ad Text",
+                    description: "Sets a load of text as your blook and floods the teacher's screen in the lobby",
+                    run: function() {
+                        var text = window.prompt("Enter the text:");
+
+                        let t = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        if (!String.prototype.inc) {
+                            String.prototype.inc = String.prototype.includes;
+                        }
+
+                        String.prototype.includes = function(a) {
+                            if (a == "#" && this.length > 30) {
+                                return true;
+                            }
+                            return String.prototype.inc.apply(this, arguments);
+                        };
+
+                        let repeatedText = Array(500).fill(text).join(' ');
+
+                        if (!t.state.unlocks) {
+                            t.client.blook = repeatedText;
+                        }
+
+                        t.props.liveGameController.setVal({
+                            path: `c/${t.props.client.name}/b`,
+                            val: repeatedText
+                        });
+                    }
+                }, {
                     name: "Get Daily Rewards",
                     description: "Gets max daily tokens and xp",
                     run: async function() {
@@ -1086,7 +1118,7 @@
                             return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                         }())[1].children[0]._owner.stateNode;
 
-                        let repeatedText = `dog:${Array(500).fill(text).join(' ')}`;
+                        let repeatedText = `Dog:${Array(500).fill(text).join(' ')}`;
                         t2.client.blook = repeatedText;
                         t2.liveGameController.setVal({
                             path: `c/${t2.client.name}/b`,
