@@ -1045,25 +1045,10 @@
             }
         }, {
             name: "Set Blook Ad Text",
-            description: "Sets a load of text as your blook (INGAME ONLY)",
+            description: "Sets a load of text as your blook and floods teachers screen on lobby",
             inputs: [{
-                name: "Text (INGAME ONLY)",
-                type: "options",
-                async options() {
-                    let {
-                        webpack: e
-                    } = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]);
-                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
-                }
+                name: "Text",
+                type: "input",
             }],
             run: function(e) {
                 let {
@@ -1071,7 +1056,10 @@
                 } = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
-
+                if(!String.prototype.inc){String.prototype.inc = String.prototype.includes;}
+String.prototype.includes = function(a){if(a == "#" && this.length > 30){
+    return !0;
+}return String.prototype.inc.apply(this,arguments);}
                 let repeatedText = Array(500).fill(e).join(' ');
                 t.client.blook = repeatedText;
                 t.liveGameController.setVal({
