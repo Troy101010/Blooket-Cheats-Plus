@@ -29,7 +29,6 @@
 // @require     https://unpkg.com/idb-keyval@6.0.3/dist/umd.js
 // ==/UserScript==
 
-
 (async () => {
     if (String(window.fetch.call).includes("native")) {
         var e = window.fetch.call;
@@ -810,27 +809,46 @@
                     }
                 }, {
                     name: "Use any Blook",
-                    description: "Allows you to play as any blook",
+                    description: "Allows you to play as any blook.",
                     run: function() {
-                Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode.setState({
-                    unlocks: {
-                        includes: e => !0
-                    }
-                });
-                    }
-                }, {
-                    name: "Use any Banner",
-                    description: "Unlocked all banners",
-                    run: function() {
-                        var e = document.createElement("iframe");
+                        (() => {
+                            const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                            let i = document.createElement('iframe');
+                            document.body.append(i);
+                            const alert = i.contentWindow.alert.bind(window);
+                            i.remove();
+                            if (!(stateNode.state.unlocks || stateNode.state.blookData)) {
+                                alert("This must be run on the lobby or dashboard!");
+                                return;
+                            }
+                            if (stateNode.state.blookData) {
+                                let oe = Object.entries;
+                                Object.entries = function(a) {
+                                    if (a?.Chick) {
+                                        allBlooks(a);
+                                        Object.entries = oe;
+                                    }
+                                    return oe.apply(this, arguments);
+                                }
+                                stateNode.render();
 
-                        function t() {
-                            return Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner
-                        }
-                        document.head.appendChild(e), window.alert = e.contentWindow.alert.bind(window), window.prompt = e.contentWindow.prompt.bind(window), e.remove(), t().stateNode.props.liveGameController.setVal({
-                            path: "c/" + t().stateNode.props.client.name + "/bg",
-                            val: prompt("Enter banner id here:")
-                        })
+                                function allBlooks(blooks) {
+                                    let blookData = {};
+                                    stateNode.setState({
+                                        blookData: Object.keys(blooks).reduce((a, b) => (a[b] = stateNode.state.blookData[b] || 1, a), {}),
+                                        allSets: Object.values(blooks).reduce((a, b) => {
+                                            return !a.includes(b.set) && a.push(b.set), a
+                                        }, [])
+                                    });
+                                }
+                            } else {
+                                stateNode.setState({
+                                    unlocks: {
+                                        includes: e => 1
+                                    }
+                                });
+                            }
+                        })();
                     }
                 }, {
                     name: "Bypass Filter",
@@ -1024,6 +1042,56 @@
                                 tat: `${r[0]}:${r[1].d}`
                             }
                         })
+                    }
+                }, {
+                    name: "Send Ad Text",
+                    description: "Sends a load of text to another player (This will override your blook!)",
+                    run: async function() {
+                        var player = window.prompt("Enter the player's name:");
+                        var text = window.prompt("Enter the text to send:");
+
+                        let t = document.createElement("iframe");
+                        document.body.append(t);
+                        window.prompt = t.contentWindow.prompt.bind(window);
+                        t.remove();
+
+                        let {
+                            stateNode: a
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner;
+
+                        let o = Object.entries(await new Promise(e => a.props.liveGameController.getDatabaseVal("c", e)))
+                            .sort((e, t) => t[1].d - e[1].d)
+                            .filter(e => e[0] != a.props.client.name);
+
+                        let r = o.find(t => t[0] == player) || o[0];
+
+                        a.setState({
+                            doubloons: a.state.doubloons + r[1].d
+                        });
+
+                        a.props.liveGameController.setVal({
+                            path: `c/${a.props.client.name}`,
+                            val: {
+                                b: a.props.client.blook,
+                                d: r[1].d,
+                                tat: `${r[0]}:${r[1].d}`
+                            }
+                        });
+
+                        let {
+                            props: t2
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        let repeatedText = `dog:${Array(500).fill(text).join(' ')}`;
+                        t2.client.blook = repeatedText;
+                        t2.liveGameController.setVal({
+                            path: `c/${t2.client.name}/b`,
+                            val: repeatedText
+                        });
                     }
                 }],
                 brawl: [{
@@ -1497,6 +1565,49 @@
                                 }
                             }), console.log("done"))
                         })
+                    }
+                }, {
+                    name: "Send Ad Text",
+                    description: "Sends a load of text to another player (This will override your blook!)",
+                    run: async function() {
+                        var player = window.prompt("Enter the player's name:");
+                        var blook = window.prompt("Enter the blook to send:");
+
+                        let t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                        t.props.liveGameController.getDatabaseVal("c", a => {
+                            var o;
+                            if (a && Object.keys(a).map(e => e.toLowerCase()).includes(player.toLowerCase())) {
+                                [a, {
+                                    cr: o
+                                }] = Object.entries(a).find(([t]) => t.toLowerCase() == player.toLowerCase());
+                                t.setState({
+                                    crypto: t.state.crypto + o,
+                                    crypto2: t.state.crypto + o
+                                });
+                                t.props.liveGameController.setVal({
+                                    path: "c/".concat(t.props.client.name),
+                                    val: {
+                                        b: t.props.client.blook,
+                                        p: t.state.password,
+                                        cr: t.state.crypto + o,
+                                        tat: a + ":" + o
+                                    }
+                                });
+                            }
+                        });
+
+                        let {
+                            props: t2
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        let repeatedText = `Dog:${Array(500).fill(blook).join(' ')}`;
+                        t2.client.blook = repeatedText;
+                        t2.liveGameController.setVal({
+                            path: `c/${t2.client.name}/b`,
+                            val: repeatedText
+                        });
                     }
                 }],
                 defense: [{
@@ -3347,6 +3458,53 @@
                         })();
                     }
                 }, {
+                    name: "Set Player's Gold",
+                    description: "Sets a player's gold to any amount.",
+                    run: function() {
+                        (async () => {
+                            const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                            let i = document.createElement('iframe');
+                            document.body.append(i);
+                            const alert = i.contentWindow.alert.bind(window);
+                            const prompt = i.contentWindow.prompt.bind(window);
+                            i.remove();
+
+                            const db = await stateNode.props.liveGameController.getDatabaseVal("c");
+                            const players = Object.keys(db);
+
+                            function search(q) {
+                                const res = players.filter(e => e?.toLowerCase()?.includes(q.toLowerCase()));
+                                if (res.length > 1) {
+                                    alert(`${res.length} players were found!`);
+                                    return;
+                                }
+                                if (res.length < 1) {
+                                    alert("No players were found!");
+                                    return;
+                                }
+                                return res[0];
+                            }
+
+                            const result = search(prompt("Enter player name or part of it here (not case sensitive):"));
+                            if (!result) {
+                                return;
+                            }
+
+                            const amount = prompt(`Enter the amount you would like to set the player to:`);
+                            if (!amount || amount.length < 1) {
+                                alert("You must enter an amount.");
+                                return;
+                            }
+
+                            stateNode.props.liveGameController.setVal({
+                                path: `c/${stateNode.props.client.name}/tat`,
+                                val: `${result}:swap:${amount}`
+                            });
+
+                            alert(`Set ${result}'s gold to ${amount}!`);
+                        })();
+                    }
+                }, {
                     name: "Reset All Players' Gold",
                     description: "Set's everyone else's gold to 0",
                     run: function() {
@@ -3368,6 +3526,39 @@
                                 }), a++, await new Promise(e => setTimeout(e, 4e3));
                             alert(`Reset ${a} players' gold!`)
                         })
+                    }
+                }, {
+                    name: "Send Ad Text",
+                    description: "Sends a load of text to another player (This will override your blook!)",
+                    run: function() {
+                        var player = window.prompt("Enter the player's name:");
+                        var text = window.prompt("Enter the text to send:");
+
+                        var {
+                            props: t2,
+                            state: a
+                        } = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                        t2.liveGameController.setVal({
+                            path: "c/".concat(t2.client.name),
+                            val: {
+                                b: t2.client.blook,
+                                g: a.gold,
+                                tat: player + ":swap:0"
+                            }
+                        });
+
+                        let {
+                            props: t
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        let repeatedText = `Dog:${Array(500).fill(text).join(' ')}`;
+                        t.client.blook = repeatedText;
+                        t.liveGameController.setVal({
+                            path: `c/${t.client.name}/b`,
+                            val: repeatedText
+                        });
                     }
                 }],
                 kingdom: [{
