@@ -4074,7 +4074,25 @@
                     }))
                 })
             }
-        }, {
+        },{
+            name: "Set Player's Gold",
+            description: "Sets a players gold to any amount.",
+            inputs: [{
+                name: "Player",
+                type: "options",
+                options() {
+                    let e = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                    return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]))
+                }
+            },{
+                name: "Amount",
+                type: "input"
+            }],
+            run: (player,amount)=>{
+const sn = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+sn.props.liveGameController.setVal({path:`c/${sn.props.client.name}/tat`,val:`${player}:swap:${amount}`});   
+}
+}, {
             name: "Reset All Players' Gold",
             description: "Set's everyone else's gold to 0",
             run: function() {
