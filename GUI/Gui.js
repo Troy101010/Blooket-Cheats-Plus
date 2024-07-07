@@ -989,7 +989,7 @@
                             });
                         }
                     });
-                    reactHandler().render();
+                    reactHandler().setState({});
                 })();
             })
         }, {
