@@ -4655,8 +4655,8 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 })();
             }
         }, {
-            name: "Freeze Time",
-            description: "Makes the host time stop ingame (Host Only)",
+            name: "Freeze Timer",
+            description: "Makes the host timer stop ingame (Host Only)",
             run: function() {
                 (() => {
                     const {
@@ -4666,6 +4666,19 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     stateNode.timerInterval = setInterval(function() {
                         stateNode?.getClients?.(!1);
                     }, 4000);
+                })();
+            }
+        }, {
+            name: "Render hours on host timer",
+            description: "Renders hours instead of just miniutes and seconds on host timer(use with infinite host time)",
+            run: function() {
+                (() => {
+const format = "HH:mm:ss";
+const reg = '/(\\[[^\\[]*\\])|(\\\\)?(LTS|LT|LL?L?L?|l{1,4})/g';
+if(!RegExp.prototype.tes){RegExp.prototype.tes=RegExp.prototype.test;}
+RegExp.prototype.test = function(a){if(a == "mm:ss" && this.toString() == reg){return !0;}return RegExp.prototype.tes.apply(this,arguments);}
+if(!String.prototype.rep){String.prototype.rep = String.prototype.replace;}
+String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == reg){return format;}return String.prototype.rep.apply(this,arguments);}
                 })();
             }
         }, {
