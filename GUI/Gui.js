@@ -1,4 +1,8 @@
 (async () => {
+    var wfcall = window.fetch.call;
+    window.fetch.call = function() {
+    if (!arguments[1].includes("s.blooket.com/rc")) return wfcall.apply(this, arguments);
+    }
     if (console.log("%c Blooket Cheats Plus %c\n	By DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c	gui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c	Star the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e, t, a, o, r, i, n, s, e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
         e.remove()
@@ -5925,9 +5929,8 @@ String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == r
                 duration: 200
             }), y.style.opacity = "0.9"), y.style.left = t.x - a.x + (t.width - y.clientWidth) / 2 + "px", y.style.top = t.y - a.y + t.height + "px"))
         }), String(window.fetch.call).includes("native code")) {
-        var N = window.fetch.call;
         window.fetch.call = function() {
-            if (!arguments[1].includes("s.blooket.com/rc")) return N.apply(this, arguments);
+            if (!arguments[1].includes("s.blooket.com/rc")) return wfcall.apply(this, arguments);
             C.alerts?.[0].addLog("Blooket Anti-Cheat Blocked!")
         }
     } else console.log("already run")
