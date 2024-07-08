@@ -4669,8 +4669,8 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 })();
             }
         }, {
-            name: "Render hours on host timer",
-            description: "Renders hours instead of just miniutes and seconds on host timer(use with infinite host time)",
+            name: "Render Hours on Host Timer",
+            description: "Renders hours on host timer(use with remove host time limit). Can only render up to 24 hours.",
             run: function() {
                 (() => {
 const format = "HH:mm:ss";
