@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blooket Cheats Plus
 // @namespace    https://github.com/DannyDan0167/Blooket-Cheats
-// @version      15.1
+// @version      15.2
 // @description  Blooket Cheats Plus
 // @updateURL    https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/Update/Gui.meta.js
 // @downloadURL  https://raw.githubusercontent.com/DannyDan0167/Blooket-Cheats-Plus/main/GUI/Gui.user.js
@@ -4686,8 +4686,8 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 })();
             }
         }, {
-            name: "Freeze Time",
-            description: "Makes the host time stop ingame (Host Only)",
+            name: "Freeze Timer",
+            description: "Makes the host timer stop ingame (Host Only)",
             run: function() {
                 (() => {
                     const {
@@ -4697,6 +4697,19 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     stateNode.timerInterval = setInterval(function() {
                         stateNode?.getClients?.(!1);
                     }, 4000);
+                })();
+            }
+        }, {
+            name: "Render Hours on Host Timer",
+            description: "Renders hours on host timer(use with remove host time limit). Can only render up to 24 hours.",
+            run: function() {
+                (() => {
+const format = "HH:mm:ss";
+const reg = '/(\\[[^\\[]*\\])|(\\\\)?(LTS|LT|LL?L?L?|l{1,4})/g';
+if(!RegExp.prototype.tes){RegExp.prototype.tes=RegExp.prototype.test;}
+RegExp.prototype.test = function(a){if(a == "mm:ss" && this.toString() == reg){return !0;}return RegExp.prototype.tes.apply(this,arguments);}
+if(!String.prototype.rep){String.prototype.rep = String.prototype.replace;}
+String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == reg){return format;}return String.prototype.rep.apply(this,arguments);}
                 })();
             }
         }, {
