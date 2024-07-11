@@ -42,7 +42,7 @@ New and fixed features are in BCP to give you a better experience and an advanta
 
 <details><summary><h3>What can I do if JavaScript is blocked?</h3></summary>
 
-We don't actually know what to do about this or how to fix it, sorry.
+Try <a href="https://blooketbot.glitch.me/">https://blooketbot.glitch.me/</a>
 </details>
 
 <details><summary><h3>What can I do if Github is blocked?</h3></summary>
