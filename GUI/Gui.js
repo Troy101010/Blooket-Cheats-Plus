@@ -4838,6 +4838,13 @@ String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == r
                 }
                 alert(`Freed slots: ${freed}`);
             }
+        },{
+            name: "Realtime Updates",
+            description: "Makes leaderboard updates happen in real-time.",
+            run: async ()=>{
+const stateNode = ()=>Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+(await stateNode().props.liveGameController.getDatabaseRef("")).on("value",e=>stateNode()?.getClients?.(!1));
+}
         }],
         royale: [{
             name: "Auto Answer (Toggle)",
