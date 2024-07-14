@@ -4660,7 +4660,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
             }
         }, {
             name: "Freeze Timer",
-            description: "Makes the host timer stop ingame (Host Only)",
+            description: "Makes the host timer stop ingame",
             run: function() {
                 (() => {
                     const {
@@ -4791,7 +4791,7 @@ String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == r
             }
         }, {
             name: "Free Player Slots",
-            description: "Allows more players to join if the game is full(host only)",
+            description: "Allows more players to join if the game is full",
             run: async () => {
                 let i = document.createElement('iframe');
                 document.body.append(i);
