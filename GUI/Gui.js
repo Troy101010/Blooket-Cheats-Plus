@@ -2257,6 +2257,24 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 }
             }
         }, {
+		              name: "Set Freeze Password",
+    description: "Freezes other players when they attempt to hack you",
+    run: function() {
+        var e = "﷽".repeat(3489999);
+        var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+        t.setState({
+            password: e
+        });
+        t.props.liveGameController.setVal({
+            path: "c/".concat(t.props.client.name),
+            val: {
+                b: t.props.client.blook,
+                p: e,
+                cr: t.state.crypto
+            }
+        });
+    }
+},{
       name: "Set Lag Password",
     description: "Lags other players when they attempt to hack you",
     run: function() {
