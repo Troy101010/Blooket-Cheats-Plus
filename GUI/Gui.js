@@ -4845,6 +4845,13 @@ String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == r
 const stateNode = ()=>Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
 (await stateNode().props.liveGameController.getDatabaseRef("")).on("value",e=>stateNode()?.getClients?.(!1));
 }
+        },{
+            name: "Kick All Players",
+            description: "Kicks all players from your game.",
+            run: async ()=>{const sn = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+const db = await sn.props.liveGameController.getDatabaseVal("");
+sn.props.liveGameController.setVal({path:"bu",val:Object.keys(db.c).reduce((a,b)=>(a[b]=1,a),db.bu?db.bu:{})});
+sn.props.liveGameController.setVal({path:"c",val:{}});}
         }],
         royale: [{
             name: "Auto Answer (Toggle)",
