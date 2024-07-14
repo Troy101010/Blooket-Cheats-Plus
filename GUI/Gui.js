@@ -4867,10 +4867,13 @@ sn.props.liveGameController.setVal({path:"c",val:{}});}
             }
         }, {
             name: "Auto Answer",
-            description: "Chooses the correct answer for you.",
+            description: "Chooses the correct answer for you. Will answer with the time provided.",
             inputs: [{
-                name: "Time",
-                type: "number"
+                name: "Time (seconds)",
+                type: "number",
+		min: 0,
+		max: 20,
+		value: 0.788
             }],
             run: (a)=>{
 let i = document.createElement('iframe');
