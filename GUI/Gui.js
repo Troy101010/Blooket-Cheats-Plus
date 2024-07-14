@@ -4869,20 +4869,14 @@ sn.props.liveGameController.setVal({path:"c",val:{}});}
             name: "Auto Answer",
             description: "Chooses the correct answer for you. Will answer with the time provided.",
             inputs: [{
-                name: "Time (seconds)",
+                name: "Time (milliseconds)",
                 type: "number",
 		min: 0,
-		max: 20,
-		value: 0.788
+		max: 20000,
             }],
             run: (a)=>{
-let i = document.createElement('iframe');
-                document.body.append(i);
-                const alert = i.contentWindow.alert.bind(window);
-                i.remove();
-if(parseFloat(a) > 20){alert("Time must be less than 20 seconds!");}
 const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
-stateNode.startTime = performance.now() - parseFloat(a) * 1000;
+stateNode.startTime = performance.now() - a;
 stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
         }],
         rush: [{
