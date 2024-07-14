@@ -4867,11 +4867,20 @@ sn.props.liveGameController.setVal({path:"c",val:{}});}
             }
         }, {
             name: "Auto Answer",
-            description: "Chooses the correct answer for you",
-            run: function() {
-                var e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                e?.onAnswer?.(!0, e.props.client.question.correctAnswers[0])
-            }
+            description: "Chooses the correct answer for you.",
+            inputs: [{
+                name: "Time",
+                type: "number"
+            }],
+            run: (a)=>{
+let i = document.createElement('iframe');
+                document.body.append(i);
+                const alert = i.contentWindow.alert.bind(window);
+                i.remove();
+if(parseFloat(a) > 20){alert("Time must be less than 20 seconds!");}
+const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+stateNode.startTime = performance.now() - parseFloat(a) * 1000;
+stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
         }],
         rush: [{
             name: "Set Blooks",
