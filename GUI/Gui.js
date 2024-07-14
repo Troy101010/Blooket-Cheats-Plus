@@ -4052,6 +4052,26 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 run: function(score) {
                     Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](score || 0);
                 }
+            },{
+                name: "Change Settings",
+                description: "Changes various game mechanics and lets you play with the spacebar",
+                inputs: [{name:"Bird Gravity",type:"number",value:800},{name:"Bird Speed",type:"number",value:125},{name:"Bird Flap Power",type:"number",value:300}],
+                run: function(a,b,c) {
+const scene = Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig;
+scene.birdGravity=a;
+scene.birdSpeed=b;
+scene.birdFlapPower=c;
+scene.flap = function(){
+    this.isStarted || (this.bird.body.gravity.y = this.birdGravity,
+        this.pipeGroup.setVelocityX(-this.birdSpeed),
+        this.groundGroup.setVelocityX(-this.birdSpeed),
+        this.isStarted = !0),
+        this.bird.body.velocity.y = -this.birdFlapPower
+}
+scene.input._events.pointerdown = [];
+scene.create();
+scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
+                }
             }
         ],
         gold: [{
