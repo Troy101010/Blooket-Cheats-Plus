@@ -701,6 +701,15 @@
                 })
             }
         }, {
+            name: "Simulate Unlock",
+            description: "Simulates unlocking a certian blook",
+            inputs: [{
+                name: "Blook (Case Sensitive)"
+            }],
+            run: (unlockedBlook)=>{const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+stateNode.setState({loadingPack:!1,openPack:!0,unlockedBlook,newUnlock:!0,canOpen:!1});
+setTimeout(()=>stateNode.setState({canOpen:!0}),200);}
+        }, {
             name: "Spam Buy Blooks",
             description: "Opens a box an amount of times",
             inputs: [{
