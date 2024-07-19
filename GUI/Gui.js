@@ -2272,52 +2272,17 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 name: "Player",
                 type: "options",
                 options() {
-                    let e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                    let {
+                        stateNode: e
+                    } = Object.values(function e(t = document.querySelector("body>div")) {
+                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                    }())[1].children[0]._owner;
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Blook",
-                type: "options",
-                async options() {
-                    let {
-                        webpack: e
-                    } = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]);
-                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
-                }
+                name: "Text"
             }],
-            run: function(player, e) {
-                let t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                t.props.liveGameController.getDatabaseVal("c", a => {
-                    var o;
-                    if (a && Object.keys(a).map(e => e.toLowerCase()).includes(player.toLowerCase())) {
-                        [a, {
-                            cr: o
-                        }] = Object.entries(a).find(([t]) => t.toLowerCase() == player.toLowerCase());
-                        t.setState({
-                            crypto: t.state.crypto + o,
-                            crypto2: t.state.crypto + o
-                        });
-                        t.props.liveGameController.setVal({
-                            path: "c/".concat(t.props.client.name),
-                            val: {
-                                b: t.props.client.blook,
-                                p: t.state.password,
-                                cr: t.state.crypto + o,
-                                tat: a + ":" + o
-                            }
-                        });
-                    }
-                });
-
+            run: async function(player, e) {
                 let {
                     props: t2
                 } = Object.values(function e(t = document.querySelector("body>div")) {
@@ -2329,6 +2294,10 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/b`,
                     val: repeatedText
+                });
+		t2.liveGameController.setVal({
+                    path: `c/${t2.client.name}/tat`,
+                    val: `${player}:196`
                 });
             }
         }],
@@ -4315,53 +4284,32 @@ scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
                 name: "Player",
                 type: "options",
                 options() {
-                    let e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                    let {
+                        stateNode: e
+                    } = Object.values(function e(t = document.querySelector("body>div")) {
+                        return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                    }())[1].children[0]._owner;
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Text",
-                type: "options",
-                async options() {
-                    let {
-                        webpack: e
-                    } = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]);
-                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
-                }
+                name: "Text"
             }],
-            run: function(player, e) {
-                var {
-                    props: t2,
-                    state: a
-                } = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
-                t2.liveGameController.setVal({
-                    path: "c/".concat(t2.client.name),
-                    val: {
-                        b: t2.client.blook,
-                        g: a.gold,
-                        tat: player + ":swap:0"
-                    }
-                });
-
+            run: async function(player, e) {
                 let {
-                    props: t
+                    props: t2
                 } = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
 
                 let repeatedText = `Dog:${Array(500).fill(e).join(' ')}`;
-                t.client.blook = repeatedText;
-                t.liveGameController.setVal({
-                    path: `c/${t.client.name}/b`,
+                t2.client.blook = repeatedText;
+                t2.liveGameController.setVal({
+                    path: `c/${t2.client.name}/b`,
                     val: repeatedText
+                });
+		t2.liveGameController.setVal({
+                    path: `c/${t2.client.name}/tat`,
+                    val: `${player}:196`
                 });
             }
         }],
