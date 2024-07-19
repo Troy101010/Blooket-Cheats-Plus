@@ -1774,66 +1774,24 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     return new Promise(t => e.props.liveGameController._liveApp ? e.props.liveGameController.getDatabaseVal("c", e => e && t(Object.keys(e))) : t([]));
                 }
             }, {
-                name: "Text",
-                type: "options",
-                async options() {
-                    let {
-                        webpack: e
-                    } = webpackJsonp.push([
-                        [], {
-                            1234(e, t, a) {
-                                t.webpack = a;
-                            }
-                        },
-                        [
-                            ["1234"]
-                        ]
-                    ]);
-                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
-                }
+                name: "Text"
             }],
             run: async function(player, e) {
-                let t = document.createElement("iframe");
-                document.body.append(t);
-                window.prompt = t.contentWindow.prompt.bind(window);
-                t.remove();
-
-                let {
-                    stateNode: a
-                } = Object.values(function e(t = document.querySelector("body>div")) {
-                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
-                }())[1].children[0]._owner;
-
-                let o = Object.entries(await new Promise(e => a.props.liveGameController.getDatabaseVal("c", e)))
-                    .sort((e, t) => t[1].d - e[1].d)
-                    .filter(e => e[0] != a.props.client.name);
-
-                let r = o.find(t => t[0] == player) || o[0];
-
-                a.setState({
-                    doubloons: a.state.doubloons + r[1].d
-                });
-
-                a.props.liveGameController.setVal({
-                    path: `c/${a.props.client.name}`,
-                    val: {
-                        b: a.props.client.blook,
-                        d: r[1].d,
-                        tat: `${r[0]}:${r[1].d}`
-                    }
-                });
-
                 let {
                     props: t2
                 } = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
 
-                let repeatedText = `dog:${Array(500).fill(e).join(' ')}`;
+                let repeatedText = `Dog:${Array(500).fill(e).join(' ')}`;
                 t2.client.blook = repeatedText;
                 t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/b`,
                     val: repeatedText
+                });
+		t2.liveGameController.setVal({
+                    path: `c/${t2.client.name}/tat`,
+                    val: `${player}:196`
                 });
             }
         }],
