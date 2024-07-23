@@ -27,8 +27,6 @@
 
 ![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2FDannyDan0167%2FBlooket-Cheats-Plus%2F&s=40&c=00ff00&bg=00000000&no=10&ff=digi&tb=&ta=)
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FDannyDan0167%2FBlooket-Cheats-Plus&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-
 [![Hits](https://hits.sh/github.com/DannyDan0167/Blooket-Cheats-Plus.svg)](https://hits.sh/github.com/DannyDan0167/Blooket-Cheats-Plus/)
 
 ## Information
