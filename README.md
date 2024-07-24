@@ -25,7 +25,6 @@
  </picture>
 </a>
 
-![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2FDannyDan0167%2FBlooket-Cheats-Plus%2F&s=40&c=00ff00&bg=00000000&no=10&ff=digi&tb=&ta=)
 
 [![Hits](https://hits.sh/github.com/DannyDan0167/Blooket-Cheats-Plus.svg)](https://hits.sh/github.com/DannyDan0167/Blooket-Cheats-Plus/)
 
