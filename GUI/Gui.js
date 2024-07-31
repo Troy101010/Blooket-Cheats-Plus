@@ -5426,15 +5426,7 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                     style: {
                         margin: "5px"
                     }
-                }, l("img", {
-                    src: t || this.blookData?.Black?.url,
-                    alt: "blook",
-                    draggable: !1,
-                    style: {
-                        height: "22.5px",
-                        margin: "0 10px -5px 0"
-                    }
-                }), l("strong", {}, e), " ", a))
+                }, l("strong", {}, e), " ", a))
             },
             connection: null,
             data: {},
@@ -5444,28 +5436,22 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                         name: a,
                         value: o
                     }
-                    of(this.leaderboardEl || this.addLeaderboard(), this.leaderboard.innerHTML = "", e)) this.leaderboard.append(l("li", {
+                    of(this.leaderboardEl || this.addLeaderboard(), this.leaderboard.innerHTML = "", e)){ this.leaderboard.append(l("li", {
                     style: {
                         fontSize: "2rem",
-                        paddingInline: "72px 15px",
+                        paddingInline: "15px 15px",
                         paddingBlock: "1.25px",
-                        position: "relative"
+                        position: "relative",
+			borderBottom: "2px solid orange",
+			color: (a===Object.values(document.querySelector("#app>div>div"))?.[1]?.children?.[0]?._owner?.stateNode?.props?.client?.name)?"#00FF00":"#FFFFFF"
                     }
-                }, l("img", {
-                    src: this.blookData?.[t]?.url || this.blookData.Black.url,
-                    alt: t,
-                    draggable: !1,
-                    style: {
-                        height: "45px",
-                        position: "absolute",
-                        left: "15px"
-                    }
-                }), a, l("span", {
+                }, a, l("span", {
                     innerText: this.parseNumber(parseInt(o)),
                     style: {
                         float: "right"
                     }
                 })))
+}
             },
             parseNumber(e = 0) {
                 var t = e;
@@ -5488,20 +5474,12 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                 return t
             },
             addLeaderboard() {
-                this.blookData ||= Object.values(webpackJsonp.push([
-                    [], {
-                        ""(e, t, a) {
-                            t.cache = a.c
-                        }
-                    },
-                    [
-                        [""]
-                    ]
-                ]).cache).find(e => e.exports?.a?.Alice && e.exports?.a?.Alien).exports.a, this.element.append(this.leaderboardEl = l("div", {
+            this.element.append(this.leaderboardEl = l("div", {
                     id: "leaderboardContent",
                     style: {
                         position: "absolute",
-                        inset: "110% 0px"
+                        inset: "110% 0px",
+			marginTop: "30px"
                     }
                 }, l("div", {
                     style: {
@@ -5576,23 +5554,15 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                         overflowY: "scroll",
                         wordWrap: "break-word"
                     }
-                })))))
+                })))));
+		this.addLog("Leaderboard Loaded! Scroll down to see it.");
             },
             async connect() {
                 try {
-                    var e = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                    var e = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
                     if (!e?.props?.liveGameController?._liveGameCode) return !1;
-                    this.connection = await e.props.liveGameController.getDatabaseRef("c");
-                    let t = this.blookData = Object.values(webpackJsonp.push([
-                            [], {
-                                ""(e, t, a) {
-                                    t.cache = a.c
-                                }
-                            },
-                            [
-                                [""]
-                            ]
-                        ]).cache).find(e => e.exports?.a?.Alice && e.exports?.a?.Alien).exports.a,
+                    this.connection = await e.props.liveGameController.getDatabaseRef("");
+                    let t = "Cow",
                         a = this.getGamemode(),
                         o = {
                             lb: "Lunch Break",
@@ -5609,7 +5579,7 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                             m: "Micro"
                         };
                     this.connection.on("value", e => {
-                        var r = e.val() || {};
+                        var r = e.val()?.c || {};
                         if (r && this.diffObjects(this.data, r)) {
                             var i, n, s, l, c, d, p, u, h = this.diffObjects(this.data, r);
                             this.data = r;
@@ -5671,7 +5641,7 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                                         value: a || 0
                                     }));
                                 case "gold":
-                                    for (let $ in h) h[$].tat && ([i, n] = h[$].tat.split(":"), "swap" == n ? this.addAlert($, t[r[$].b]?.url, "just swapped with " + i) : this.addAlert($, t[r[$].b]?.url, `just took ${this.parseNumber(parseInt(n))} gold from ` + i));
+                                    for (let $ in h) h[$].tat?.split && ([i, n] = h[$].tat.split(":"), "swap" == n ? this.addAlert($, t[r[$].b]?.url, "just swapped with " + i) : this.addAlert($, t[r[$].b]?.url, `just took ${this.parseNumber(parseInt(n))} gold from ` + i));
                                     m = Object.entries(r).map(([e, {
                                         b: t,
                                         g: a
@@ -5682,7 +5652,7 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                                     }));
                                     break;
                                 case "hack":
-                                    for (let g in h) h[g].tat && ([s, l] = h[g].tat.split(":"), this.addAlert(g, t[r[g].b]?.url, `just took ${this.parseNumber(parseInt(l))} crypto from ` + s));
+                                    for (let g in h) h[g].tat?.split && ([s, l] = h[g].tat.split(":"), this.addAlert(g, t[r[g].b]?.url, `just took ${this.parseNumber(parseInt(l))} crypto from ` + s));
                                     m = Object.entries(r).map(([e, {
                                         b: t,
                                         cr: a
