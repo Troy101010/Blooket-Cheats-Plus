@@ -2012,31 +2012,31 @@
                     run: function() {
                         let e = ["⁰", "\xb9", "\xb2", "\xb3", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"],
                             t = t => {
-                                let o = "";
-                                for (; t > 0;) o = e[t % 10] + o, t = ~~(t / 10);
-                                return o
+                                let a = "";
+                                for (; t > 0;) a = e[t % parseInt("10")] + a, t = ~~(t / 10);
+                                return a
                             },
-                            o = e => {
-                                let o = e.toString();
+                            a = e => {
+                                let a = e.toString();
                                 if (e >= 1e3) {
-                                    let a = ["", "K", "M", "B", "T"],
+                                    let o = ["", "K", "M", "B", "T"],
                                         r = ~~((digits(e) - 1) / 3);
-                                    if (r < a.length) {
-                                        let n = "";
-                                        for (let i = 3; i >= 1; i--) {
-                                            n = parseFloat((0 !== r ? e / 1e3 ** r : e).toPrecision(i)).toString();
-                                            let s = n.replace(/[^a-zA-Z 0-9]+/g, "");
+                                    if (r < o.length) {
+                                        let i = "";
+                                        for (let n = 3; n >= 1; n--) {
+                                            i = parseFloat((0 !== r ? e / 1e3 ** r : e).toPrecision(n)).toString();
+                                            let s = i.replace(/[^a-zA-Z 0-9]+/g, "");
                                             if (s.length <= 3) break
                                         }
-                                        Number(n) % 1 != 0 && (n = Number(n).toFixed(1)), o = n + a[r]
+                                        Number(i) % 1 != 0 && (i = Number(i).toFixed(1)), a = i + o[r]
                                     } else {
                                         let l = e,
                                             c = 0;
                                         for (; l >= 100;) l = Math.floor(l / 10), c += 1;
-                                        o = `${l/10} \xd7 10${t(c+1)}`
+                                        a = `${l/10} \xd7 10${t(c+1)}`
                                     }
                                 }
-                                return o
+                                return a
                             };
                         this.enabled ? (this.enabled = !1, clearInterval(this.data), this.data = null) : (this.enabled = !0, this.data = setInterval(() => {
                             let {
@@ -2095,11 +2095,11 @@
                                     rate: .025
                                 }].sort(() => .5 - Math.random()).slice(0, 3)
                             }, () => {
-                                t.forEach((t, a) => {
-                                    let r = e.state.choices[a];
+                                t.forEach((t, o) => {
+                                    let r = e.state.choices[o];
                                     t.querySelector("div") && t.querySelector("div").remove();
-                                    let n = document.createElement("div");
-                                    n.style.color = "white", n.style.fontFamily = "Macondo", n.style.fontSize = "1em", n.style.display = "flex", n.style.justifyContent = "center", n.style.transform = "translateY(25px)", n.innerText = "fossil" === r.type ? `+${Math.round(r.val*e.state.fossilMult)>99999999?o(Math.round(r.val*e.state.fossilMult)):Math.round(r.val*e.state.fossilMult)} Fossils` : `x${r.val} Fossils Per Excavation`, t.append(n)
+                                    let i = document.createElement("div");
+                                    i.style.color = "white", i.style.fontFamily = "Macondo", i.style.fontSize = "1em", i.style.display = "flex", i.style.justifyContent = "center", i.style.transform = "translateY(25px)", i.innerText = "fossil" === r.type ? `+${Math.round(r.val*e.state.fossilMult)>99999999?a(Math.round(r.val*e.state.fossilMult)):Math.round(r.val*e.state.fossilMult)} Fossils` : `x${r.val} Fossils Per Excavation`, t.append(i)
                                 })
                             })
                         }, 50))
