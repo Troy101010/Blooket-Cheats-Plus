@@ -271,7 +271,7 @@
             display: "flex",
             flexDirection: "column"
         },
-        innerHTML: '<span style="text-shadow: 1px 1px rgb(0 0 0 / 40%); font-size: 0.8em;">Cheats<sup>v14.0</sup></span>'
+        innerHTML: '<span style="text-shadow: 1px 1px rgb(0 0 0 / 40%); font-size: 0.8em;">Cheats<sup>v15.3</sup></span>'
     }, l("a", {
         className: "bigButton",
         style: {
