@@ -1,4 +1,4 @@
-<p align="center">Cheats made by people who knows how to improve something.</p>
+<p align="center">Cheats made by people who know how to improve something.</p>
 <p align="center">⚠️Keep in mind that these cheats do not contain an update checker (execpt for the userscript), reason being to prevent the GUIs from breaking. Occasionally check this repo for any updates that you might miss⚠️</p>
 <h3 align="center"><a href="https://discord.gg/8A6J234n7v">Support Server</a></h2>
 <h3 align="center"><a href="https://discord.gg/jHjGrrdXP6">05konz Support Server</a></h2>
