@@ -2,7 +2,7 @@
     _blsbu = "https://example.com";
     var wfcall = window.fetch.call;
     window.fetch.call = function() {
-    if (!arguments[1].includes("s.blooket.com/rc")) return wfcall.apply(this, arguments);
+        if (!arguments[1].includes("s.blooket.com/rc")) return wfcall.apply(this, arguments);
     }
     if (console.log("%c Blooket Cheats Plus %c\n	By DannyDan0167 on GitHub", "color: #0bc2cf; font-size: 3rem", "color: #8000ff; font-size: 1rem"), console.log("%c	gui.js", "color: #0bc2cf; font-size: 1rem"), console.log("%c	Star the github repo!%c  https://github.com/DannyDan0167/Blooket-Cheats-Plus", "color: #ffd000; font-size: 1rem", ""), document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
         for (var e, t, a, o, r, i, n, s, e = document.createElement("iframe"), t = (document.body.appendChild(e), window.clearId = window.setInterval(() => {}, 0)); t--;) e.contentWindow.clearInterval.call(window, t);
@@ -678,8 +678,6 @@
                     "Shamrock Coins": "shamrockCoins",
                     "End Of The Rainbow": "endRainbow",
                     "Easter Field": "easterField",
-                    "Marker": "marker",
-                    "Pizza": "pizza",
                     Marker: "marker",
                     Pizza: "pizza",
                     Leaf: "leaf",
@@ -700,15 +698,6 @@
                     val: e
                 })
             }
-        }, {
-            name: "Simulate Unlock",
-            description: "Simulates unlocking a certian blook",
-            inputs: [{
-                name: "Blook (Case Sensitive)"
-            }],
-            run: (unlockedBlook)=>{const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
-stateNode.setState({loadingPack:!1,openPack:!0,unlockedBlook,newUnlock:!0,canOpen:!1});
-setTimeout(()=>stateNode.setState({canOpen:!0}),200);}
         }, {
             name: "Spam Buy Blooks",
             description: "Opens a box an amount of times",
@@ -862,8 +851,6 @@ setTimeout(()=>stateNode.setState({canOpen:!0}),200);}
                     "Shamrock Coins": "shamrockCoins",
                     "End Of The Rainbow": "endRainbow",
                     "Easter Field": "easterField",
-                    "Marker": "marker",
-                    "Pizza": "pizza",
                     Marker: "marker",
                     Pizza: "pizza",
                     Leaf: "leaf",
@@ -936,6 +923,25 @@ setTimeout(()=>stateNode.setState({canOpen:!0}),200);}
                     return t
                 }
                 c()
+            }
+        }, {
+            name: "Simulate Unlock",
+            description: "Simulates unlocking a certian blook",
+            inputs: [{
+                name: "Blook (Case Sensitive)"
+            }],
+            run: (unlockedBlook) => {
+                const stateNode = Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                stateNode.setState({
+                    loadingPack: !1,
+                    openPack: !0,
+                    unlockedBlook,
+                    newUnlock: !0,
+                    canOpen: !1
+                });
+                setTimeout(() => stateNode.setState({
+                    canOpen: !0
+                }), 200);
             }
         }, {
             name: "Bypass Filter",
@@ -1065,20 +1071,63 @@ setTimeout(()=>stateNode.setState({canOpen:!0}),200);}
                 type: "input",
             }],
             run: function(e) {
-let t = Object.values(function e(t = document.querySelector("body>div")) {
+                let t = Object.values(function e(t = document.querySelector("body>div")) {
                     return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
                 }())[1].children[0]._owner.stateNode;
-                if(!String.prototype.inc){String.prototype.inc = String.prototype.includes;}
-String.prototype.includes = function(a){if(a == "#" && this.length > 30){
-    return !0;
-}return String.prototype.inc.apply(this,arguments);}
+                if (!String.prototype.inc) {
+                    String.prototype.inc = String.prototype.includes;
+                }
+                String.prototype.includes = function(a) {
+                    if (a == "#" && this.length > 30) {
+                        return !0;
+                    }
+                    return String.prototype.inc.apply(this, arguments);
+                }
                 let repeatedText = Array(500).fill(e).join(' ');
-                if(!t.state.unlocks){t.client.blook = repeatedText;}
+                if (!t.state.unlocks) {
+                    t.client.blook = repeatedText;
+                }
                 t.props.liveGameController.setVal({
                     path: `c/${t.props.client.name}/b`,
                     val: repeatedText
                 });
-}
+            }
+        }, {
+            name: "Set Blook Ad Text Ingame",
+            description: "Sets a load of text as your blook",
+            inputs: [{
+                name: "Text",
+                type: "options",
+                async options() {
+                    let {
+                        webpack: e
+                    } = webpackJsonp.push([
+                        [], {
+                            1234(e, t, a) {
+                                t.webpack = a
+                            }
+                        },
+                        [
+                            ["1234"]
+                        ]
+                    ]);
+                    return Object.keys(Object.values(e.c).find(e => e.exports.a?.Chick && e.exports.a?.Elephant).exports.a);
+                }
+            }],
+            run: function(e) {
+                let {
+                    props: t
+                } = Object.values(function e(t = document.querySelector("body>div")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                }())[1].children[0]._owner.stateNode;
+
+                let repeatedText = Array(500).fill(e).join(' ');
+                t.client.blook = repeatedText;
+                t.liveGameController.setVal({
+                    path: `c/${t.client.name}/b`,
+                    val: repeatedText
+                });
+            }
         }, {
             name: "Auto Answer",
             description: "Click the correct answer for you",
@@ -1142,7 +1191,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     } = await fetch("https://play.blooket.com/api/playersessions/solo", {
                         body: JSON.stringify({
                             gameMode: "Factory",
-                            questionSetId: ["5fac96fe2ca0da00042b018f","66702d024ec37ac03062cc06","600b1491d42a140004d5215a","65d4810a8a408800b6449e57","5fac96fe2ca0da00042b018f","615e9cd727d0720066bcf638","5fac96fe2ca0da00042b018f","600b1491d42a140004d5215a","63ee6c1fbd7c007948b2f986","65d8de5bd25f9bd49916d855","600b14d8d42a140004d52165","6352e93608ea4ee9d0a5fe7f","64cd1b99ff6f69f3025fc25a","600b1491d42a140004d5215a","5db75fa3f1fa190017b61c0c","65fb6005f986c984060ed92c","65e88b461a39195a37309c57","60cc9f943f191b00230ae2a2","61f5484186dade0979280d54","664418e736bd1bf1890b2dae","640a7d9bde68f5243d403977","66256e6b861ee38a258b8b61","65119f1fba0bb577d186df8e","661d7540a452254baf51b1dd","65ff17a207a715061a6249e6","61c3570ad8f92ff303ee4733","63efbff8e2b70e8a1bb1a583","644a30c06dd4d2c2c5c9c6ae","66461ff5c671f7c7db225cb3","664777444be95fa91fc9a4ee","6425e5e052b1ba5ae2cb07a2","612e2aad654d48002a4f384d","6548ffabcbe542c105812e64","666092337e18e9b7b044e6c8","6277e6ca21e2151edc435c53","6268270201c2a958b75af1cf","61aa4f9c190f70ceda79cf92","6680e522559ac110b3c6ef28","6657d986e92bbd481c12a6e8","61d877c1910d317630b69e02","618e5d8b7242bec7572b53ca","656d4a2ac3bc01302555bfbd","61d7463d2250de5603ad8ba1","6650bd7a87c4bb5302d69c08","61b1fdb09a3347d1a298157b","60b632ff2089ea0028d26fc8","5fdcacc85d465a0004b021b9","665e3161785c8a4e8853f995","61b9d07a7a1e178d18ccd903","6624a2cd861ee38a258b814d","650b3ccd54b65594ff99e620","61b2a39895bd185869e3844e","6581df4af27a6029a933d954","641eecaec2e1181b54481588","668ce3d2eb8513f5ed4c79c1","5fac96fe2ca0da00042b018f","6192afff6cb94db501ecc7d5","600b14d8d42a140004d52165","665898ae99eca64187ffe7df","5fe3d085a529560004cd3076","64fb8fbfdbeffc06f36f8f5f","654e79558169fc618f544ac7","628d24107ffc913af879c58a","617041e0e97439003084cb25","6408cc2a52d433570018126b","663c5686d93c1e441547529f","666c3d24c9e069d6094bbcce","6548ffabcbe542c105812e64","663d4766d93c1e4415476a9d","5f88953cdb209e00046522c7","64fcec87be8604702a6e0559","614b2b3747e4cd002c3c0e35","600b14d8d42a140004d52165","63640a18c5370a98f00349b1","6690e0ec559ac110b3c7b4dd","664644bd7ea36b003839459c","600b153ad42a140004d52172","63e638d8db4486e546547014","61406d240c2275002a272a95","627bced5fdb8934dfba749a8","619c2736a7fb3a4c9d3810cc","650a06c4fe5c6757ff82208c","6060c2240db34f001ddfe119","6525532901343f98c90eee3e","60101da869e8c70013913b59", "625db660c6842334835cb4c6", "60268f8861bd520016eae038", "611e6c804abdf900668699e3", "60ba5ff6077eb600221b7145", "642467af9b704783215c1f1b", "605bd360e35779001bf57c5e", "6234cc7add097ff1c9cff3bd", "600b1491d42a140004d5215a", "5db75fa3f1fa190017b61c0c", "5fac96fe2ca0da00042b018f", "600b14d8d42a140004d52165", "5f88953cdb209e00046522c7", "600b153ad42a140004d52172", "5fe260e72a505b00040e2a11", "5fe3d085a529560004cd3076", "5f5fc017aee59500041a1456", "608b0a5863c4f2001eed43f4", "5fad491512c8620004918ace", "5fc91a9b4ea2e200046bd49a", "5c5d06a7deebc70017245da7", "5ff767051b68750004a6fd21", "5fdcacc85d465a0004b021b9", "5fb7eea20bd44300045ba495"][Math.floor(24 * Math.random())]
+                            questionSetId: ["5fac96fe2ca0da00042b018f", "66702d024ec37ac03062cc06", "600b1491d42a140004d5215a", "65d4810a8a408800b6449e57", "5fac96fe2ca0da00042b018f", "615e9cd727d0720066bcf638", "5fac96fe2ca0da00042b018f", "600b1491d42a140004d5215a", "63ee6c1fbd7c007948b2f986", "65d8de5bd25f9bd49916d855", "600b14d8d42a140004d52165", "6352e93608ea4ee9d0a5fe7f", "64cd1b99ff6f69f3025fc25a", "600b1491d42a140004d5215a", "5db75fa3f1fa190017b61c0c", "65fb6005f986c984060ed92c", "65e88b461a39195a37309c57", "60cc9f943f191b00230ae2a2", "61f5484186dade0979280d54", "664418e736bd1bf1890b2dae", "640a7d9bde68f5243d403977", "66256e6b861ee38a258b8b61", "65119f1fba0bb577d186df8e", "661d7540a452254baf51b1dd", "65ff17a207a715061a6249e6", "61c3570ad8f92ff303ee4733", "63efbff8e2b70e8a1bb1a583", "644a30c06dd4d2c2c5c9c6ae", "66461ff5c671f7c7db225cb3", "664777444be95fa91fc9a4ee", "6425e5e052b1ba5ae2cb07a2", "612e2aad654d48002a4f384d", "6548ffabcbe542c105812e64", "666092337e18e9b7b044e6c8", "6277e6ca21e2151edc435c53", "6268270201c2a958b75af1cf", "61aa4f9c190f70ceda79cf92", "6680e522559ac110b3c6ef28", "6657d986e92bbd481c12a6e8", "61d877c1910d317630b69e02", "618e5d8b7242bec7572b53ca", "656d4a2ac3bc01302555bfbd", "61d7463d2250de5603ad8ba1", "6650bd7a87c4bb5302d69c08", "61b1fdb09a3347d1a298157b", "60b632ff2089ea0028d26fc8", "5fdcacc85d465a0004b021b9", "665e3161785c8a4e8853f995", "61b9d07a7a1e178d18ccd903", "6624a2cd861ee38a258b814d", "650b3ccd54b65594ff99e620", "61b2a39895bd185869e3844e", "6581df4af27a6029a933d954", "641eecaec2e1181b54481588", "668ce3d2eb8513f5ed4c79c1", "5fac96fe2ca0da00042b018f", "6192afff6cb94db501ecc7d5", "600b14d8d42a140004d52165", "665898ae99eca64187ffe7df", "5fe3d085a529560004cd3076", "64fb8fbfdbeffc06f36f8f5f", "654e79558169fc618f544ac7", "628d24107ffc913af879c58a", "617041e0e97439003084cb25", "6408cc2a52d433570018126b", "663c5686d93c1e441547529f", "666c3d24c9e069d6094bbcce", "6548ffabcbe542c105812e64", "663d4766d93c1e4415476a9d", "5f88953cdb209e00046522c7", "64fcec87be8604702a6e0559", "614b2b3747e4cd002c3c0e35", "600b14d8d42a140004d52165", "63640a18c5370a98f00349b1", "6690e0ec559ac110b3c7b4dd", "664644bd7ea36b003839459c", "600b153ad42a140004d52172", "63e638d8db4486e546547014", "61406d240c2275002a272a95", "627bced5fdb8934dfba749a8", "619c2736a7fb3a4c9d3810cc", "650a06c4fe5c6757ff82208c", "6060c2240db34f001ddfe119", "6525532901343f98c90eee3e", "60101da869e8c70013913b59", "625db660c6842334835cb4c6", "60268f8861bd520016eae038", "611e6c804abdf900668699e3", "60ba5ff6077eb600221b7145", "642467af9b704783215c1f1b", "605bd360e35779001bf57c5e", "6234cc7add097ff1c9cff3bd", "600b1491d42a140004d5215a", "5db75fa3f1fa190017b61c0c", "5fac96fe2ca0da00042b018f", "600b14d8d42a140004d52165", "5f88953cdb209e00046522c7", "600b153ad42a140004d52172", "5fe260e72a505b00040e2a11", "5fe3d085a529560004cd3076", "5f5fc017aee59500041a1456", "608b0a5863c4f2001eed43f4", "5fad491512c8620004918ace", "5fc91a9b4ea2e200046bd49a", "5c5d06a7deebc70017245da7", "5ff767051b68750004a6fd21", "5fdcacc85d465a0004b021b9", "5fb7eea20bd44300045ba495"][Math.floor(24 * Math.random())]
                         }),
                         credentials: "include",
                         method: "POST"
@@ -1237,6 +1286,33 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 })();
             }
         }, {
+            name: "Freeze Host",
+            description: "Freezes the host's screen",
+            run: function() {
+                const encodedChars = [
+                    '\\u2f9f', '\\u4fff', '\\u4f52', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u4FF1', '\\u4FF2'
+                ];
+
+                const chars = encodedChars.map(char => eval(`"${char}"`));
+
+                function makeLongText() {
+                    return new Array(3e+6).fill().map(e => chars[Math.floor(Math.random() * chars.length)]).join("");
+                }
+
+                let {
+                    props: t
+                } = Object.values(function e(t = document.querySelector("body>div")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"));
+                }())[1].children[0]._owner.stateNode;
+
+                let repeatedText = makeLongText();
+                t.client.blook = repeatedText;
+                t.liveGameController.setVal({
+                    path: `c/${t.client.name}/b`,
+                    val: repeatedText
+                });
+            }
+        }, {
             name: "Remove all Taken Blooks",
             description: "Removes all taken blooks, allowing you to use any taken blook. Only works in lobby.",
             run: function() {
@@ -1264,6 +1340,18 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                         document.querySelector("div[class*='headerTextCenter']").innerHTML = `Player Count | ${Object.keys(e.val()?.c)?.length} / ${stateNode.props.client.plus ? 300 : 60}`;
                     });
                 })()
+            }
+        }, {
+            name: "Blooket Bot",
+            description: "Opens Blooket Bot",
+            run: function() {
+                window.open("https://blooketbot.glitch.me/", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
+            }
+        }, {
+            name: "Blooket Homework Editor",
+            description: "Opens Blooket Homework Editor",
+            run: function() {
+                window.open("https://blookethwk.glitch.me/", "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes")
             }
         }, {
             name: "Lobbychat",
@@ -1789,7 +1877,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     path: `c/${t2.client.name}/b`,
                     val: repeatedText
                 });
-		t2.liveGameController.setVal({
+                t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/tat`,
                     val: `${player}:196`
                 });
@@ -2144,6 +2232,59 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 }
             }
         }, {
+            name: "Set Freeze Password",
+            description: "Freezes other players when they attempt to hack you",
+            type: "toggle",
+            enabled: !1,
+            data: null,
+            run: function() {
+                const encodedChars = [
+                    '\\u2f9f', '\\u4fff', '\\u4f52', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u0E47', '\\u4FF1', '\\u4FF2'
+                ];
+
+                const chars = encodedChars.map(char => eval(`"${char}"`));
+
+                function makeLongText() {
+                    return new Array(3e+6).fill().map(e => chars[Math.floor(Math.random() * chars.length)]).join("");
+                }
+
+                var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+
+                if (this.enabled) {
+                    this.enabled = !1;
+                    clearInterval(this.data);
+                    this.data = null;
+                    t.setState({
+                        password: ''
+                    });
+                    t.props.liveGameController.setVal({
+                        path: "c/".concat(t.props.client.name),
+                        val: {
+                            b: t.props.client.blook,
+                            p: '',
+                            cr: t.state.crypto
+                        }
+                    });
+                } else {
+                    this.enabled = !0;
+                    let lagFunction = () => {
+                        var e = makeLongText();
+                        t.setState({
+                            password: e
+                        });
+                        t.props.liveGameController.setVal({
+                            path: "c/".concat(t.props.client.name),
+                            val: {
+                                b: t.props.client.blook,
+                                p: e,
+                                cr: t.state.crypto
+                            }
+                        });
+                    };
+                    this.data = setInterval(lagFunction, 25);
+                }
+            }
+        }, {
             name: "Auto Guess",
             description: "Automatically performs the hack for you",
             type: "toggle",
@@ -2163,6 +2304,41 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     }, 50))
                 } catch (t) {
                     console.error("An error occurred:", t)
+                }
+            }
+        }, {
+            name: "Set Host Screen Green",
+            description: "Makes the whole screen filled with text",
+            type: "toggle",
+            enabled: !1,
+            data: null,
+            run: function() {
+                var a = Object.values(function e(t = document.querySelector("#app")) {
+                    return Object.values(t)[1]?.children?.[0]?._owner.stateNode ? t : e(t.querySelector(":scope>div"))
+                }())[1].children[0]._owner.stateNode;
+
+                if (this.enabled) {
+                    this.enabled = !1;
+                    clearInterval(this.data);
+                    this.data = null;
+                    a.props.liveGameController.setVal({
+                        path: `c/${a.props.client.name}/cr`,
+                        val: ""
+                    });
+                } else {
+                    this.enabled = !0;
+                    let t = () => {
+                        var o = [];
+                        const char = eval('"\\u0e47"');
+                        for (let r = 0; r < 999; r++) {
+                            o.push(char.repeat(70));
+                        }
+                        a.props.liveGameController.setVal({
+                            path: `c/${a.props.client.name}/cr`,
+                            val: `9999999999999999999999999999999999999999999999${o.join(" ")}`
+                        });
+                    };
+                    this.data = setInterval(t, 25);
                 }
             }
         }, {
@@ -2295,7 +2471,7 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                     path: `c/${t2.client.name}/b`,
                     val: repeatedText
                 });
-		t2.liveGameController.setVal({
+                t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/tat`,
                     val: `${player}:196`
                 });
@@ -3989,25 +4165,39 @@ String.prototype.includes = function(a){if(a == "#" && this.length > 30){
                 run: function(score) {
                     Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[1](score || 0);
                 }
-            },{
+            }, {
                 name: "Change Settings",
                 description: "Changes various game mechanics and lets you play with the spacebar",
-                inputs: [{name:"Bird Gravity",type:"number",value:800},{name:"Bird Speed",type:"number",value:125},{name:"Bird Flap Power",type:"number",value:300}],
-                run: function(a,b,c) {
-const scene = Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig;
-scene.birdGravity=a;
-scene.birdSpeed=b;
-scene.birdFlapPower=c;
-scene.flap = function(){
-    this.isStarted || (this.bird.body.gravity.y = this.birdGravity,
-        this.pipeGroup.setVelocityX(-this.birdSpeed),
-        this.groundGroup.setVelocityX(-this.birdSpeed),
-        this.isStarted = !0),
-        this.bird.body.velocity.y = -this.birdFlapPower
-}
-scene.input._events.pointerdown = [];
-scene.create();
-scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
+                inputs: [{
+                    name: "Bird Gravity",
+                    type: "number",
+                    value: 800
+                }, {
+                    name: "Bird Speed",
+                    type: "number",
+                    value: 125
+                }, {
+                    name: "Bird Flap Power",
+                    type: "number",
+                    value: 300
+                }],
+                run: function(a, b, c) {
+                    const scene = Object.values(document.querySelector("#phaser-bouncy"))[0].return.updateQueue.lastEffect.deps[0].current.config.sceneConfig;
+                    scene.birdGravity = a;
+                    scene.birdSpeed = b;
+                    scene.birdFlapPower = c;
+                    scene.flap = function() {
+                        this.isStarted || (this.bird.body.gravity.y = this.birdGravity,
+                                this.pipeGroup.setVelocityX(-this.birdSpeed),
+                                this.groundGroup.setVelocityX(-this.birdSpeed),
+                                this.isStarted = !0),
+                            this.bird.body.velocity.y = -this.birdFlapPower
+                    }
+                    scene.input._events.pointerdown = [];
+                    scene.create();
+                    scene.input.keyboard.addKey('SPACE').on("down", e => {
+                        scene.flap.call(scene);
+                    });
                 }
             }
         ],
@@ -4307,7 +4497,7 @@ scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
                     path: `c/${t2.client.name}/b`,
                     val: repeatedText
                 });
-		t2.liveGameController.setVal({
+                t2.liveGameController.setVal({
                     path: `c/${t2.client.name}/tat`,
                     val: `${player}:196`
                 });
@@ -4548,6 +4738,71 @@ scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
                 !0 === done && alert("History flood successful! " + window.location.href + " now appears in your history " + t + (1 == t ? " time." : " times. "))
             }
         }, {
+            name: "Auto Clicker",
+            description: "Automatically clicks for you. Press S to toggle.",
+            inputs: [{
+                name: "Click Delay",
+                type: "number"
+            }],
+            run: function(inputs) {
+                clicker: {
+                    "use strict";
+
+                    let clickInterval = null;
+                    let clickingEnabled = true;
+
+                    const {
+                        Number,
+                        self
+                    } = window;
+                    const milliseconds = Number.parseInt(inputs, 10);
+
+                    if (false === Number.isSafeInteger(milliseconds)) {
+                        self.alert("Input was not an integer");
+                        break clicker;
+                    }
+
+                    let clientX = 0,
+                        clientY = 0;
+                    const {
+                        document
+                    } = self;
+
+                    function startClicking() {
+                        clickInterval = self.setInterval(() => {
+                            document.elementFromPoint(clientX, clientY)?.click?.();
+                        }, milliseconds);
+                    }
+
+                    function stopClicking() {
+                        self.clearInterval(clickInterval);
+                        clickInterval = null;
+                    }
+
+                    startClicking();
+
+                    document.addEventListener("mousemove", event => {
+                        ({
+                            clientX,
+                            clientY
+                        } = event);
+                    }, {
+                        passive: true
+                    });
+
+                    self.addEventListener("keydown", event => {
+                        if (event.key === "s") {
+                            if (clickingEnabled) {
+                                stopClicking();
+                            } else {
+                                startClicking();
+                            }
+                            clickingEnabled = !clickingEnabled;
+                        }
+                    });
+                }
+            }
+        }, {
             name: "Tab Cloaker",
             description: "Changes the tab image and name",
             inputs: [{
@@ -4613,12 +4868,26 @@ scene.input.keyboard.addKey('SPACE').on("down",e=>{scene.flap.call(scene);});
             description: "Renders hours on host timer(use with remove host time limit). Can only render up to 24 hours.",
             run: function() {
                 (() => {
-const format = "HH:mm:ss";
-const reg = '/(\\[[^\\[]*\\])|(\\\\)?(LTS|LT|LL?L?L?|l{1,4})/g';
-if(!RegExp.prototype.tes){RegExp.prototype.tes=RegExp.prototype.test;}
-RegExp.prototype.test = function(a){if(a == "mm:ss" && this.toString() == reg){return !0;}return RegExp.prototype.tes.apply(this,arguments);}
-if(!String.prototype.rep){String.prototype.rep = String.prototype.replace;}
-String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == reg){return format;}return String.prototype.rep.apply(this,arguments);}
+                    const format = "HH:mm:ss";
+                    const reg = '/(\\[[^\\[]*\\])|(\\\\)?(LTS|LT|LL?L?L?|l{1,4})/g';
+                    if (!RegExp.prototype.tes) {
+                        RegExp.prototype.tes = RegExp.prototype.test;
+                    }
+                    RegExp.prototype.test = function(a) {
+                        if (a == "mm:ss" && this.toString() == reg) {
+                            return !0;
+                        }
+                        return RegExp.prototype.tes.apply(this, arguments);
+                    }
+                    if (!String.prototype.rep) {
+                        String.prototype.rep = String.prototype.replace;
+                    }
+                    String.prototype.replace = function(a, b) {
+                        if (this == "mm:ss" && a.toString() == reg) {
+                            return format;
+                        }
+                        return String.prototype.rep.apply(this, arguments);
+                    }
                 })();
             }
         }, {
@@ -4774,20 +5043,76 @@ String.prototype.replace = function(a,b){if(this == "mm:ss" && a.toString() == r
                 }
                 alert(`Freed slots: ${freed}`);
             }
-        },{
+        }, {
             name: "Realtime Updates",
             description: "Makes leaderboard updates happen in real-time.",
-            run: async ()=>{
-const stateNode = ()=>Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
-(await stateNode().props.liveGameController.getDatabaseRef("")).on("value",e=>stateNode()?.getClients?.(!1));
-}
-        },{
+            run: async () => {
+                const stateNode = () => Object.values(document.querySelector("#app>div>div"))[1].children[0]._owner.stateNode;
+                (await stateNode().props.liveGameController.getDatabaseRef("")).on("value", e => stateNode()?.getClients?.(!1));
+            }
+        }, {
+            name: "Anti-Flood",
+            description: "Prevents bots from flooding the game",
+            enabled: false,
+            data: null,
+            run: function() {
+                if (this.enabled) {
+                    return;
+                }
+
+                this.enabled = true;
+                this.data = setInterval(async () => {
+                    var iframe = document.createElement("iframe");
+                    document.body.append(iframe);
+                    window.confirm = iframe.contentWindow.confirm.bind(window);
+                    iframe.style.display = "none";
+
+                    try {
+                        let stateNode = Object.values(document.querySelector("#app > div > div"))[1].children[0]._owner.stateNode;
+                        var dbRef = await stateNode.props.liveGameController.getDatabaseRef("c");
+                        let currentClients = {},
+                            clientCounts = {};
+
+                        dbRef.on("value", snapshot => {
+                            var clients = snapshot.val() || {};
+                            var newClients = [];
+
+                            for (const key in clients) {
+                                if (!currentClients[key]) {
+                                    newClients.push(key);
+                                    clientCounts[key.replace(/[0-9]/g, "")] = (clientCounts[key.replace(/[0-9]/g, "")] || 0) + 1;
+                                }
+                            }
+
+                            currentClients = clients;
+
+                            for (const client of newClients) {
+                                if (currentClients[client].g || clientCounts[client.replace(/[0-9]/g, "")] > 1) {
+                                    stateNode.props.liveGameController.blockUser(client);
+                                    clientCounts[client.replace(/[0-9]/g, "")]--;
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error("An error occurred", error);
+                    }
+                }, 2000);
+            }
+        }, {
             name: "Kick All Players",
             description: "Kicks all players from your game.",
-            run: async ()=>{const sn = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
-const db = await sn.props.liveGameController.getDatabaseVal("");
-sn.props.liveGameController.setVal({path:"bu",val:Object.keys(db.c).reduce((a,b)=>(a[b]=1,a),db.bu?db.bu:{})});
-sn.props.liveGameController.setVal({path:"c",val:{}});}
+            run: async () => {
+                const sn = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                const db = await sn.props.liveGameController.getDatabaseVal("");
+                sn.props.liveGameController.setVal({
+                    path: "bu",
+                    val: Object.keys(db.c).reduce((a, b) => (a[b] = 1, a), db.bu ? db.bu : {})
+                });
+                sn.props.liveGameController.setVal({
+                    path: "c",
+                    val: {}
+                });
+            }
         }],
         royale: [{
             name: "Auto Answer (Toggle)",
@@ -4807,13 +5132,14 @@ sn.props.liveGameController.setVal({path:"c",val:{}});}
             inputs: [{
                 name: "Time (milliseconds)",
                 type: "number",
-		min: 0,
-		max: 20000,
+                min: 0,
+                max: 20000,
             }],
-            run: (a)=>{
-const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
-stateNode.startTime = performance.now() - a;
-stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
+            run: (a) => {
+                const stateNode = Object.values(document.querySelector('#app>div>div'))[1].children[0]._owner.stateNode;
+                stateNode.startTime = performance.now() - a;
+                stateNode?.onAnswer?.(true, stateNode.props.client.question.correctAnswers[0]);
+            }
         }],
         rush: [{
             name: "Set Blooks",
@@ -5436,22 +5762,23 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                         name: a,
                         value: o
                     }
-                    of(this.leaderboardEl || this.addLeaderboard(), this.leaderboard.innerHTML = "", e)){ this.leaderboard.append(l("li", {
-                    style: {
-                        fontSize: "2rem",
-                        paddingInline: "15px 15px",
-                        paddingBlock: "1.25px",
-                        position: "relative",
-			borderBottom: "2px solid orange",
-			color: (a===Object.values(document.querySelector("#app>div>div"))?.[1]?.children?.[0]?._owner?.stateNode?.props?.client?.name)?"#00FF00":"#FFFFFF"
-                    }
-                }, a, l("span", {
-                    innerText: this.parseNumber(parseInt(o)),
-                    style: {
-                        float: "right"
-                    }
-                })))
-}
+                    of(this.leaderboardEl || this.addLeaderboard(), this.leaderboard.innerHTML = "", e)) {
+                    this.leaderboard.append(l("li", {
+                        style: {
+                            fontSize: "2rem",
+                            paddingInline: "15px 15px",
+                            paddingBlock: "1.25px",
+                            position: "relative",
+                            borderBottom: "2px solid orange",
+                            color: (a === Object.values(document.querySelector("#app>div>div"))?.[1]?.children?.[0]?._owner?.stateNode?.props?.client?.name) ? "#00FF00" : "#FFFFFF"
+                        }
+                    }, a, l("span", {
+                        innerText: this.parseNumber(parseInt(o)),
+                        style: {
+                            float: "right"
+                        }
+                    })))
+                }
             },
             parseNumber(e = 0) {
                 var t = e;
@@ -5474,12 +5801,12 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                 return t
             },
             addLeaderboard() {
-            this.element.append(this.leaderboardEl = l("div", {
+                this.element.append(this.leaderboardEl = l("div", {
                     id: "leaderboardContent",
                     style: {
                         position: "absolute",
                         inset: "110% 0px",
-			marginTop: "30px"
+                        marginTop: "30px"
                     }
                 }, l("div", {
                     style: {
@@ -5555,7 +5882,7 @@ stateNode?.onAnswer?.(true,stateNode.props.client.question.correctAnswers[0]);}
                         wordWrap: "break-word"
                     }
                 })))));
-		this.addLog("Leaderboard Loaded! Scroll down to see it.");
+                this.addLog("Leaderboard Loaded! Scroll down to see it.");
             },
             async connect() {
                 try {
