@@ -398,6 +398,23 @@
                         });
                     }
                 }, {
+                    name: "Blooket Bot",
+                    description: "Opens Blooket Bot",
+                    run: function() {
+                        function getGameCode() {
+                            const appDiv = document.querySelector('#app>div>div');
+                            if (appDiv) {
+                                const reactComponent = Object.values(appDiv)[1]?.children[0]?._owner;
+                                return reactComponent?.stateNode?.props?.client?.hostId || null;
+                            }
+                            return null;
+                        }
+
+                        const gameCode = getGameCode();
+                        const url = gameCode ? "https://blooketbot.glitch.me/?code=" + gameCode : "https://blooketbot.glitch.me/";
+                        window.open(url, "_blank", "width=500,height=500,resizable=yes,scrollbars=yes,status=yes");
+                    }
+                }, {
                     name: "Lobbychat",
                     description: "Chat with other people and execute commands",
                     run: function() {
