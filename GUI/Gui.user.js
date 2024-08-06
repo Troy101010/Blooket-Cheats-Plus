@@ -5212,6 +5212,27 @@
                     val: e
                 })
             }
+        }, {
+            name: "Freeze Host :)",
+            description: "They aint coming back with this one",
+            run: function() {
+                var largeNumber = "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999";
+                var t = Object.values(document.querySelector("body div[id] > div > div"))[1].children[0]._owner.stateNode;
+                t.setState({
+                    numBlooks: largeNumber
+                });
+                if (t.isTeam) {
+                    t.props.liveGameController.setVal({
+                        path: `a/${t.props.client.name}/bs`,
+                        val: largeNumber
+                    });
+                } else {
+                    t.props.liveGameController.setVal({
+                        path: `c/${t.props.client.name}/bs`,
+                        val: largeNumber
+                    });
+                }
+            }
         }],
         workshop: [{
             name: "Remove Distractions",
